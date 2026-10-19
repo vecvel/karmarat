@@ -188,13 +188,18 @@ gen: ## Regenerate code derived from another language's source
 	./scripts/gen-reserved-slugs.sh
 
 .PHONY: rebrand
-rebrand: ## Rebrand platform (e.g. make rebrand OLD=karmarat NEW=Karmarat [DRY=1] [FORCE=1])
-	@if [ -z "$(OLD)" ] || [ -z "$(NEW)" ]; then \
-		echo "Usage: make rebrand OLD=<OldName> NEW=<NewName> [DRY=1] [FORCE=1]"; \
-		echo "Example: make rebrand OLD=karmarat NEW=Karmarat DRY=1"; \
+rebrand: ## Rebrand platform (e.g. make rebrand OLD=oldname NEW=newname [DRY=1] [FORCE=1])
+	$(eval _OLD := $(or $(OLD),$(old)))
+	$(eval _NEW := $(or $(NEW),$(new)))
+	$(eval _DRY := $(or $(DRY),$(dry)))
+	$(eval _FORCE := $(or $(FORCE),$(force)))
+	@if [ -z "$(_OLD)" ] || [ -z "$(_NEW)" ]; then \
+		echo "Usage: make rebrand OLD=<oldname> NEW=<newname> [DRY=1] [FORCE=1]"; \
+		echo "Example: make rebrand OLD=oldname NEW=newname [DRY=1]"; \
+		echo "Example: make rebrand OLD=reqruitbook NEW=Karmarat DRY=1"; \
 		exit 1; \
 	fi
-	./scripts/rebrand.sh --old "$(OLD)" --new "$(NEW)" $(if $(filter 1 true,$(DRY)),--dry-run) $(if $(filter 1 true,$(FORCE)),--force)
+	./scripts/rebrand.sh --old "$(_OLD)" --new "$(_NEW)" $(if $(filter 1 true,$(_DRY)),--dry-run) $(if $(filter 1 true,$(_FORCE)),--force)
 
 .PHONY: verify
 verify: ## Everything CI runs, locally
