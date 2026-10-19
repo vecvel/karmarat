@@ -162,12 +162,12 @@ func (n Notification) Read() bool { return n.ReadAt != nil }
 var (
 	// ErrNotificationNotFound also covers another recipient's row: the filtered
 	// query cannot tell the two apart, which is the point.
-	ErrNotificationNotFound = errors.New("This notification could not be found.")
+	ErrNotificationNotFound = errors.New("notification could not be found")
 	// ErrInvalidCursor is returned rather than silently restarting the list.
-	ErrInvalidCursor = errors.New("That pagination cursor is not valid. Start from the first page.")
+	ErrInvalidCursor = errors.New("pagination cursor is not valid; start from the first page")
 	// ErrNotAddressable means the request came from a principal this service
 	// cannot build an inbox for.
-	ErrNotAddressable = errors.New("This endpoint is not available to your account type.")
+	ErrNotAddressable = errors.New("endpoint is not available to your account type")
 )
 
 // FieldErrors is the field-to-messages map a 422 carries.

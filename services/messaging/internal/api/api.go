@@ -14,7 +14,6 @@
 package api
 
 import (
-	"crypto/subtle"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -44,7 +43,6 @@ const (
 	permSend     = "messaging.send"
 	permMyRead   = "candidate_messaging.read"
 	permMySend   = "candidate_messaging.send"
-	internalHdr  = "X-Internal-Token"
 	idempotenceH = "Idempotency-Key"
 )
 
@@ -137,35 +135,6 @@ func (a *API) Routes() http.Handler {
 /* -------------------------------------------------------------------------- */
 /* Guards and helpers                                                         */
 /* -------------------------------------------------------------------------- */
-
-// internal guards service-to-service endpoints with a shared secret.
-//
-// Unused today — messaging exposes nothing internally yet — but kept beside the
-// other guards so the next service that needs a thread's existence confirmed
-// does not invent its own scheme.
-func (a *API) internal(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if a.internalToken == "" {
-			httpx.WriteProblem(w, r, httpx.Internal("Internal API is not configured."))
-			return
-		}
-		if subtleCompare(strings.TrimSpace(r.Header.Get(internalHdr)), a.internalToken) != 1 {
-			httpx.WriteProblem(w, r, httpx.Unauthorized("Invalid internal credentials."))
-			return
-		}
-		next.ServeHTTP(w, r)
-	})
-}
-
-// subtleCompare is a constant-time string comparison for shared secrets.
-func subtleCompare(a, b string) int {
-	if len(a) != len(b) {
-		// Still run a comparison so length alone does not shortcut the timing.
-		subtle.ConstantTimeCompare([]byte(a), []byte(a))
-		return 0
-	}
-	return subtle.ConstantTimeCompare([]byte(a), []byte(b))
-}
 
 // scopeOf builds the company scope this request may read within.
 //

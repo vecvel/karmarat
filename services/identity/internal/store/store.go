@@ -358,13 +358,6 @@ func (s *Store) exec(ctx context.Context, tx pgx.Tx, query string, args ...any) 
 	return s.pool.Exec(ctx, query, args...)
 }
 
-func (s *Store) query(ctx context.Context, tx pgx.Tx, query string, args ...any) (pgx.Rows, error) {
-	if tx != nil {
-		return tx.Query(ctx, query, args...)
-	}
-	return s.pool.Query(ctx, query, args...)
-}
-
 func nullable(v string) any {
 	if strings.TrimSpace(v) == "" {
 		return nil

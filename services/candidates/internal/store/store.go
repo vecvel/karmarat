@@ -13,7 +13,6 @@ package store
 
 import (
 	"context"
-	"errors"
 	"fmt"
 
 	"github.com/jackc/pgx/v5"
@@ -51,18 +50,6 @@ func (s *Store) InTx(ctx context.Context, fn func(pgx.Tx) error) error {
 		return fmt.Errorf("store: commit transaction: %w", err)
 	}
 	return nil
-}
-
-func isUniqueViolation(err error) bool {
-	var pgErr *pgconn.PgError
-	return errors.As(err, &pgErr) && pgErr.Code == "23505"
-}
-
-func (s *Store) queryRow(ctx context.Context, tx pgx.Tx, query string, args ...any) pgx.Row {
-	if tx != nil {
-		return tx.QueryRow(ctx, query, args...)
-	}
-	return s.pool.QueryRow(ctx, query, args...)
 }
 
 func (s *Store) exec(ctx context.Context, tx pgx.Tx, query string, args ...any) (pgconn.CommandTag, error) {

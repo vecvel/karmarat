@@ -180,15 +180,15 @@ func (j Job) PubliclyListed() bool {
 var (
 	// ErrJobNotFound is returned for a missing job and for another tenant's job
 	// alike — the caller must not be able to tell the two apart.
-	ErrJobNotFound = errors.New("This job requisition could not be found.")
+	ErrJobNotFound = errors.New("job requisition could not be found")
 	// ErrSlugTaken means the company already uses the slug on another job.
-	ErrSlugTaken = errors.New("Another requisition in this company already uses that link.")
+	ErrSlugTaken = errors.New("another requisition in this company already uses that link")
 	// ErrNetworkSlugTaken means the slug is held on the shared jobs board.
-	ErrNetworkSlugTaken = errors.New("Another company already publishes that link on the Karmarat jobs board. Choose a different link before publishing.")
+	ErrNetworkSlugTaken = errors.New("another company already publishes that link on the Karmarat jobs board; choose a different link before publishing")
 	// ErrJobTerminal means the requisition has been closed or archived.
-	ErrJobTerminal = errors.New("A closed or archived requisition cannot be changed. Duplicate it into a new draft instead.")
+	ErrJobTerminal = errors.New("closed or archived requisition cannot be changed; duplicate it into a new draft instead")
 	// ErrAlreadyClosed means close was asked for twice.
-	ErrAlreadyClosed = errors.New("This requisition is already closed.")
+	ErrAlreadyClosed = errors.New("requisition is already closed")
 )
 
 // ValidationError carries one field-level failure out of the domain layer.
@@ -456,10 +456,10 @@ func StatusAfterPublish(current Job, requested Visibility) Status {
 
 // CheckClose reports whether the job may be closed.
 func CheckClose(current Job) error {
-	switch {
-	case current.Status == StatusArchived:
+	switch current.Status {
+	case StatusArchived:
 		return ErrJobTerminal
-	case current.Status == StatusClosed:
+	case StatusClosed:
 		return ErrAlreadyClosed
 	default:
 		return nil

@@ -601,7 +601,7 @@ func parseLimit(raw string) (int, error) {
 	}
 	limit, err := strconv.Atoi(raw)
 	if err != nil || limit < 1 {
-		return 0, errors.New("Limit must be a positive whole number.")
+		return 0, errors.New("limit must be a positive whole number")
 	}
 	return limit, nil
 }

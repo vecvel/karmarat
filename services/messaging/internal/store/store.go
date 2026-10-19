@@ -62,13 +62,6 @@ func (s *Store) queryRow(ctx context.Context, tx pgx.Tx, query string, args ...a
 	return s.pool.QueryRow(ctx, query, args...)
 }
 
-func (s *Store) query(ctx context.Context, tx pgx.Tx, query string, args ...any) (pgx.Rows, error) {
-	if tx != nil {
-		return tx.Query(ctx, query, args...)
-	}
-	return s.pool.Query(ctx, query, args...)
-}
-
 func (s *Store) exec(ctx context.Context, tx pgx.Tx, query string, args ...any) (pgconn.CommandTag, error) {
 	if tx != nil {
 		return tx.Exec(ctx, query, args...)

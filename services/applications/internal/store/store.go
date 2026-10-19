@@ -86,10 +86,3 @@ func nullable(v string) any {
 	}
 	return v
 }
-
-func deref(v *string) string {
-	if v == nil {
-		return ""
-	}
-	return *v
-}

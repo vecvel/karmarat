@@ -62,7 +62,7 @@ func (a *API) handleStream(w http.ResponseWriter, r *http.Request) {
 
 	// The reconnect delay the browser uses after the stream ends. Short,
 	// because ending the stream is routine here rather than exceptional.
-	fmt.Fprint(w, "retry: 2000\n\n")
+	_, _ = fmt.Fprint(w, "retry: 2000\n\n")
 	flusher.Flush()
 
 	heartbeat := time.NewTicker(a.heartbeat)
@@ -88,7 +88,7 @@ func (a *API) handleStream(w http.ResponseWriter, r *http.Request) {
 			return
 
 		case <-lifetime.C:
-			fmt.Fprint(w, "event: reconnect\ndata: {\"reason\":\"rotate\"}\n\n")
+			_, _ = fmt.Fprint(w, "event: reconnect\ndata: {\"reason\":\"rotate\"}\n\n")
 			flusher.Flush()
 			return
 
@@ -106,7 +106,7 @@ func (a *API) handleStream(w http.ResponseWriter, r *http.Request) {
 			}
 			// The payload is compact JSON with no newlines of its own, so it
 			// needs no splitting across several data: lines.
-			fmt.Fprintf(w, "event: %s\ndata: %s\n\n", event, data)
+			_, _ = fmt.Fprintf(w, "event: %s\ndata: %s\n\n", event, data)
 			flusher.Flush()
 
 		case <-heartbeat.C:
@@ -114,7 +114,7 @@ func (a *API) handleStream(w http.ResponseWriter, r *http.Request) {
 			// bytes on the wire: a proxy that sees nothing for a minute closes
 			// an idle connection, and the client would not find out until it
 			// next expected a notification and none arrived.
-			fmt.Fprint(w, ": keep-alive\n\n")
+			_, _ = fmt.Fprint(w, ": keep-alive\n\n")
 			flusher.Flush()
 		}
 	}

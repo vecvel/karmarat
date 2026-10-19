@@ -128,11 +128,8 @@ jobs:
         run: ./scripts/gen-reserved-slugs.sh --check
 
   lint:
-    name: Lint (advisory)
+    name: Lint
     runs-on: ubuntu-latest
-    # Advisory while the linter's backlog is worked through: a finding should
-    # be visible on the PR without blocking a correct change from merging.
-    continue-on-error: true
 
     steps:
       - uses: actions/checkout@v4
@@ -142,7 +139,5 @@ jobs:
           go-version-file: go.mod
           cache: true
 
-      - uses: golangci/golangci-lint-action@v6
-        with:
-          version: latest
-          args: --timeout=5m --go 1.24 ./services/... ./packages/...
+      - name: Run golangci-lint
+        run: go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.15.0 run --timeout=5m ./services/... ./packages/...
