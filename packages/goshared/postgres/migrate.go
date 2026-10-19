@@ -84,27 +84,35 @@ func Migrate(ctx context.Context, pool *pgxpool.Pool, migrations []Migration, lo
 
 	if _, err := conn.Exec(ctx, `
 		CREATE TABLE IF NOT EXISTS schema_migrations (
-			version     text PRIMARY KEY,
+			version     text NOT NULL,
 			name        text NOT NULL,
 			checksum    text NOT NULL,
-			applied_at  timestamptz NOT NULL DEFAULT now()
-		)`); err != nil {
+			applied_at  timestamptz NOT NULL DEFAULT now(),
+			PRIMARY KEY (version, name)
+		);
+		DO $$
+		BEGIN
+			ALTER TABLE schema_migrations DROP CONSTRAINT IF EXISTS schema_migrations_pkey;
+			ALTER TABLE schema_migrations ADD PRIMARY KEY (version, name);
+		EXCEPTION
+			WHEN others THEN NULL;
+		END $$;`); err != nil {
 		return fmt.Errorf("migrate: create bookkeeping table: %w", err)
 	}
 
-	rows, err := conn.Query(ctx, "SELECT version, checksum FROM schema_migrations")
+	rows, err := conn.Query(ctx, "SELECT version, name, checksum FROM schema_migrations")
 	if err != nil {
 		return fmt.Errorf("migrate: read applied migrations: %w", err)
 	}
 
 	applied := make(map[string]string)
 	for rows.Next() {
-		var version, checksum string
-		if err := rows.Scan(&version, &checksum); err != nil {
+		var version, name, checksum string
+		if err := rows.Scan(&version, &name, &checksum); err != nil {
 			rows.Close()
 			return fmt.Errorf("migrate: scan applied migration: %w", err)
 		}
-		applied[version] = checksum
+		applied[version+"_"+name] = checksum
 	}
 	rows.Close()
 	if err := rows.Err(); err != nil {
@@ -112,7 +120,8 @@ func Migrate(ctx context.Context, pool *pgxpool.Pool, migrations []Migration, lo
 	}
 
 	for _, migration := range migrations {
-		if checksum, done := applied[migration.Version]; done {
+		migrationKey := migration.Version + "_" + migration.Name
+		if checksum, done := applied[migrationKey]; done {
 			// An edited migration would silently diverge environments; refuse it.
 			if checksum != migration.Checksum {
 				return fmt.Errorf(

@@ -95,19 +95,28 @@ export async function migrate(
 
     await client.query(`
       CREATE TABLE IF NOT EXISTS schema_migrations (
-        version     text PRIMARY KEY,
+        version     text NOT NULL,
         name        text NOT NULL,
         checksum    text NOT NULL,
-        applied_at  timestamptz NOT NULL DEFAULT now()
-      )`);
+        applied_at  timestamptz NOT NULL DEFAULT now(),
+        PRIMARY KEY (version, name)
+      );
+      DO $$
+      BEGIN
+        ALTER TABLE schema_migrations DROP CONSTRAINT IF EXISTS schema_migrations_pkey;
+        ALTER TABLE schema_migrations ADD PRIMARY KEY (version, name);
+      EXCEPTION
+        WHEN others THEN NULL;
+      END $$;`);
 
-    const { rows } = await client.query<{ version: string; checksum: string }>(
-      'SELECT version, checksum FROM schema_migrations',
+    const { rows } = await client.query<{ version: string; name: string; checksum: string }>(
+      'SELECT version, name, checksum FROM schema_migrations',
     );
-    const applied = new Map(rows.map((row) => [row.version, row.checksum]));
+    const applied = new Map(rows.map((row) => [`${row.version}_${row.name}`, row.checksum]));
 
     for (const migration of migrations) {
-      const seen = applied.get(migration.version);
+      const migrationKey = `${migration.version}_${migration.name}`;
+      const seen = applied.get(migrationKey);
       if (seen !== undefined) {
         // An edited migration means two environments silently hold different
         // schemas; refuse to start rather than discover that in production.
