@@ -21,8 +21,8 @@
 #   ./scripts/rebrand.sh <OldName> <NewName> [options]
 #
 # Examples:
-#   ./scripts/rebrand.sh --old reqruitbook --new Karmarat --dry-run
-#   ./scripts/rebrand.sh ReqruitBook Karmarat
+#   ./scripts/rebrand.sh --old oldname --new newname --dry-run
+#   ./scripts/rebrand.sh OldName NewName
 # ==============================================================================
 
 set -euo pipefail
@@ -80,8 +80,8 @@ while [[ $# -gt 0 ]]; do
       echo "  $0 <OldName> <NewName> [options]"
       echo ""
       echo "Options:"
-      echo "  --old, -o <Name>      Original name to replace (e.g. reqruitbook or ReqruitBook)"
-      echo "  --new, -n <Name>      Target new name (e.g. Karmarat)"
+      echo "  --old, -o <Name>      Original name to replace (e.g. oldname or OldName)"
+      echo "  --new, -n <Name>      Target new name (e.g. newname or NewName)"
       echo "  --dry-run             Preview affected files and renames without modifying"
       echo "  --force, -f           Bypass uncommitted git changes warning"
       echo "  --skip-install        Skip running package manager install after renaming"
@@ -107,13 +107,13 @@ done
 # Interactive fallback if arguments omitted
 if [[ -z "$OLD_INPUT" ]]; then
   if [[ -t 0 ]]; then
-    read -rp "Enter the original brand/name to replace (e.g. reqruitbook): " OLD_INPUT
+    read -rp "Enter the original brand/name to replace (e.g. oldname): " OLD_INPUT
   fi
 fi
 
 if [[ -z "$NEW_INPUT" ]]; then
   if [[ -t 0 ]]; then
-    read -rp "Enter the new target brand/name (e.g. Karmarat): " NEW_INPUT
+    read -rp "Enter the new target brand/name (e.g. newname): " NEW_INPUT
   fi
 fi
 

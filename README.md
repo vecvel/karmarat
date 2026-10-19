@@ -191,7 +191,7 @@ newline — makes the whole line a comment, and nothing resolves.
 | `make db-clean` / `make db-clean-seed` | Reset service databases and optionally seed UAT demo data |
 | `make db-pull` / `make db-push` | Pull or push database snapshots between local and remote environments |
 | `make clean` | Remove compiled binaries, local runtime logs, and test artifacts |
-| `make rebrand` | Rebrand platform (e.g. `make rebrand OLD=reqruitbook NEW=Karmarat [DRY=1]`) |
+| `make rebrand` | Rebrand platform (e.g. `make rebrand OLD=oldname NEW=newname [DRY=1]`) |
 | `make run-gateway` / `make run-identity` | Run a single service |
 
 ## Local services
