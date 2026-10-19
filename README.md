@@ -1,5 +1,18 @@
 # Karmarat
 
+[![CI](https://github.com/vecvel/karmarat/actions/workflows/ci.yml/badge.svg)](https://github.com/vecvel/karmarat/actions/workflows/ci.yml)
+[![Promotion Pipeline](https://github.com/vecvel/karmarat/actions/workflows/deploy.yml/badge.svg)](https://github.com/vecvel/karmarat/actions/workflows/deploy.yml)
+![Go Version](https://img.shields.io/badge/Go-1.26+-00ADD8?style=flat&logo=go&logoColor=white)
+![Node](https://img.shields.io/badge/Node-20+-339933?style=flat&logo=node.js&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=flat&logo=next.js&logoColor=white)
+![pnpm](https://img.shields.io/badge/pnpm-11.x-F69220?style=flat&logo=pnpm&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2F17-4169E1?style=flat&logo=postgresql&logoColor=white)
+![NATS](https://img.shields.io/badge/NATS-JetStream-27AAE1?style=flat&logo=nats.io&logoColor=white)
+![Ingress](https://img.shields.io/badge/Ingress-Caddy%20TLS-1F88C0?style=flat&logo=caddy&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-Event--Driven%20Microservices-7B2CBF?style=flat)
+![Multi-Tenancy](https://img.shields.io/badge/Tenancy-Subdomain%20Isolated-blueviolet?style=flat)
+![License](https://img.shields.io/badge/License-Proprietary-red.svg?style=flat)
+
 A multi-tenant recruitment platform. Companies get isolated careers portals,
 candidates get one central job portal, and the platform is operated from a
 separate administration console.
