@@ -137,7 +137,7 @@ CREATE INDEX interview_scorecards_company_idx ON interview_scorecards (company_i
 -- and relayed from here by a background worker. Publishing inline would mean a
 -- broker blip after the commit loses the fact permanently: the round would be
 -- booked and no calendar invite, reminder or report would ever hear about it.
-CREATE TABLE event_outbox (
+CREATE TABLE IF NOT EXISTS event_outbox (
     id            text PRIMARY KEY,
     subject       text NOT NULL,
     company_id    uuid,
@@ -149,7 +149,7 @@ CREATE TABLE event_outbox (
     created_at    timestamptz NOT NULL DEFAULT now()
 );
 
-CREATE INDEX event_outbox_pending_idx ON event_outbox (created_at, id) WHERE published_at IS NULL;
+CREATE INDEX IF NOT EXISTS event_outbox_pending_idx ON event_outbox (created_at, id) WHERE published_at IS NULL;
 
 -- ---------------------------------------------------------------------------
 -- updated_at maintenance

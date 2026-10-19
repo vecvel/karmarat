@@ -75,7 +75,7 @@ jobs:
           fi
 
       - name: Test
-        run: go test ./services/... ./packages/... -race -count=1
+        run: go test -p 1 ./services/... ./packages/... -race -count=1
 
   node:
     name: Node services, shared libraries and portals

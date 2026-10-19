@@ -193,7 +193,7 @@ CREATE INDEX candidate_company_links_lookup_idx
 -- inline would mean a broker blip after the commit leaves a candidate with a
 -- message in their inbox and no notification that it arrived — the one failure
 -- this domain cannot tolerate, because nobody comes back to check.
-CREATE TABLE event_outbox (
+CREATE TABLE IF NOT EXISTS event_outbox (
     id            text PRIMARY KEY,
     subject       text NOT NULL,
     company_id    uuid,
@@ -205,7 +205,7 @@ CREATE TABLE event_outbox (
     created_at    timestamptz NOT NULL DEFAULT now()
 );
 
-CREATE INDEX event_outbox_pending_idx ON event_outbox (created_at, id) WHERE published_at IS NULL;
+CREATE INDEX IF NOT EXISTS event_outbox_pending_idx ON event_outbox (created_at, id) WHERE published_at IS NULL;
 
 -- ---------------------------------------------------------------------------
 -- updated_at maintenance

@@ -151,7 +151,7 @@ CREATE INDEX application_events_company_idx ON application_events (company_id, c
 -- and published from here by a background worker. Publishing inline would mean
 -- that a broker blip after the commit loses the fact permanently — the pipeline
 -- would move and no notification, report or projection would ever hear about it.
-CREATE TABLE event_outbox (
+CREATE TABLE IF NOT EXISTS event_outbox (
     id            text PRIMARY KEY,
     subject       text NOT NULL,
     company_id    uuid,
@@ -163,7 +163,7 @@ CREATE TABLE event_outbox (
     created_at    timestamptz NOT NULL DEFAULT now()
 );
 
-CREATE INDEX event_outbox_pending_idx ON event_outbox (created_at, id) WHERE published_at IS NULL;
+CREATE INDEX IF NOT EXISTS event_outbox_pending_idx ON event_outbox (created_at, id) WHERE published_at IS NULL;
 
 -- ---------------------------------------------------------------------------
 -- updated_at maintenance

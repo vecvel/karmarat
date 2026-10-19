@@ -127,7 +127,7 @@ CREATE UNIQUE INDEX offers_send_idempotency_idx ON offers (company_id, send_idem
 -- and published from here by a background worker. Publishing inline would mean
 -- a broker blip after the commit loses the fact permanently: the candidate would
 -- hold a signed offer that no notification, report or projection ever heard of.
-CREATE TABLE event_outbox (
+CREATE TABLE IF NOT EXISTS event_outbox (
     id            text PRIMARY KEY,
     subject       text NOT NULL,
     company_id    uuid,
@@ -139,7 +139,7 @@ CREATE TABLE event_outbox (
     created_at    timestamptz NOT NULL DEFAULT now()
 );
 
-CREATE INDEX event_outbox_pending_idx ON event_outbox (created_at, id) WHERE published_at IS NULL;
+CREATE INDEX IF NOT EXISTS event_outbox_pending_idx ON event_outbox (created_at, id) WHERE published_at IS NULL;
 
 -- ---------------------------------------------------------------------------
 -- updated_at maintenance
