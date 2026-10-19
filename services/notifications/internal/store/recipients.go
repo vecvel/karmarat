@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/notifications/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/notifications/internal/domain"
 )
 
 // maxFanOut caps how many people one event may notify.

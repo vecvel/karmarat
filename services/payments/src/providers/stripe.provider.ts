@@ -34,7 +34,7 @@ export interface StripeProviderOptions {
 }
 
 /** Metadata key carrying our payment id through Stripe and back. */
-const REFERENCE_KEY = 'reqruitbookPaymentId';
+const REFERENCE_KEY = 'karmaratPaymentId';
 
 export class StripeProvider implements PaymentProvider {
   readonly name = 'stripe';
@@ -51,7 +51,7 @@ export class StripeProvider implements PaymentProvider {
       // dependency bump, not a configuration value.
       maxNetworkRetries: 2,
       timeout: 15_000,
-      appInfo: { name: 'reqruitbook-payments' },
+      appInfo: { name: 'karmarat-payments' },
     });
   }
 

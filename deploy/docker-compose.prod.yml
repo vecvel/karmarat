@@ -1,0 +1,630 @@
+# Karmarat Production Self-Hosted Docker Compose Stack
+#
+# Production configuration for single-server or bare-metal deployment.
+#
+# Security Invariants:
+# 1. Zero internal ports exposed to the host: internal services, databases,
+#    Redis, NATS, and MinIO are only reachable within the private Docker network.
+# 2. Ingress is exclusively handled by Caddy on ports 80 and 443 with TLS.
+# 3. All four Next.js portals and 15 microservices run containerised.
+#
+# Usage:
+#   make prod-build
+#   make prod-up
+#   make prod-down
+#   make prod-logs
+
+name: karmarat-prod
+
+x-service-env: &service-env
+  PLATFORM_ENV: production
+  PLATFORM_HOSTNAME: ${PLATFORM_HOSTNAME:-karmarat.com}
+  LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: 5432
+  POSTGRES_USER: ${POSTGRES_USER:-karmarat}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  POSTGRES_SSLMODE: disable
+
+  REDIS_HOST: redis
+  REDIS_PORT: 6379
+  REDIS_PASSWORD: ${REDIS_PASSWORD}
+
+  NATS_URL: nats://nats:4222
+  INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN}
+  OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://jaeger:4318}
+
+x-service-urls: &service-urls
+  IDENTITY_URL: http://identity:8081
+  COMPANIES_URL: http://companies:8082
+  SUBSCRIPTIONS_URL: http://subscriptions:8083
+  PAYMENTS_URL: http://payments:8084
+  JOBS_URL: http://jobs:8085
+  APPLICATIONS_URL: http://applications:8086
+  CANDIDATES_URL: http://candidates:8087
+  MESSAGING_URL: http://messaging:8088
+  NOTIFICATIONS_URL: http://notifications:8089
+  SUPPORT_URL: http://support:8090
+  ADMIN_URL: http://admin:8091
+  INTERVIEWS_URL: http://interviews:8092
+  OFFERS_URL: http://offers:8093
+  AUDIT_URL: http://audit:8094
+
+x-infra-ready: &infra-ready
+  postgres:
+    condition: service_healthy
+  redis:
+    condition: service_healthy
+  nats:
+    condition: service_healthy
+
+x-logging: &default-logging
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "20m"
+      max-file: "5"
+
+networks:
+  karmarat-network:
+    driver: bridge
+
+services:
+  # ---------------------------------------------------------------------------
+  # Edge Reverse Proxy (Wildcard SSL & Subdomain Routing)
+  # ---------------------------------------------------------------------------
+  caddy:
+    build:
+      context: ..
+      dockerfile: deploy/caddy/Dockerfile
+    image: karmarat/caddy:prod
+    container_name: karmarat-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      PLATFORM_HOSTNAME: ${PLATFORM_HOSTNAME:-karmarat.com}
+      ACME_EMAIL: ${ACME_EMAIL:-admin@karmarat.com}
+      TLS_CONFIG: ${TLS_CONFIG:-internal}
+      CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:-}
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - karmarat-network
+    depends_on:
+      - gateway
+      - web-landing
+      - web-jobs
+      - web-admin
+      - web-company
+
+  # ---------------------------------------------------------------------------
+  # Backing Infrastructure (Private Network Only)
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:17-alpine
+    container_name: karmarat-postgres
+    restart: unless-stopped
+    shm_size: 256m
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-karmarat}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: postgres
+      SERVICE_DATABASES: identity,companies,jobs,applications,candidates,messaging,notifications,subscriptions,payments,support,admin,interviews,offers,audit
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/init-databases.sh:/docker-entrypoint-initdb.d/10-init-databases.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-karmarat} -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - karmarat-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: karmarat-redis
+    restart: unless-stopped
+    command:
+      - redis-server
+      - --appendonly
+      - "yes"
+      - --requirepass
+      - ${REDIS_PASSWORD}
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - karmarat-network
+
+  nats:
+    image: nats:2.10-alpine
+    container_name: karmarat-nats
+    restart: unless-stopped
+    command:
+      - "--jetstream"
+      - "--store_dir=/data"
+      - "--http_port=8222"
+    volumes:
+      - nats-data:/data
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8222/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - karmarat-network
+
+  minio:
+    image: quay.io/minio/minio:latest
+    container_name: karmarat-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-karmarat}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY}
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - karmarat-network
+
+  minio-init:
+    image: quay.io/minio/mc:latest
+    container_name: karmarat-minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 ${S3_ACCESS_KEY:-karmarat} ${S3_SECRET_KEY};
+      mc mb --ignore-existing local/resumes;
+      mc mb --ignore-existing local/company-assets;
+      mc mb --ignore-existing local/documents;
+      mc anonymous set none local/resumes;
+      mc anonymous set none local/documents;
+      echo 'buckets ready';
+      "
+    networks:
+      - karmarat-network
+
+  # ---------------------------------------------------------------------------
+  # Go Microservices
+  # ---------------------------------------------------------------------------
+  identity:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: identity
+        PORT: "8081"
+    image: karmarat/identity:prod
+    container_name: karmarat-identity
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: identity
+      IDENTITY_HTTP_PORT: 8081
+      JWT_PRIVATE_KEY_PATH: /run/keys/jwt-private.pem
+      JWT_PUBLIC_KEY_PATH: /run/keys/jwt-public.pem
+      ACCESS_TOKEN_TTL: ${ACCESS_TOKEN_TTL:-15m}
+      REFRESH_TOKEN_TTL: ${REFRESH_TOKEN_TTL:-720h}
+      BOOTSTRAP_ADMIN_EMAIL: ${BOOTSTRAP_ADMIN_EMAIL:-}
+      BOOTSTRAP_ADMIN_NAME: ${BOOTSTRAP_ADMIN_NAME:-Platform Administrator}
+      BOOTSTRAP_ADMIN_PASSWORD: ${BOOTSTRAP_ADMIN_PASSWORD:-}
+    volumes:
+      - ./keys:/run/keys:ro
+    networks:
+      - karmarat-network
+
+  jobs:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: jobs
+        PORT: "8085"
+    image: karmarat/jobs:prod
+    container_name: karmarat-jobs
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: jobs
+      JOBS_HTTP_PORT: 8085
+    networks:
+      - karmarat-network
+
+  applications:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: applications
+        PORT: "8086"
+    image: karmarat/applications:prod
+    container_name: karmarat-applications
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: applications
+      APPLICATIONS_HTTP_PORT: 8086
+    networks:
+      - karmarat-network
+
+  candidates:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: candidates
+        PORT: "8087"
+    image: karmarat/candidates:prod
+    container_name: karmarat-candidates
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: candidates
+      CANDIDATES_HTTP_PORT: 8087
+      S3_ENDPOINT: http://minio:9000
+      S3_REGION: ${S3_REGION:-us-east-1}
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:-karmarat}
+      S3_SECRET_KEY: ${S3_SECRET_KEY}
+      S3_BUCKET_RESUMES: ${S3_BUCKET_RESUMES:-resumes}
+    networks:
+      - karmarat-network
+
+  messaging:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: messaging
+        PORT: "8088"
+    image: karmarat/messaging:prod
+    container_name: karmarat-messaging
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: messaging
+      MESSAGING_HTTP_PORT: 8088
+    networks:
+      - karmarat-network
+
+  notifications:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: notifications
+        PORT: "8089"
+    image: karmarat/notifications:prod
+    container_name: karmarat-notifications
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: notifications
+      NOTIFICATIONS_HTTP_PORT: 8089
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USERNAME: ${SMTP_USERNAME:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_TLS: ${SMTP_TLS:-true}
+      SMTP_FROM_ADDRESS: ${SMTP_FROM_ADDRESS:-no-reply@karmarat.com}
+      SMTP_FROM_NAME: ${SMTP_FROM_NAME:-Karmarat}
+    networks:
+      - karmarat-network
+
+  interviews:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: interviews
+        PORT: "8092"
+    image: karmarat/interviews:prod
+    container_name: karmarat-interviews
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: interviews
+      INTERVIEWS_HTTP_PORT: 8092
+    networks:
+      - karmarat-network
+
+  offers:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: offers
+        PORT: "8093"
+    image: karmarat/offers:prod
+    container_name: karmarat-offers
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: offers
+      OFFERS_HTTP_PORT: 8093
+    networks:
+      - karmarat-network
+
+  audit:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: audit
+        PORT: "8094"
+    image: karmarat/audit:prod
+    container_name: karmarat-audit
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: audit
+      AUDIT_HTTP_PORT: 8094
+    networks:
+      - karmarat-network
+
+  # ---------------------------------------------------------------------------
+  # NestJS Microservices
+  # ---------------------------------------------------------------------------
+  companies:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.nest-service
+      args:
+        SERVICE: companies
+        PORT: "8082"
+    image: karmarat/companies:prod
+    container_name: karmarat-companies
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: companies
+      COMPANIES_HTTP_PORT: 8082
+    networks:
+      - karmarat-network
+
+  subscriptions:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.nest-service
+      args:
+        SERVICE: subscriptions
+        PORT: "8083"
+    image: karmarat/subscriptions:prod
+    container_name: karmarat-subscriptions
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: subscriptions
+      SUBSCRIPTIONS_HTTP_PORT: 8083
+    networks:
+      - karmarat-network
+
+  payments:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.nest-service
+      args:
+        SERVICE: payments
+        PORT: "8084"
+    image: karmarat/payments:prod
+    container_name: karmarat-payments
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: payments
+      PAYMENTS_HTTP_PORT: 8084
+      PAYMENT_PROVIDER: ${PAYMENT_PROVIDER:-stripe}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+    networks:
+      - karmarat-network
+
+  support:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.nest-service
+      args:
+        SERVICE: support
+        PORT: "8090"
+    image: karmarat/support:prod
+    container_name: karmarat-support
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: support
+      SUPPORT_HTTP_PORT: 8090
+    networks:
+      - karmarat-network
+
+  admin:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.nest-service
+      args:
+        SERVICE: admin
+        PORT: "8091"
+    image: karmarat/admin:prod
+    container_name: karmarat-admin
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+    environment:
+      <<: [*service-env, *service-urls]
+      POSTGRES_DB: admin
+      ADMIN_HTTP_PORT: 8091
+    networks:
+      - karmarat-network
+
+  # ---------------------------------------------------------------------------
+  # API Gateway
+  # ---------------------------------------------------------------------------
+  gateway:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: gateway
+        PORT: "8080"
+    image: karmarat/gateway:prod
+    container_name: karmarat-gateway
+    restart: unless-stopped
+    depends_on:
+      <<: *infra-ready
+      identity:
+        condition: service_started
+    environment:
+      <<: [*service-env, *service-urls]
+      JWT_PRIVATE_KEY_PATH: /run/keys/jwt-private.pem
+      JWT_PUBLIC_KEY_PATH: /run/keys/jwt-public.pem
+      GATEWAY_HTTP_PORT: 8080
+      GATEWAY_RATE_LIMIT: ${GATEWAY_RATE_LIMIT:-300}
+      GATEWAY_RATE_WINDOW: ${GATEWAY_RATE_WINDOW:-1m}
+    volumes:
+      - ./keys:/run/keys:ro
+    networks:
+      - karmarat-network
+
+  # ---------------------------------------------------------------------------
+  # Next.js Portals (Standalone Production Mode)
+  # ---------------------------------------------------------------------------
+  web-landing:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.nextjs
+      args:
+        APP_NAME: web-landing
+    image: karmarat/web-landing:prod
+    container_name: karmarat-web-landing
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      GATEWAY_URL: http://gateway:8080
+      PORTAL_HOST: ${PLATFORM_HOSTNAME:-karmarat.com}
+      PORTAL_SCHEME: https
+    depends_on:
+      - gateway
+    networks:
+      - karmarat-network
+
+  web-jobs:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.nextjs
+      args:
+        APP_NAME: web-jobs
+    image: karmarat/web-jobs:prod
+    container_name: karmarat-web-jobs
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      GATEWAY_URL: http://gateway:8080
+      PORTAL_HOST: jobs.${PLATFORM_HOSTNAME:-karmarat.com}
+      COOKIE_SECURE: "1"
+    depends_on:
+      - gateway
+    networks:
+      - karmarat-network
+
+  web-admin:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.nextjs
+      args:
+        APP_NAME: web-admin
+    image: karmarat/web-admin:prod
+    container_name: karmarat-web-admin
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      GATEWAY_URL: http://gateway:8080
+      PORTAL_HOST: root.${PLATFORM_HOSTNAME:-karmarat.com}
+      COOKIE_SECURE: "1"
+    depends_on:
+      - gateway
+    networks:
+      - karmarat-network
+
+  web-company:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.nextjs
+      args:
+        APP_NAME: web-company
+    image: karmarat/web-company:prod
+    container_name: karmarat-web-company
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      GATEWAY_URL: http://gateway:8080
+      PLATFORM_HOSTNAME: ${PLATFORM_HOSTNAME:-karmarat.com}
+      COOKIE_SECURE: "1"
+    depends_on:
+      - gateway
+    networks:
+      - karmarat-network
+
+  # ---------------------------------------------------------------------------
+  # Distributed Tracing (Private Network Only)
+  # ---------------------------------------------------------------------------
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: karmarat-jaeger
+    restart: unless-stopped
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    networks:
+      - karmarat-network
+
+volumes:
+  postgres-data:
+  redis-data:
+  nats-data:
+  minio-data:
+  caddy-data:
+  caddy-config:

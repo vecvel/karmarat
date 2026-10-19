@@ -19,7 +19,7 @@
  *     says nothing about the company's name, and it must not erase it.
  */
 import { Inject, Injectable } from '@nestjs/common';
-import type { Envelope } from '@reqruitbook/nestshared';
+import type { Envelope } from '@karmarat/nestshared';
 import type { Pool, PoolClient } from 'pg';
 
 import { PG_POOL } from '../common/tokens';

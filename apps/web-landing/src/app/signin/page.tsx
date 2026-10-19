@@ -16,7 +16,7 @@ import { normaliseSlug, slugProblem } from "@/lib/slug";
 
 export const metadata: Metadata = {
   title: "Sign in",
-  description: "Find the right ReqruitBook portal to sign in at.",
+  description: "Find the right Karmarat portal to sign in at.",
 };
 
 /**
@@ -56,14 +56,14 @@ export default async function SignInPage({
     <Container className="max-w-3xl py-12 sm:py-16">
       <h1 className="text-3xl">Sign in</h1>
       <p className="mt-3 text-muted-foreground">
-        ReqruitBook has a separate portal for each kind of account, so there is no
+        Karmarat has a separate portal for each kind of account, so there is no
         single sign-in page. Pick the one that describes you.
       </p>
 
       <div className="mt-10 flex flex-col gap-4">
         <Door
           title="I am looking for a job"
-          body="Candidate accounts live on the jobs portal — one account for every company hiring on ReqruitBook."
+          body="Candidate accounts live on the jobs portal — one account for every company hiring on Karmarat."
           href={`${JOBS_PORTAL_URL}/login`}
           cta="Go to the jobs portal"
         />

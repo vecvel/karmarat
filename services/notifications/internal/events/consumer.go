@@ -11,12 +11,12 @@ import (
 	"encoding/json"
 	"log/slog"
 
-	platformevents "github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/notifications/internal/api"
-	"github.com/reqruitbook/platform/services/notifications/internal/domain"
-	"github.com/reqruitbook/platform/services/notifications/internal/realtime"
-	"github.com/reqruitbook/platform/services/notifications/internal/store"
+	platformevents "github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/notifications/internal/api"
+	"github.com/karmarat/platform/services/notifications/internal/domain"
+	"github.com/karmarat/platform/services/notifications/internal/realtime"
+	"github.com/karmarat/platform/services/notifications/internal/store"
 )
 
 // Consumer applies platform events to this service's data.
@@ -192,7 +192,7 @@ func (c *Consumer) notify(
 			"body":        body,
 			"link":        link,
 			"portal":      string(recipient.PrincipalType),
-			"actionLabel": "Open in ReqruitBook",
+			"actionLabel": "Open in Karmarat",
 		},
 	})
 	return err

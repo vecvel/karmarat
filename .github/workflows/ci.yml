@@ -24,13 +24,13 @@ jobs:
       postgres:
         image: postgres:17
         env:
-          POSTGRES_USER: reqruitbook
-          POSTGRES_PASSWORD: reqruitbook
-          POSTGRES_DB: reqruitbook_test
+          POSTGRES_USER: karmarat
+          POSTGRES_PASSWORD: karmarat
+          POSTGRES_DB: karmarat_test
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U reqruitbook -d reqruitbook_test"
+          --health-cmd "pg_isready -U karmarat -d karmarat_test"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
@@ -46,7 +46,7 @@ jobs:
           --health-retries 10
 
     env:
-      TEST_DATABASE_URL: postgres://reqruitbook:reqruitbook@localhost:5432/reqruitbook_test?sslmode=disable
+      TEST_DATABASE_URL: postgres://karmarat:karmarat@localhost:5432/karmarat_test?sslmode=disable
       TEST_REDIS_URL: redis://localhost:6379/0
 
     steps:
@@ -100,7 +100,7 @@ jobs:
       - name: Build the shared libraries
         # Everything imports these as workspace:*, so nothing else typechecks
         # until their dist directories exist.
-        run: pnpm --filter @reqruitbook/nestshared --filter @reqruitbook/ui build
+        run: pnpm --filter @karmarat/nestshared --filter @karmarat/ui build
 
       - name: Typecheck
         run: pnpm -r --filter './packages/**' --filter './services/**' --filter './apps/**' typecheck

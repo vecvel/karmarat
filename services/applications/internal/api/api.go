@@ -12,12 +12,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/applications/internal/candidates"
-	"github.com/reqruitbook/platform/services/applications/internal/domain"
-	"github.com/reqruitbook/platform/services/applications/internal/jobs"
-	"github.com/reqruitbook/platform/services/applications/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/applications/internal/candidates"
+	"github.com/karmarat/platform/services/applications/internal/domain"
+	"github.com/karmarat/platform/services/applications/internal/jobs"
+	"github.com/karmarat/platform/services/applications/internal/store"
 )
 
 // API wires the applications handlers.

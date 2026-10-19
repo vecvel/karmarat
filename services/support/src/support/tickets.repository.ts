@@ -15,7 +15,7 @@
  * can reach rather than of a flag it must remember to check.
  */
 import { Inject, Injectable } from '@nestjs/common';
-import { buildPage, withTransaction, type Page, type PageRequest } from '@reqruitbook/nestshared';
+import { buildPage, withTransaction, type Page, type PageRequest } from '@karmarat/nestshared';
 import type { Pool, PoolClient } from 'pg';
 
 import { PG_POOL } from '../tokens';

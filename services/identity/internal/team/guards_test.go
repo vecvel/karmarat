@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/reqruitbook/platform/services/identity/internal/domain"
-	"github.com/reqruitbook/platform/services/identity/internal/rbac"
-	"github.com/reqruitbook/platform/services/identity/internal/store"
+	"github.com/karmarat/platform/services/identity/internal/domain"
+	"github.com/karmarat/platform/services/identity/internal/rbac"
+	"github.com/karmarat/platform/services/identity/internal/store"
 )
 
 // A hiring administrator: real permissions, taken from the seeded role rather

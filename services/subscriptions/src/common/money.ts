@@ -6,7 +6,7 @@
  * 9.0e15, which is ninety trillion currency units in minor form, so converting
  * is sound for this domain and the conversion asserts it rather than assuming.
  */
-import { badRequest } from '@reqruitbook/nestshared';
+import { badRequest } from '@karmarat/nestshared';
 
 export const MAX_MINOR_UNITS = Number.MAX_SAFE_INTEGER;
 

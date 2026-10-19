@@ -3,7 +3,7 @@ package domain
 import (
 	"testing"
 
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
 )
 
 func TestPreferencesFallBackToDefaults(t *testing.T) {

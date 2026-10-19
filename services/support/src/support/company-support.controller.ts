@@ -28,7 +28,7 @@ import {
   badRequest,
   forbidden,
   type Page,
-} from '@reqruitbook/nestshared';
+} from '@karmarat/nestshared';
 
 import type { PresignedUpload } from '../common/storage';
 import { CompanySupportService, type Actor } from './company-support.service';

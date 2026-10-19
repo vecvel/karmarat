@@ -8,7 +8,7 @@ import { PORTAL_HOST } from "@/lib/env";
 export const metadata: Metadata = {
   title: "For companies",
   description:
-    "What a ReqruitBook company account includes: a careers portal, a hiring pipeline, talent search, messaging and role-based access.",
+    "What a Karmarat company account includes: a careers portal, a hiring pipeline, talent search, messaging and role-based access.",
 };
 
 export default function ForCompaniesPage() {
@@ -34,7 +34,7 @@ export default function ForCompaniesPage() {
           </Block>
 
           <Block title="Jobs, published where you choose">
-            A requisition can go to your careers portal, to the ReqruitBook job network,
+            A requisition can go to your careers portal, to the Karmarat job network,
             to both, or to neither while you draft it. Each job can carry its own
             application form, so you ask a warehouse candidate different questions from a
             staff engineer.

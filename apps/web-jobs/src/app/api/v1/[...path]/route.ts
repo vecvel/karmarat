@@ -89,7 +89,7 @@ async function proxy(request: NextRequest, path: string[]): Promise<Response> {
       502,
       "gateway_unreachable",
       "Bad Gateway",
-      "We could not reach ReqruitBook just now. Please try again shortly.",
+      "We could not reach Karmarat just now. Please try again shortly.",
     );
   }
 

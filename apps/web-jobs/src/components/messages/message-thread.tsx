@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
-import { useApi } from "@reqruitbook/ui/react";
+import { useApi } from "@karmarat/ui/react";
 
 import { ListSkeleton, ProblemAlert } from "@/components/feedback";
 import { useSession } from "@/components/session-provider";

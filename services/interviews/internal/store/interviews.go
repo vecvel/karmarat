@@ -11,9 +11,9 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
-	"github.com/reqruitbook/platform/services/interviews/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/services/interviews/internal/domain"
 )
 
 // The panel and the scorecard existence flag are correlated subqueries rather

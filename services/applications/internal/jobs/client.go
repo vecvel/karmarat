@@ -17,8 +17,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/observability"
-	"github.com/reqruitbook/platform/services/applications/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/observability"
+	"github.com/karmarat/platform/services/applications/internal/domain"
 )
 
 // Job is the part of a requisition an application needs.

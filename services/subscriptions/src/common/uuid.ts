@@ -6,7 +6,7 @@
  * put driver text in the logs for what is really a bad request — so the shape
  * is checked before the query, not by it.
  */
-import { badRequest, forbidden } from '@reqruitbook/nestshared';
+import { badRequest, forbidden } from '@karmarat/nestshared';
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 

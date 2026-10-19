@@ -21,7 +21,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import { RequirePermission, RequirePrincipalType } from '@reqruitbook/nestshared';
+import { RequirePermission, RequirePrincipalType } from '@karmarat/nestshared';
 
 import { CompaniesService } from './companies.service';
 import { ListCompaniesQueryDto, PlatformUpdateCompanyDto, SuspendCompanyDto } from './dto/platform.dto';

@@ -1,7 +1,7 @@
 /**
  * Prefixed, time-sortable identifiers.
  *
- * A local copy of `packages/goshared/idgen` because `@reqruitbook/nestshared`
+ * A local copy of `packages/goshared/idgen` because `@karmarat/nestshared`
  * does not expose one yet. The encoding is deliberately identical — Crockford
  * base32 over a 48-bit millisecond timestamp plus 80 bits of entropy — so an id
  * minted by a Node service is indistinguishable from one minted by a Go

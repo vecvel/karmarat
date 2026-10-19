@@ -1,8 +1,8 @@
 {
-  "name": "reqruitbook",
+  "name": "karmarat",
   "version": "2.0.0",
   "private": true,
-  "description": "ReqruitBook — multi-tenant recruitment SaaS platform",
+  "description": "Karmarat — multi-tenant recruitment SaaS platform",
   "packageManager": "pnpm@11.13.1",
   "scripts": {
     "infra:up": "docker compose -f deploy/docker-compose.yml up -d",

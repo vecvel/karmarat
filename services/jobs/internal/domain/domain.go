@@ -184,7 +184,7 @@ var (
 	// ErrSlugTaken means the company already uses the slug on another job.
 	ErrSlugTaken = errors.New("Another requisition in this company already uses that link.")
 	// ErrNetworkSlugTaken means the slug is held on the shared jobs board.
-	ErrNetworkSlugTaken = errors.New("Another company already publishes that link on the ReqruitBook jobs board. Choose a different link before publishing.")
+	ErrNetworkSlugTaken = errors.New("Another company already publishes that link on the Karmarat jobs board. Choose a different link before publishing.")
 	// ErrJobTerminal means the requisition has been closed or archived.
 	ErrJobTerminal = errors.New("A closed or archived requisition cannot be changed. Duplicate it into a new draft instead.")
 	// ErrAlreadyClosed means close was asked for twice.

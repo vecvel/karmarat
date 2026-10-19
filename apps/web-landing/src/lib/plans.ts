@@ -141,7 +141,7 @@ export function planFeatures(entitlements: Entitlements): PlanFeature[] {
       "applications per month",
     ),
     {
-      label: "Publish to the ReqruitBook job network",
+      label: "Publish to the Karmarat job network",
       included: entitlements.canPublishToNetwork,
     },
     { label: "Talent search", included: entitlements.canUseTalentSearch },

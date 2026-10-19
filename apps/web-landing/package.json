@@ -1,8 +1,8 @@
 {
-  "name": "@reqruitbook/web-landing",
+  "name": "@karmarat/web-landing",
   "version": "0.1.0",
   "private": true,
-  "description": "ReqruitBook public marketing site — pricing, company sign-up, and the way in to every other portal",
+  "description": "Karmarat public marketing site — pricing, company sign-up, and the way in to every other portal",
   "scripts": {
     "dev": "next dev --port 3003",
     "build": "next build",
@@ -14,7 +14,7 @@
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
-    "@reqruitbook/ui": "workspace:*",
+    "@karmarat/ui": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",

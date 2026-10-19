@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
-	"github.com/reqruitbook/platform/packages/goshared/logging"
+	"github.com/karmarat/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/packages/goshared/logging"
 )
 
 type requestIDKey struct{}

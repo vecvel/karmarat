@@ -9,7 +9,7 @@ import { PlanGrid, PlanGridSkeleton } from "./plan-grid";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "What a ReqruitBook company account costs, and exactly what each plan includes.",
+    "What a Karmarat company account costs, and exactly what each plan includes.",
 };
 
 /**

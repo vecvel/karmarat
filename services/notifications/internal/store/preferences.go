@@ -7,7 +7,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/reqruitbook/platform/services/notifications/internal/domain"
+	"github.com/karmarat/platform/services/notifications/internal/domain"
 )
 
 // LoadPreferences returns what the recipient has chosen, or empty preferences

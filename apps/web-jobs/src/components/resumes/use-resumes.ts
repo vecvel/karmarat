@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { isProblem } from "@reqruitbook/ui";
-import { useApi } from "@reqruitbook/ui/react";
+import { isProblem } from "@karmarat/ui";
+import { useApi } from "@karmarat/ui/react";
 
 import type { DataPage, Resume, ResumeUploadTicket } from "@/lib/api-types";
 

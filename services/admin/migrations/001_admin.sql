@@ -31,7 +31,7 @@
 CREATE TABLE activity (
     event_id        text PRIMARY KEY,
     subject         text NOT NULL,
-    -- `reqruitbook.<domain>.<action>` split out, so the feed can be filtered
+    -- `karmarat.<domain>.<action>` split out, so the feed can be filtered
     -- without a LIKE over the subject.
     domain          text NOT NULL,
     action          text NOT NULL,

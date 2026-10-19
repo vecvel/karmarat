@@ -7,7 +7,7 @@
  * surface as a 500 carrying a type name from the database. Validating the shape
  * here turns that into an ordinary, non-leaking 403.
  */
-import { forbidden } from '@reqruitbook/nestshared';
+import { forbidden } from '@karmarat/nestshared';
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 

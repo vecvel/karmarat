@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { ProblemError } from "@reqruitbook/ui";
-import { useApi } from "@reqruitbook/ui/react";
+import { ProblemError } from "@karmarat/ui";
+import { useApi } from "@karmarat/ui/react";
 
 import { FieldError, ListSkeleton, ProblemAlert } from "@/components/feedback";
 import { TagInput } from "@/components/profile/tag-input";

@@ -14,7 +14,7 @@ that resolves a tenant or verifies a token.
 Every endpoint this app touches is public *by route* at the gateway
 (`routing.go` marks them `Public: true`), so there is no token to attach and no
 refresh flow to implement. What it does share with the other portals is the
-error type: `ProblemError` from `@reqruitbook/ui`, so a 429 here reads the same
+error type: `ProblemError` from `@karmarat/ui`, so a 429 here reads the same
 way it reads in the company portal.
 
 ## Running it
@@ -23,15 +23,15 @@ way it reads in the company portal.
 # the backend, if it is not already up
 ./scripts/dev.sh up
 
-pnpm install --filter @reqruitbook/web-landing
-pnpm --filter @reqruitbook/web-landing dev     # http://localhost:3003
+pnpm install --filter @karmarat/web-landing
+pnpm --filter @karmarat/web-landing dev     # http://localhost:3003
 ```
 
 `/etc/hosts` — needed to browse the *other* portals by hostname, and to reach
 this one on its real name:
 
 ```
-127.0.0.1  reqruitbook.local root.reqruitbook.local jobs.reqruitbook.local acme.reqruitbook.local
+127.0.0.1  karmarat.local root.karmarat.local jobs.karmarat.local acme.karmarat.local
 ```
 
 This app does **not** require it to function. It sends `Host: $PORTAL_HOST` on
@@ -45,7 +45,7 @@ See `.env.example`.
 | Variable | Default | What it is |
 | --- | --- | --- |
 | `GATEWAY_URL` | `http://localhost:8080` | The gateway's origin. Server-side only. |
-| `PORTAL_HOST` | `reqruitbook.local` | Sent as `Host` on every gateway call — this is how the gateway knows the request is on the public portal. Also what the sign-up form shows as `{slug}.{PORTAL_HOST}`. |
+| `PORTAL_HOST` | `karmarat.local` | Sent as `Host` on every gateway call — this is how the gateway knows the request is on the public portal. Also what the sign-up form shows as `{slug}.{PORTAL_HOST}`. |
 | `PORTAL_SCHEME` | `http` in dev, `https` in prod | Used to build links to the other portals. |
 | `JOBS_PORTAL_URL` | `{scheme}://jobs.{PORTAL_HOST}` | Override in dev, where the jobs portal is on its own port. |
 | `ROOT_PORTAL_URL` | `{scheme}://root.{PORTAL_HOST}` | Same, for the platform console. |
@@ -81,7 +81,7 @@ only lists `/api/v1/register/company`. The routing table matches on
 `/api/v1/register/slug-available` matches nothing and answers 404:
 
 ```
-$ curl -H 'Host: reqruitbook.local' localhost:8080/api/v1/register/slug-available?slug=acme
+$ curl -H 'Host: karmarat.local' localhost:8080/api/v1/register/slug-available?slug=acme
 {"status":404,"code":"not_found","detail":"No API route matches this path."}
 ```
 
@@ -126,7 +126,7 @@ to be usable with a keyboard, and a mouse click still does not match
 ## Checks
 
 ```sh
-pnpm --filter @reqruitbook/web-landing typecheck
-pnpm --filter @reqruitbook/web-landing build
-pnpm --filter @reqruitbook/web-landing lint
+pnpm --filter @karmarat/web-landing typecheck
+pnpm --filter @karmarat/web-landing build
+pnpm --filter @karmarat/web-landing lint
 ```

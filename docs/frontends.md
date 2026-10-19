@@ -29,7 +29,7 @@ server re-checks on every call.
 ## Shared pieces
 
 `packages/ui` holds what more than one app needs. It is built and tested (34
-tests), and every portal imports it as `@reqruitbook/ui`:
+tests), and every portal imports it as `@karmarat/ui`:
 
 | Module | What it is |
 | --- | --- |
@@ -37,7 +37,7 @@ tests), and every portal imports it as `@reqruitbook/ui`:
 | `problem.ts` | `ProblemError` — one error type for both backend runtimes, with `.fieldError(name)` for 422s |
 | `access.ts` | `AccessEvaluator` and `snapshotFromSession` |
 | `react.tsx` | `AccessProvider`, `ApiProvider`, `useAccess`, `useApi`, `<Can>` |
-| `server.ts` | `gatewayRequest` — the server-side transport, imported as `@reqruitbook/ui/server` |
+| `server.ts` | `gatewayRequest` — the server-side transport, imported as `@karmarat/ui/server` |
 
 The API client is the piece worth getting right once. Three rules in it are the
 ones that are easy to get *almost* right:
@@ -81,9 +81,9 @@ therefore which routes exist at all — from the `Host` header, before any handl
 runs. So every app keeps two separate settings:
 
 - `GATEWAY_URL` — **where to connect**. `localhost:8080` in development.
-- `PORTAL_HOST` — **who we say we are**. `acme.reqruitbook.local`, and so on.
+- `PORTAL_HOST` — **who we say we are**. `acme.karmarat.local`, and so on.
 
-Server-side calls must go through `gatewayRequest` from `@reqruitbook/ui/server`,
+Server-side calls must go through `gatewayRequest` from `@karmarat/ui/server`,
 never `fetch`. Node's `fetch` implements the WHATWG forbidden-header list and
 `Host` is on it: a `Host` header set on a fetch is dropped silently and replaced
 with the URL's authority. Three of the four portals were built with `fetch`, so
@@ -108,16 +108,16 @@ that is genuinely empty no longer look alike.
 
 | App | Dev port | Hostname |
 | --- | --- | --- |
-| `web-company` | 3000 | `acme.reqruitbook.local` |
-| `web-jobs` | 3001 | `jobs.reqruitbook.local` |
-| `web-admin` | 3002 | `root.reqruitbook.local` |
-| `web-landing` | 3003 | `reqruitbook.local` |
+| `web-company` | 3000 | `acme.karmarat.local` |
+| `web-jobs` | 3001 | `jobs.karmarat.local` |
+| `web-admin` | 3002 | `root.karmarat.local` |
+| `web-landing` | 3003 | `karmarat.local` |
 
 To browse a portal *by hostname*, those names have to resolve. That needs sudo,
 so it is a step you run yourself:
 
 ```
-127.0.0.1  reqruitbook.local root.reqruitbook.local jobs.reqruitbook.local acme.reqruitbook.local
+127.0.0.1  karmarat.local root.karmarat.local jobs.karmarat.local acme.karmarat.local
 ```
 
 Append it as its own line. Adding it to the end of an existing line — which is

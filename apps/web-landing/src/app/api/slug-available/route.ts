@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { ProblemError } from "@reqruitbook/ui";
+import { ProblemError } from "@karmarat/ui";
 
 import { gatewayFetch } from "@/lib/gateway";
 import { type SlugCheckResult, normaliseSlug, slugProblem } from "@/lib/slug";

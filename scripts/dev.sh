@@ -239,7 +239,7 @@ cmd_up() {
     # and waiting out the readiness deadline to discover that costs 45s per
     # unbuilt service — which, with several in flight, is most of a `make dev`.
     if [[ ! -d "services/$name/dist" ]]; then
-      warn "$name is not built — skipping it (run: pnpm --filter @reqruitbook/$name build)"
+      warn "$name is not built — skipping it (run: pnpm --filter @karmarat/$name build)"
       continue
     fi
     squatter=$(port_pid "$port")

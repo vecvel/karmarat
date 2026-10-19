@@ -24,11 +24,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/notifications/internal/domain"
-	"github.com/reqruitbook/platform/services/notifications/internal/realtime"
-	"github.com/reqruitbook/platform/services/notifications/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/notifications/internal/domain"
+	"github.com/karmarat/platform/services/notifications/internal/realtime"
+	"github.com/karmarat/platform/services/notifications/internal/store"
 )
 
 // maxBodyBytes bounds a preferences document. The largest legitimate one is a

@@ -7,8 +7,8 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
-	"github.com/reqruitbook/platform/services/candidates/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/services/candidates/internal/domain"
 )
 
 // Enum arrays are read as text[] and written through an explicit cast: pgx has

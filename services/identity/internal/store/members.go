@@ -8,8 +8,8 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/reqruitbook/platform/services/identity/internal/domain"
-	"github.com/reqruitbook/platform/services/identity/internal/rbac"
+	"github.com/karmarat/platform/services/identity/internal/domain"
+	"github.com/karmarat/platform/services/identity/internal/rbac"
 )
 
 // CompanyMember is one person who works at a company, with what they may do.

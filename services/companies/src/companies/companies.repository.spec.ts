@@ -9,9 +9,9 @@
  * It needs Postgres, so it skips cleanly when TEST_DATABASE_URL is unset —
  * `pnpm test` stays green on a laptop with no database, and CI still runs it:
  *
- *   TEST_DATABASE_URL=postgres://reqruitbook:reqruitbook@localhost:5432/companies_test pnpm test
+ *   TEST_DATABASE_URL=postgres://karmarat:karmarat@localhost:5432/companies_test pnpm test
  */
-import { createPool, migrate } from '@reqruitbook/nestshared';
+import { createPool, migrate } from '@karmarat/nestshared';
 import { randomUUID } from 'node:crypto';
 import { join } from 'node:path';
 import type { Pool } from 'pg';

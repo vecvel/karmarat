@@ -6,7 +6,7 @@
  * never reports a span. `main.ts` imports this file first for that reason
  * alone, and this file imports nothing but the config it needs.
  */
-import { startTracing } from '@reqruitbook/nestshared';
+import { startTracing } from '@karmarat/nestshared';
 
 import { SERVICE_NAME, loadConfig } from './config';
 

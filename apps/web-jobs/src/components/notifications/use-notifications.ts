@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { isProblem, type ApiClient } from "@reqruitbook/ui";
-import { useApi } from "@reqruitbook/ui/react";
+import { isProblem, type ApiClient } from "@karmarat/ui";
+import { useApi } from "@karmarat/ui/react";
 
 import type { Notification, NotificationPage } from "@/lib/api-types";
 import { useSession } from "@/components/session-provider";

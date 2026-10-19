@@ -5,7 +5,7 @@
  * .env drives Go and Node services alike. Only the settings this service alone
  * has are declared here.
  */
-import { int, loadBase, str, type BaseConfig } from '@reqruitbook/nestshared';
+import { int, loadBase, str, type BaseConfig } from '@karmarat/nestshared';
 
 export const SERVICE_NAME = 'subscriptions';
 export const DEFAULT_PORT = 8083;

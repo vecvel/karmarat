@@ -28,6 +28,10 @@ packages/contracts/gen/
 # Local data
 deploy/data/
 uploads/
+backups/
+*.sql.gz
+*.tar.gz
+
 
 # Editors & OS
 .DS_Store

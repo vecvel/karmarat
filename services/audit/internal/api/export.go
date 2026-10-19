@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/services/audit/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/services/audit/internal/domain"
 )
 
 // exportColumns is the header row, and the order every row is written in.

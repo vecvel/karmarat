@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	platformevents "github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/services/messaging/internal/domain"
-	"github.com/reqruitbook/platform/services/messaging/internal/store"
+	platformevents "github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/services/messaging/internal/domain"
+	"github.com/karmarat/platform/services/messaging/internal/store"
 )
 
 // Consumer applies other services' facts to this service's data.

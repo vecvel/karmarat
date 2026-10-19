@@ -69,10 +69,10 @@ func newRenderer() (*renderer, error) {
 // not go out with the wrong copy.
 func (r *renderer) Render(name string, content Content) (html string, text string, err error) {
 	if content.ProductName == "" {
-		content.ProductName = "ReqruitBook"
+		content.ProductName = "Karmarat"
 	}
 	if content.ActionLabel == "" {
-		content.ActionLabel = "Open in ReqruitBook"
+		content.ActionLabel = "Open in Karmarat"
 	}
 	content.Year = time.Now().UTC().Year()
 

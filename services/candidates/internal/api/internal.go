@@ -3,8 +3,8 @@ package api
 import (
 	"net/http"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/services/candidates/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/services/candidates/internal/domain"
 )
 
 // internalProfile is the minimal shape other services need.

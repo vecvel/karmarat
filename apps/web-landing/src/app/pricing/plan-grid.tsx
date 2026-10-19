@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Check, Minus } from "lucide-react";
-import { ProblemError } from "@reqruitbook/ui";
+import { ProblemError } from "@karmarat/ui";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";

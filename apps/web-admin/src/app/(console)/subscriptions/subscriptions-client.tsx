@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useId, useMemo, useState } from "react";
 import { CreditCard, Plus, ShieldAlert, Trash2 } from "lucide-react";
-import { Can, useApi } from "@reqruitbook/ui/react";
+import { Can, useApi } from "@karmarat/ui/react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

@@ -7,17 +7,14 @@
 # the layout in docs/contracts.md (cmd/server, optional cmd/migrate) needs no
 # Dockerfile of its own:
 #
-#   docker build -f deploy/Dockerfile.go-service \
+#   docker build -f deploy/docker/Dockerfile.go-service \
 #     --build-arg SERVICE=jobs --build-arg PORT=8085 \
-#     -t reqruitbook/jobs:dev .
+#     -t karmarat/jobs:dev .
 #
 # PORT is only used for EXPOSE and the healthcheck. Each service reads its own
 # listen port from its own variable (GATEWAY_HTTP_PORT, IDENTITY_HTTP_PORT, …),
 # so whatever is passed here must agree with what the environment sets.
-#
-# services/gateway/Dockerfile and services/identity/Dockerfile are the same
-# recipe with the arguments baked in, so `docker build -f services/<x>/Dockerfile .`
-# works without remembering them.
+
 
 ARG GO_VERSION=1.26
 ARG ALPINE_VERSION=3.22

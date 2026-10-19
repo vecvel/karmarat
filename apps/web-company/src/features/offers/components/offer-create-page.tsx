@@ -251,7 +251,7 @@ function CreateOfferContent() {
     const formattedSalary = `${curSymbol}${parseInt(baseSalary || "0").toLocaleString()} (${payFrequency.toUpperCase()})`;
 
     return `FORMAL OFFER OF EMPLOYMENT
-ReqruitBook Enterprise Talent Systems · Org: My Organisation
+Karmarat Enterprise Talent Systems · Org: My Organisation
 
 Date: ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
 
@@ -283,7 +283,7 @@ ${customFields.length > 0 ? `5. SPECIAL PROVISIONS & ADDENDA\n${customFields.map
 Sincerely,
 
 Authorized Signatory
-My Organisation / ReqruitBook`;
+My Organisation / Karmarat`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -419,7 +419,7 @@ My Organisation / ReqruitBook`;
               <div className="flex items-center justify-between border-b-2 border-stone-800 pb-4">
                 <div>
                   <h1 className="text-xl font-bold tracking-tight text-stone-900 uppercase">
-                    ReqruitBook
+                    Karmarat
                   </h1>
                   <span className="text-xs text-stone-500 font-medium">
                     Corporate Headquarters · Talent Operations &amp; HR

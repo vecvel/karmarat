@@ -11,7 +11,7 @@
  * more: an internal caller is still not entitled to the owner's email.
  */
 import { Controller, Get, Param, ParseUUIDPipe, UseGuards } from '@nestjs/common';
-import { Public } from '@reqruitbook/nestshared';
+import { Public } from '@karmarat/nestshared';
 
 import { ServiceTokenGuard } from '../common/internal-guard';
 import { CompaniesService } from './companies.service';

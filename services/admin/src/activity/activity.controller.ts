@@ -9,7 +9,7 @@
  * different content type".
  */
 import { Controller, Get, Header, Logger, Query, Res } from '@nestjs/common';
-import { CurrentPrincipal, Principal, parsePageRequest } from '@reqruitbook/nestshared';
+import { CurrentPrincipal, Principal, parsePageRequest } from '@karmarat/nestshared';
 import type { Response } from 'express';
 
 import { PlatformOnly, assertPlatform } from '../common/platform';

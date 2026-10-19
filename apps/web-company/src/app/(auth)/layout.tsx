@@ -16,13 +16,13 @@ export default function AuthLayout({
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo.png"
-            alt="ReqruitBook Logo"
+            alt="Karmarat Logo"
             width={36}
             height={36}
             className="rounded-xs object-contain"
             priority
           />
-          <span className="text-lg font-semibold tracking-tight text-parchment">ReqruitBook</span>
+          <span className="text-lg font-semibold tracking-tight text-parchment">Karmarat</span>
         </Link>
 
         <div className="my-auto flex flex-col items-center text-center">
@@ -60,17 +60,17 @@ export default function AuthLayout({
           <Link
             href="/"
             className="mb-8 flex items-center gap-2.5 lg:hidden"
-            aria-label="ReqruitBook home"
+            aria-label="Karmarat home"
           >
             <Image
               src="/logo.png"
-              alt="ReqruitBook Logo"
+              alt="Karmarat Logo"
               width={32}
               height={32}
               className="rounded-xs object-contain"
               priority
             />
-            <span className="font-semibold tracking-tight">ReqruitBook</span>
+            <span className="font-semibold tracking-tight">Karmarat</span>
           </Link>
           {children}
         </div>

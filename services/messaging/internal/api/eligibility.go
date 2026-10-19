@@ -7,8 +7,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/reqruitbook/platform/services/messaging/internal/candidates"
-	"github.com/reqruitbook/platform/services/messaging/internal/domain"
+	"github.com/karmarat/platform/services/messaging/internal/candidates"
+	"github.com/karmarat/platform/services/messaging/internal/domain"
 )
 
 // mayOpenConversation decides whether a company may start a thread with a

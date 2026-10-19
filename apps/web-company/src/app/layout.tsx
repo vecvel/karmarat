@@ -7,12 +7,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "ReqruitBook — Modern Recruitment & Talent Platform",
-    template: "%s · ReqruitBook",
+    default: "Karmarat — Modern Recruitment & Talent Platform",
+    template: "%s · Karmarat",
   },
   description:
     "Recruitment management for high-growth teams: candidate pipelines, job requisitions, interviews, evaluations, offers, and talent analytics in one cohesive system.",
-  applicationName: "ReqruitBook",
+  applicationName: "Karmarat",
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",

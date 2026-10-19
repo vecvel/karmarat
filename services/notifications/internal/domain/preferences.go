@@ -1,7 +1,7 @@
 package domain
 
 import (
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
 )
 
 // ChannelSet is one notification type's per-channel switches.

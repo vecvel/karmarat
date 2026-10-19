@@ -29,7 +29,7 @@ import {
   notFound,
   parsePageRequest,
   validationFailed,
-} from '@reqruitbook/nestshared';
+} from '@karmarat/nestshared';
 
 import { parseEntitlements } from '../entitlements/entitlements';
 import { PlansService } from '../plans/plans.service';

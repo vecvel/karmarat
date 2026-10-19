@@ -13,7 +13,7 @@
  * number would silently round above 2^53 — unreachable for a single invoice,
  * reachable for an aggregate in a minor unit with no decimal places.
  */
-import { badRequest, validationFailed } from '@reqruitbook/nestshared';
+import { badRequest, validationFailed } from '@karmarat/nestshared';
 
 /** Currencies are three uppercase letters; anything else never reaches SQL. */
 const CURRENCY_PATTERN = /^[A-Z]{3}$/;

@@ -9,8 +9,8 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/services/jobs/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/services/jobs/internal/domain"
 )
 
 // JobVisibility is the payload of every job event this service publishes.

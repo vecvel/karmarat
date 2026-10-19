@@ -6,7 +6,7 @@
  * insert that accompanies a settled payment.
  */
 import { Inject, Injectable } from '@nestjs/common';
-import { buildPage, type Page, type PageRequest } from '@reqruitbook/nestshared';
+import { buildPage, type Page, type PageRequest } from '@karmarat/nestshared';
 import type { Pool, PoolClient } from 'pg';
 
 import { PG_POOL } from '../common/infrastructure.module';

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Building2, Clock, MapPin } from "lucide-react";
-import { isProblem } from "@reqruitbook/ui";
+import { isProblem } from "@karmarat/ui";
 
 import { ApplyCallout } from "@/components/jobs/apply-callout";
 import { Badge } from "@/components/ui/badge";

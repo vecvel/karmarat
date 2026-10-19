@@ -5,8 +5,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/reqruitbook/platform/packages/goshared/config"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/config"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
 )
 
 // Route describes one upstream service and the portals allowed to reach it.

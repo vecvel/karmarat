@@ -137,8 +137,8 @@ describe('ManualProvider capabilities', () => {
       amountMinor: 5_000n,
       currency: 'USD',
       customerEmail: 'someone@example.test',
-      successUrl: 'https://acme.reqruitbook.local/settings/billing?payment=pay_1',
-      cancelUrl: 'https://acme.reqruitbook.local/settings/billing?payment=pay_1',
+      successUrl: 'https://acme.karmarat.local/settings/billing?payment=pay_1',
+      cancelUrl: 'https://acme.karmarat.local/settings/billing?payment=pay_1',
     });
 
     const url = new URL(session.redirectUrl);

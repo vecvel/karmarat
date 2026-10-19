@@ -2,7 +2,7 @@
 
 import { useId, useState, type ReactNode } from "react";
 import { Loader2 } from "lucide-react";
-import type { ProblemError } from "@reqruitbook/ui";
+import type { ProblemError } from "@karmarat/ui";
 
 import {
   AlertDialog,

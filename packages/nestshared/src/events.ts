@@ -20,60 +20,60 @@ import {
 import { randomBytes } from 'node:crypto';
 
 /** Must match StreamName in packages/goshared/events/events.go. */
-export const STREAM_NAME = 'REQRUITBOOK';
-export const ALL_SUBJECTS = 'reqruitbook.>';
+export const STREAM_NAME = 'KARMARAT';
+export const ALL_SUBJECTS = 'karmarat.>';
 
 /** Every subject the platform publishes. Keep in step with the Go constants. */
 export const Subject = {
-  CompanyRegistered: 'reqruitbook.company.registered',
-  CompanyApproved: 'reqruitbook.company.approved',
-  CompanySuspended: 'reqruitbook.company.suspended',
-  CompanyUpdated: 'reqruitbook.company.updated',
+  CompanyRegistered: 'karmarat.company.registered',
+  CompanyApproved: 'karmarat.company.approved',
+  CompanySuspended: 'karmarat.company.suspended',
+  CompanyUpdated: 'karmarat.company.updated',
 
-  SubscriptionActivated: 'reqruitbook.subscription.activated',
-  SubscriptionRenewed: 'reqruitbook.subscription.renewed',
-  SubscriptionExpired: 'reqruitbook.subscription.expired',
-  SubscriptionCancelled: 'reqruitbook.subscription.cancelled',
+  SubscriptionActivated: 'karmarat.subscription.activated',
+  SubscriptionRenewed: 'karmarat.subscription.renewed',
+  SubscriptionExpired: 'karmarat.subscription.expired',
+  SubscriptionCancelled: 'karmarat.subscription.cancelled',
 
-  PaymentSucceeded: 'reqruitbook.payment.succeeded',
-  PaymentFailed: 'reqruitbook.payment.failed',
+  PaymentSucceeded: 'karmarat.payment.succeeded',
+  PaymentFailed: 'karmarat.payment.failed',
 
-  PlanPublished: 'reqruitbook.plan.published',
-  PlanRetired: 'reqruitbook.plan.retired',
+  PlanPublished: 'karmarat.plan.published',
+  PlanRetired: 'karmarat.plan.retired',
 
-  JobPublished: 'reqruitbook.job.published',
-  JobUnpublished: 'reqruitbook.job.unpublished',
-  JobClosed: 'reqruitbook.job.closed',
+  JobPublished: 'karmarat.job.published',
+  JobUnpublished: 'karmarat.job.unpublished',
+  JobClosed: 'karmarat.job.closed',
 
-  ApplicationSubmitted: 'reqruitbook.application.submitted',
-  ApplicationStageChanged: 'reqruitbook.application.stage_changed',
-  ApplicationRejected: 'reqruitbook.application.rejected',
-  ApplicationWithdrawn: 'reqruitbook.application.withdrawn',
-  ApplicationHired: 'reqruitbook.application.hired',
+  ApplicationSubmitted: 'karmarat.application.submitted',
+  ApplicationStageChanged: 'karmarat.application.stage_changed',
+  ApplicationRejected: 'karmarat.application.rejected',
+  ApplicationWithdrawn: 'karmarat.application.withdrawn',
+  ApplicationHired: 'karmarat.application.hired',
 
-  InterviewScheduled: 'reqruitbook.interview.scheduled',
-  InterviewCancelled: 'reqruitbook.interview.cancelled',
-  InterviewCompleted: 'reqruitbook.interview.completed',
+  InterviewScheduled: 'karmarat.interview.scheduled',
+  InterviewCancelled: 'karmarat.interview.cancelled',
+  InterviewCompleted: 'karmarat.interview.completed',
 
-  OfferSent: 'reqruitbook.offer.sent',
-  OfferAccepted: 'reqruitbook.offer.accepted',
-  OfferDeclined: 'reqruitbook.offer.declined',
+  OfferSent: 'karmarat.offer.sent',
+  OfferAccepted: 'karmarat.offer.accepted',
+  OfferDeclined: 'karmarat.offer.declined',
 
-  CandidateRegistered: 'reqruitbook.candidate.registered',
-  CandidateVisibilityChanged: 'reqruitbook.candidate.visibility_changed',
-  CandidateProfileUpdated: 'reqruitbook.candidate.profile_updated',
-  CandidateApproached: 'reqruitbook.candidate.approached',
+  CandidateRegistered: 'karmarat.candidate.registered',
+  CandidateVisibilityChanged: 'karmarat.candidate.visibility_changed',
+  CandidateProfileUpdated: 'karmarat.candidate.profile_updated',
+  CandidateApproached: 'karmarat.candidate.approached',
 
-  MessageSent: 'reqruitbook.message.sent',
-  ConversationOpened: 'reqruitbook.message.conversation_opened',
+  MessageSent: 'karmarat.message.sent',
+  ConversationOpened: 'karmarat.message.conversation_opened',
 
-  UserDeactivated: 'reqruitbook.user.deactivated',
-  SessionRevoked: 'reqruitbook.session.revoked',
+  UserDeactivated: 'karmarat.user.deactivated',
+  SessionRevoked: 'karmarat.session.revoked',
 
-  SupportTicketCreated: 'reqruitbook.support.ticket_created',
-  SupportTicketReplied: 'reqruitbook.support.ticket_replied',
+  SupportTicketCreated: 'karmarat.support.ticket_created',
+  SupportTicketReplied: 'karmarat.support.ticket_replied',
 
-  NotificationRequested: 'reqruitbook.notification.requested',
+  NotificationRequested: 'karmarat.notification.requested',
 } as const;
 
 export interface Envelope<T = unknown> {

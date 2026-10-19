@@ -1,6 +1,6 @@
 # Feature-Based RBAC
 
-Authorization in ReqruitBook is derived from a single registry of features. A
+Authorization in Karmarat is derived from a single registry of features. A
 feature declares the actions it supports; everything else — the Super Admin
 permission matrix, the sidebar, route protection, server actions, and API
 endpoints — reads from that declaration. Adding a feature never means editing the

@@ -5,7 +5,7 @@
  * value that slips through here is either a portal that cannot be served or a
  * portal that shadows one of the platform's own.
  */
-import { Problem } from '@reqruitbook/nestshared';
+import { Problem } from '@karmarat/nestshared';
 
 import {
   ALLOWED_IMAGE_TYPES,

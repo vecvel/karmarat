@@ -41,12 +41,14 @@ vendor
 .vscode
 **/*.swp
 
-# Local data and logs
+# Local data, backups, and logs
 deploy/data
 uploads
+backups
+*.sql.gz
+*.tar.gz
 **/*.log
 
-# Not needed to compile a service
-apps
+# Non-build directories
 docs
 scripts

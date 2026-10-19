@@ -2,8 +2,8 @@
 
 import { useId, useState, type ReactNode } from "react";
 import { Loader2 } from "lucide-react";
-import { ProblemError } from "@reqruitbook/ui";
-import { useApi } from "@reqruitbook/ui/react";
+import { ProblemError } from "@karmarat/ui";
+import { useApi } from "@karmarat/ui/react";
 
 import { Button } from "@/components/ui/button";
 import {

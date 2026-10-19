@@ -8,8 +8,8 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
-	"github.com/reqruitbook/platform/services/candidates/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/services/candidates/internal/domain"
 )
 
 const poolColumns = `

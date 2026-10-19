@@ -4,7 +4,7 @@ import { LegalPlaceholder } from "@/components/legal-placeholder";
 
 export const metadata: Metadata = {
   title: "Privacy notice",
-  description: "ReqruitBook's privacy notice — not yet published.",
+  description: "Karmarat's privacy notice — not yet published.",
   robots: { index: false },
 };
 

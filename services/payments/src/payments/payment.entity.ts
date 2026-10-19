@@ -6,7 +6,7 @@
  * webhook change this row" is a question about two values, and a question about
  * two values should be answerable by a table-driven test.
  */
-import { conflict, validationFailed } from '@reqruitbook/nestshared';
+import { conflict, validationFailed } from '@karmarat/nestshared';
 
 export type PaymentState =
   | 'pending'

@@ -1,8 +1,8 @@
 {
-  "name": "@reqruitbook/web-admin",
+  "name": "@karmarat/web-admin",
   "version": "0.1.0",
   "private": true,
-  "description": "ReqruitBook platform console — the root.{hostname} portal for platform staff",
+  "description": "Karmarat platform console — the root.{hostname} portal for platform staff",
   "scripts": {
     "dev": "next dev --port 3002",
     "build": "next build",
@@ -24,7 +24,7 @@
     "@radix-ui/react-switch": "^1.2.5",
     "@radix-ui/react-tabs": "^1.1.12",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@reqruitbook/ui": "workspace:*",
+    "@karmarat/ui": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",

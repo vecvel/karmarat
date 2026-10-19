@@ -12,7 +12,7 @@
  * meaning what they say rather than becoming a de-facto page-level role.
  */
 import { Controller, Get, Query } from '@nestjs/common';
-import { CurrentPrincipal, Principal, badRequest } from '@reqruitbook/nestshared';
+import { CurrentPrincipal, Principal, badRequest } from '@karmarat/nestshared';
 
 import { PlatformOnly, assertPlatform } from '../common/platform';
 import { DEFAULT_SIGNUP_DAYS, OverviewService, type OverviewSnapshot } from './overview.service';

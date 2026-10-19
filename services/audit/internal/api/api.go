@@ -12,10 +12,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/audit/internal/domain"
-	"github.com/reqruitbook/platform/services/audit/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/audit/internal/domain"
+	"github.com/karmarat/platform/services/audit/internal/store"
 )
 
 // API wires the audit handlers.

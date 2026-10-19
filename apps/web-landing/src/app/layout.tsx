@@ -8,12 +8,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "ReqruitBook — recruitment software and a job board in one place",
-    template: "%s · ReqruitBook",
+    default: "Karmarat — recruitment software and a job board in one place",
+    template: "%s · Karmarat",
   },
   description:
-    "ReqruitBook gives a company its own careers portal and applicant tracking, and gives candidates one place to find those jobs and apply.",
-  applicationName: "ReqruitBook",
+    "Karmarat gives a company its own careers portal and applicant tracking, and gives candidates one place to find those jobs and apply.",
+  applicationName: "Karmarat",
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",

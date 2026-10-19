@@ -5,7 +5,7 @@
  * it do while it is". Identity keeps a projection of exactly that, fed by the
  * events this service publishes, so the two must agree on the vocabulary below.
  */
-import { Subject } from '@reqruitbook/nestshared';
+import { Subject } from '@karmarat/nestshared';
 
 import type { Entitlements } from '../entitlements/entitlements';
 import type { PlanInterval } from '../entitlements/duration';

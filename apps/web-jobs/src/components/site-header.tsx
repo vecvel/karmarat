@@ -41,7 +41,7 @@ export function SiteHeader({ identity }: { identity: Identity | null }) {
           href="/"
           className="text-sm font-semibold tracking-tight text-shell-foreground"
         >
-          ReqruitBook <span className="text-shell-muted">Jobs</span>
+          Karmarat <span className="text-shell-muted">Jobs</span>
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-1 sm:flex">

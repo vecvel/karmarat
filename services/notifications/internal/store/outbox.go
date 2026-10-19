@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
-	"github.com/reqruitbook/platform/services/notifications/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/services/notifications/internal/domain"
 )
 
 // EmailInput is one message to queue.

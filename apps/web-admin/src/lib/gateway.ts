@@ -1,7 +1,7 @@
 import "server-only";
 
-import { gatewayRequest, unreachableProblem as sharedUnreachable } from "@reqruitbook/ui/server";
-import type { GatewayResponse } from "@reqruitbook/ui/server";
+import { gatewayRequest, unreachableProblem as sharedUnreachable } from "@karmarat/ui/server";
+import type { GatewayResponse } from "@karmarat/ui/server";
 
 /**
  * The only place in this app that knows where the gateway lives.
@@ -11,7 +11,7 @@ import type { GatewayResponse } from "@reqruitbook/ui/server";
  * root.{hostname} — so the portal is established by where the request lands,
  * never by a field the client sets.
  *
- * The transport lives in `@reqruitbook/ui/server` now. It was written here
+ * The transport lives in `@karmarat/ui/server` now. It was written here
  * first, because this console was the app that noticed Node's `fetch` silently
  * drops a `Host` header; the other three portals were still using `fetch` and
  * had been resolving the wrong portal for every server-side call. Sharing one
@@ -19,10 +19,10 @@ import type { GatewayResponse } from "@reqruitbook/ui/server";
  */
 
 export const GATEWAY_URL = (process.env.GATEWAY_URL ?? "http://localhost:8080").replace(/\/$/, "");
-export const PORTAL_HOST = process.env.PORTAL_HOST ?? "root.reqruitbook.local";
+export const PORTAL_HOST = process.env.PORTAL_HOST ?? "root.karmarat.local";
 
-export type { GatewayResponse } from "@reqruitbook/ui/server";
-export { isJson } from "@reqruitbook/ui/server";
+export type { GatewayResponse } from "@karmarat/ui/server";
+export { isJson } from "@karmarat/ui/server";
 
 export interface GatewayRequest {
   method?: string;

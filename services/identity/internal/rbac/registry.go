@@ -80,7 +80,7 @@ var features = []Feature{
 		Actions: withCrud(
 			Action{Name: "publish_portal", Label: "Publish to Company Portal",
 				Description: "Make a job visible on the company's own careers portal", Sensitive: true},
-			Action{Name: "publish_network", Label: "Publish to ReqruitBook Jobs",
+			Action{Name: "publish_network", Label: "Publish to Karmarat Jobs",
 				Description: "List a job on the shared candidate job portal", Sensitive: true},
 			Action{Name: "manage_form", Label: "Configure Application Form",
 				Description: "Define the custom fields and questions applicants must answer"},
@@ -113,7 +113,7 @@ var features = []Feature{
 	},
 	{
 		Key: "talent_search", Name: "Talent Discovery", Scope: ScopeCompany, Group: "recruitment", Order: 4,
-		Description: "Search publicly discoverable candidates on the ReqruitBook network",
+		Description: "Search publicly discoverable candidates on the Karmarat network",
 		Actions: []Action{
 			{Name: "search", Label: "Search Candidate Network",
 				Description: "Find candidates who made their profile discoverable"},
@@ -195,7 +195,7 @@ var features = []Feature{
 	},
 	{
 		Key: "support", Name: "Help & Support", Scope: ScopeCompany, Group: "administration", Order: 24,
-		Description: "Support tickets raised with the ReqruitBook platform",
+		Description: "Support tickets raised with the Karmarat platform",
 		Actions: []Action{
 			{Name: "read", Label: "View Tickets", Description: "See the company's support requests"},
 			{Name: "create", Label: "Raise Tickets", Description: "Open a new support request"},
@@ -269,7 +269,7 @@ var features = []Feature{
 	},
 	{
 		Key: "platform_users", Name: "Platform Staff", Scope: ScopePlatform, Group: "administration", Order: 30,
-		Description: "Accounts that operate the ReqruitBook platform",
+		Description: "Accounts that operate the Karmarat platform",
 		Actions: withCrud(
 			Action{Name: "assign_roles", Label: "Assign Staff Roles",
 				Description: "Grant or remove a staff member's roles", Sensitive: true},

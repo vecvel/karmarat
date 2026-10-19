@@ -7,7 +7,7 @@
  * a guard reach around the config layer to read the environment again.
  */
 import { Inject, Injectable } from '@nestjs/common';
-import { InternalTokenGuard } from '@reqruitbook/nestshared';
+import { InternalTokenGuard } from '@karmarat/nestshared';
 
 import type { CompaniesConfig } from '../config';
 import { SERVICE_CONFIG } from '../companies/companies.service';

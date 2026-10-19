@@ -10,7 +10,7 @@ export function SiteFooter() {
     <footer className="mt-20 border-t border-border bg-muted/40">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-1">
-          <p className="font-semibold tracking-tight">ReqruitBook</p>
+          <p className="font-semibold tracking-tight">Karmarat</p>
           <p className="mt-2 text-sm text-muted-foreground">
             Recruitment software for companies, and one job board for the candidates
             who apply through it.
@@ -39,7 +39,7 @@ export function SiteFooter() {
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-4 text-xs text-muted-foreground sm:px-6">
-          <p>© {year} ReqruitBook</p>
+          <p>© {year} Karmarat</p>
           <p className="tabular">{PORTAL_HOST}</p>
         </div>
       </div>

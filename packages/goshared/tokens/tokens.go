@@ -24,7 +24,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
 )
 
 var (
@@ -91,7 +91,7 @@ func NewIssuer(cfg IssuerConfig) (*Issuer, error) {
 		cfg.TTL = 15 * time.Minute
 	}
 	if cfg.Issuer == "" {
-		cfg.Issuer = "reqruitbook-identity"
+		cfg.Issuer = "karmarat-identity"
 	}
 
 	return &Issuer{
@@ -199,7 +199,7 @@ func NewVerifier(cfg VerifierConfig) (*Verifier, error) {
 		return nil, err
 	}
 	if cfg.Issuer == "" {
-		cfg.Issuer = "reqruitbook-identity"
+		cfg.Issuer = "karmarat-identity"
 	}
 	return &Verifier{publicKey: key, issuer: cfg.Issuer, audience: cfg.Audience}, nil
 }

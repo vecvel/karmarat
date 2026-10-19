@@ -16,7 +16,7 @@ import {
   Tags,
   X,
 } from "lucide-react";
-import { useAccess } from "@reqruitbook/ui/react";
+import { useAccess } from "@karmarat/ui/react";
 
 import { Button } from "@/components/ui/button";
 import { useSession, type ConsoleIdentity } from "@/lib/session-provider";
@@ -56,7 +56,7 @@ export function ConsoleShell({
           that hides the page it belongs to. */}
       <div className="flex items-center justify-between border-b border-shell-border bg-shell px-4 py-3 text-shell-foreground lg:hidden">
         <Link href="/" className="text-sm font-semibold tracking-tight">
-          ReqruitBook <span className="text-shell-muted">Console</span>
+          Karmarat <span className="text-shell-muted">Console</span>
         </Link>
         <Button
           type="button"
@@ -114,7 +114,7 @@ function Sidebar({
         onClick={onNavigate}
         className="mb-4 hidden px-2 text-sm font-semibold tracking-tight lg:block"
       >
-        ReqruitBook <span className="text-shell-muted">Console</span>
+        Karmarat <span className="text-shell-muted">Console</span>
       </Link>
 
       <ul className="flex flex-col gap-0.5">

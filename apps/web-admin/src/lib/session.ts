@@ -1,7 +1,7 @@
 import "server-only";
 
 import { cookies } from "next/headers";
-import type { Session } from "@reqruitbook/ui";
+import type { Session } from "@karmarat/ui";
 
 import { gatewayFetch } from "./gateway";
 

@@ -28,7 +28,7 @@
  * otherwise be retried until it was dropped, delaying every event behind it.
  */
 import { Injectable, Logger } from '@nestjs/common';
-import { Subject, withTransaction, type Envelope } from '@reqruitbook/nestshared';
+import { Subject, withTransaction, type Envelope } from '@karmarat/nestshared';
 import type { PoolClient } from 'pg';
 
 import { intervalToMonths, UNNORMALISABLE } from '../overview/mrr';

@@ -7,7 +7,7 @@
  * operator is willing to wait on a downstream probe, and how much of the audit
  * trail one export may take.
  */
-import { loadBase, int, str, type BaseConfig } from '@reqruitbook/nestshared';
+import { loadBase, int, str, type BaseConfig } from '@karmarat/nestshared';
 
 export const SERVICE_NAME = 'admin';
 const DEFAULT_PORT = 8091;

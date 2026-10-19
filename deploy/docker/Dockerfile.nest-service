@@ -1,0 +1,71 @@
+# syntax=docker/dockerfile:1
+
+# Generic build recipe for any NestJS service in this repository.
+#
+# Built from the REPO ROOT, because every NestJS service depends on
+# packages/nestshared in the pnpm workspace:
+#
+#   docker build -f deploy/docker/Dockerfile.nest-service \
+#     --build-arg SERVICE=companies --build-arg PORT=8082 \
+#     -t karmarat/companies:prod .
+
+ARG NODE_VERSION=22
+
+FROM node:${NODE_VERSION}-alpine AS build
+
+ARG SERVICE
+
+RUN corepack enable
+
+WORKDIR /src
+
+# Workspace manifests first so dependency-free changes reuse cache
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY packages/nestshared/package.json ./packages/nestshared/
+COPY services/${SERVICE}/package.json ./services/${SERVICE}/
+
+RUN --mount=type=cache,target=/pnpm-store \
+    pnpm config set store-dir /pnpm-store && \
+    pnpm install --frozen-lockfile --filter @karmarat/${SERVICE}...
+
+COPY packages/nestshared ./packages/nestshared
+COPY services/${SERVICE} ./services/${SERVICE}
+
+# confirmModulesPurge=false: dropping to --prod makes pnpm remove and rebuild
+# node_modules without prompting in non-TTY container builds
+RUN pnpm --filter @karmarat/nestshared build && \
+    pnpm --filter @karmarat/${SERVICE} build && \
+    pnpm install --prod --frozen-lockfile --filter @karmarat/${SERVICE}... \
+      --config.confirmModulesPurge=false
+
+FROM node:${NODE_VERSION}-alpine
+
+ARG SERVICE
+ARG PORT=8080
+
+RUN apk add --no-cache tini \
+    && addgroup -S app && adduser -S -G app -u 10001 app
+
+WORKDIR /app
+
+COPY --from=build /src/node_modules /app/node_modules
+COPY --from=build /src/packages/nestshared /app/packages/nestshared
+COPY --from=build /src/services/${SERVICE}/node_modules /app/services/${SERVICE}/node_modules
+COPY --from=build /src/services/${SERVICE}/dist /app/services/${SERVICE}/dist
+# Migrations are read from disk at boot, not compiled in
+COPY --from=build /src/services/${SERVICE}/migrations /app/services/${SERVICE}/migrations
+COPY --from=build /src/services/${SERVICE}/package.json /app/services/${SERVICE}/package.json
+
+WORKDIR /app/services/${SERVICE}
+
+ENV PORT=${PORT}
+ENV NODE_ENV=production
+
+USER app:app
+
+EXPOSE ${PORT}
+
+HEALTHCHECK --interval=15s --timeout=3s --start-period=15s --retries=5 \
+  CMD wget --quiet --spider "http://127.0.0.1:${PORT}/healthz" || exit 1
+
+ENTRYPOINT ["/sbin/tini", "--", "node", "dist/main"]

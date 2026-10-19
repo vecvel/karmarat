@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/applications/internal/domain"
-	"github.com/reqruitbook/platform/services/applications/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/applications/internal/domain"
+	"github.com/karmarat/platform/services/applications/internal/store"
 )
 
 // candidateView is what an applicant is allowed to see about their own

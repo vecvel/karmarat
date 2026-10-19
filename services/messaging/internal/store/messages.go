@@ -7,9 +7,9 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
-	"github.com/reqruitbook/platform/services/messaging/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/services/messaging/internal/domain"
 )
 
 const messageColumns = `

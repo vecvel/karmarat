@@ -25,7 +25,7 @@ exist at all, from the `Host` header. A request that arrives claiming to be
 route.
 
 Those two being different is why the server-side calls go through
-`gatewayRequest` from `@reqruitbook/ui/server` rather than `fetch`. Node's `fetch`
+`gatewayRequest` from `@karmarat/ui/server` rather than `fetch`. Node's `fetch`
 implements the WHATWG forbidden-header list, and `Host` is on it: a `Host` header
 set on a fetch is dropped silently and replaced with the URL's authority. The
 symptom is not an error — it is a dashboard of zeros and a settings page with no
@@ -37,8 +37,8 @@ roles, because every read falls back to an empty value when the call fails.
 # the backend, if it is not already up
 ./scripts/dev.sh up
 
-pnpm install --filter @reqruitbook/web-company
-pnpm --filter @reqruitbook/web-company dev     # http://localhost:3000
+pnpm install --filter @karmarat/web-company
+pnpm --filter @karmarat/web-company dev     # http://localhost:3000
 ```
 
 Reached at `localhost:3000` the hostname carries no slug, so `COMPANY_SLUG` in

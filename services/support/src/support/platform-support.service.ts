@@ -14,7 +14,7 @@
  * rather than by a flag someone has to remember to check.
  */
 import { Injectable } from '@nestjs/common';
-import { badRequest, notFound, parsePageRequest, type Page } from '@reqruitbook/nestshared';
+import { badRequest, notFound, parsePageRequest, type Page } from '@karmarat/nestshared';
 
 import { PlatformThreadRepository } from './platform-thread.repository';
 import { SupportEventPublisher } from './events.publisher';

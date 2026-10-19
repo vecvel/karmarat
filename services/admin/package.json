@@ -1,5 +1,5 @@
 {
-  "name": "@reqruitbook/admin",
+  "name": "@karmarat/admin",
   "version": "0.1.0",
   "private": true,
   "description": "Root console aggregation — the read side of the platform, fed by events",
@@ -14,7 +14,7 @@
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
-    "@reqruitbook/nestshared": "workspace:*",
+    "@karmarat/nestshared": "workspace:*",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "express": "^5.0.1",

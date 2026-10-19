@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Archive, Infinity as InfinityIcon, Pencil, Plus, Send, Tags, Trash2 } from "lucide-react";
-import { Can, useApi } from "@reqruitbook/ui/react";
+import { Can, useApi } from "@karmarat/ui/react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

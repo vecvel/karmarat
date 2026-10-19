@@ -230,7 +230,7 @@ email are the account holder's.
 **Known gap, not solved:** adding an address that already has a platform account
 attaches that person to the tenant without their consent, and the response
 distinguishes a new account from an existing one — so a company can learn
-whether an address already recruits on ReqruitBook. The honest fix is an
+whether an address already recruits on Karmarat. The honest fix is an
 invitation the person accepts (`MembershipInvited` already exists in the model
 and `resolveCompanyMembership` already refuses it), which needs email delivery
 the platform does not have. Recorded here rather than half-fixed.
@@ -261,7 +261,7 @@ outbound call, database query and event publish carries the trace.
 ## 9. Front ends: the Host header
 
 A portal's server-side calls must go through `gatewayRequest` from
-`@reqruitbook/ui/server`, never `fetch`.
+`@karmarat/ui/server`, never `fetch`.
 
 The gateway resolves the portal — and therefore which routes exist at all — from
 the `Host` header. Node's `fetch` implements the WHATWG forbidden-header list and

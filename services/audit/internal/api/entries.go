@@ -3,8 +3,8 @@ package api
 import (
 	"net/http"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
 )
 
 // handleCompanyList returns one page of the caller's own trail.

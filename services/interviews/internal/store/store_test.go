@@ -10,10 +10,10 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/reqruitbook/platform/packages/goshared/postgres"
-	"github.com/reqruitbook/platform/services/interviews/internal/domain"
-	"github.com/reqruitbook/platform/services/interviews/internal/store"
-	"github.com/reqruitbook/platform/services/interviews/migrations"
+	"github.com/karmarat/platform/packages/goshared/postgres"
+	"github.com/karmarat/platform/services/interviews/internal/domain"
+	"github.com/karmarat/platform/services/interviews/internal/store"
+	"github.com/karmarat/platform/services/interviews/migrations"
 )
 
 // The tenant test is the one the service contract says must exist even when
@@ -27,7 +27,7 @@ import (
 // file skips, so `go test ./...` stays green on a machine with no Postgres.
 //
 //	createdb interviews_test
-//	INTERVIEWS_TEST_DATABASE_URL=postgres://reqruitbook:reqruitbook@localhost:5432/interviews_test?sslmode=disable \
+//	INTERVIEWS_TEST_DATABASE_URL=postgres://karmarat:karmarat@localhost:5432/interviews_test?sslmode=disable \
 //	  go test ./services/interviews/...
 
 const (

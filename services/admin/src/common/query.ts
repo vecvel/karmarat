@@ -14,7 +14,7 @@
  * reasoning holds only while every route is platform-only — see
  * src/common/platform.ts.
  */
-import { badRequest } from '@reqruitbook/nestshared';
+import { badRequest } from '@karmarat/nestshared';
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 

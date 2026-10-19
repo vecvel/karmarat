@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/notifications/internal/mail"
-	"github.com/reqruitbook/platform/services/notifications/internal/store"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/notifications/internal/mail"
+	"github.com/karmarat/platform/services/notifications/internal/store"
 )
 
 // PortalURLs are the front doors a link in an email can point at.

@@ -6,7 +6,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/packages/goshared/idgen"
 )
 
 // outboxEntry is one event waiting to be published.

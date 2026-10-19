@@ -3,7 +3,7 @@ package api
 import (
 	"time"
 
-	"github.com/reqruitbook/platform/services/messaging/internal/domain"
+	"github.com/karmarat/platform/services/messaging/internal/domain"
 )
 
 // The response types are declared once and built through side-specific

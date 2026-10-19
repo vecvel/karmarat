@@ -1,19 +1,19 @@
-# ReqruitBook platform infrastructure (local development).
+# Karmarat platform infrastructure (local development).
 #
 # Every backing service the platform depends on, so a developer can run the whole
 # system with `pnpm infra:up`. Production uses managed equivalents — the service
 # code only ever reads connection strings from the environment.
 
-name: reqruitbook
+name: karmarat
 
 services:
   postgres:
     image: postgres:17-alpine
-    container_name: reqruitbook-postgres
+    container_name: karmarat-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-reqruitbook}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-reqruitbook}
+      POSTGRES_USER: ${POSTGRES_USER:-karmarat}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-karmarat}
       POSTGRES_DB: postgres
       # One database per service: services own their data and never reach into
       # another service's tables.
@@ -24,27 +24,27 @@ services:
       - postgres-data:/var/lib/postgresql/data
       - ./postgres/init-databases.sh:/docker-entrypoint-initdb.d/10-init-databases.sh:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-reqruitbook} -d postgres"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-karmarat} -d postgres"]
       interval: 5s
       timeout: 5s
       retries: 10
 
   redis:
     image: redis:7-alpine
-    container_name: reqruitbook-redis
+    container_name: karmarat-redis
     restart: unless-stopped
     command:
       - redis-server
       - --appendonly
       - "yes"
       - --requirepass
-      - ${REDIS_PASSWORD:-reqruitbook}
+      - ${REDIS_PASSWORD:-karmarat}
     ports:
       - "${REDIS_PORT:-6379}:6379"
     volumes:
       - redis-data:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-reqruitbook}", "ping"]
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-karmarat}", "ping"]
       interval: 5s
       timeout: 3s
       retries: 10
@@ -52,7 +52,7 @@ services:
   # Durable event backbone for inter-service communication.
   nats:
     image: nats:2.10-alpine
-    container_name: reqruitbook-nats
+    container_name: karmarat-nats
     restart: unless-stopped
     command:
       - "--jetstream"
@@ -72,12 +72,12 @@ services:
   # S3-compatible object storage for resumes, offer letters, and company assets.
   minio:
     image: quay.io/minio/minio:latest
-    container_name: reqruitbook-minio
+    container_name: karmarat-minio
     restart: unless-stopped
     command: server /data --console-address ":9001"
     environment:
-      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-reqruitbook}
-      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-reqruitbook-secret}
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-karmarat}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-karmarat-secret}
     ports:
       - "${S3_PORT:-9000}:9000"
       - "${S3_CONSOLE_PORT:-9001}:9001"
@@ -92,13 +92,13 @@ services:
   # Creates the buckets the platform expects, then exits.
   minio-init:
     image: quay.io/minio/mc:latest
-    container_name: reqruitbook-minio-init
+    container_name: karmarat-minio-init
     depends_on:
       minio:
         condition: service_healthy
     entrypoint: >
       /bin/sh -c "
-      mc alias set local http://minio:9000 ${S3_ACCESS_KEY:-reqruitbook} ${S3_SECRET_KEY:-reqruitbook-secret};
+      mc alias set local http://minio:9000 ${S3_ACCESS_KEY:-karmarat} ${S3_SECRET_KEY:-karmarat-secret};
       mc mb --ignore-existing local/resumes;
       mc mb --ignore-existing local/company-assets;
       mc mb --ignore-existing local/documents;
@@ -110,7 +110,7 @@ services:
   # Captures outbound mail in development instead of delivering it.
   mailpit:
     image: axllent/mailpit:latest
-    container_name: reqruitbook-mailpit
+    container_name: karmarat-mailpit
     restart: unless-stopped
     ports:
       - "${SMTP_PORT:-1025}:1025"
@@ -119,7 +119,7 @@ services:
   # Distributed tracing across service hops.
   jaeger:
     image: jaegertracing/all-in-one:latest
-    container_name: reqruitbook-jaeger
+    container_name: karmarat-jaeger
     restart: unless-stopped
     environment:
       COLLECTOR_OTLP_ENABLED: "true"

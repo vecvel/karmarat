@@ -1,5 +1,5 @@
 {
-  "name": "@reqruitbook/nestshared",
+  "name": "@karmarat/nestshared",
   "version": "0.1.0",
   "private": true,
   "description": "Shared platform library for the NestJS services \u2014 the TypeScript counterpart to packages/goshared",

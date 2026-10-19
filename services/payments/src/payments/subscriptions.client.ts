@@ -7,7 +7,7 @@
  * that will one day disagree with the one the customer was shown.
  */
 import { Injectable, Logger } from '@nestjs/common';
-import { Problem, type ProblemBody } from '@reqruitbook/nestshared';
+import { Problem, type ProblemBody } from '@karmarat/nestshared';
 
 import { toMinor } from '../common/money';
 import type { PaymentsConfig } from '../config';

@@ -9,9 +9,9 @@ func TestActionURL(t *testing.T) {
 	t.Parallel()
 
 	worker := &Email{portals: PortalURLs{
-		Company: "https://acme.reqruitbook.test/",
-		Jobs:    "https://jobs.reqruitbook.test",
-		Root:    "https://root.reqruitbook.test",
+		Company: "https://acme.karmarat.test/",
+		Jobs:    "https://jobs.karmarat.test",
+		Root:    "https://root.karmarat.test",
 	}}
 
 	tests := []struct {
@@ -22,17 +22,17 @@ func TestActionURL(t *testing.T) {
 		{
 			name: "a company recipient goes to the company portal",
 			data: map[string]any{"portal": "company", "link": "/applications/app_1"},
-			want: "https://acme.reqruitbook.test/applications/app_1",
+			want: "https://acme.karmarat.test/applications/app_1",
 		},
 		{
 			name: "a candidate goes to the jobs portal",
 			data: map[string]any{"portal": "candidate", "link": "/offers/ofr_1"},
-			want: "https://jobs.reqruitbook.test/offers/ofr_1",
+			want: "https://jobs.karmarat.test/offers/ofr_1",
 		},
 		{
 			name: "platform staff go to the console",
 			data: map[string]any{"portal": "platform", "link": "/support/tickets/tkt_1"},
-			want: "https://root.reqruitbook.test/support/tickets/tkt_1",
+			want: "https://root.karmarat.test/support/tickets/tkt_1",
 		},
 		{
 			name: "a link that is not a path yields no button",

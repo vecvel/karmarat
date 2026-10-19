@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MessageSquare } from "lucide-react";
-import { useApi } from "@reqruitbook/ui/react";
+import { useApi } from "@karmarat/ui/react";
 
 import { EmptyState, ListSkeleton, ProblemAlert } from "@/components/feedback";
 import { useSession } from "@/components/session-provider";

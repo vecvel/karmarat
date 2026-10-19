@@ -16,7 +16,7 @@
  * here for anyone outside the desk to react to.
  */
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { EventBus, Subject } from '@reqruitbook/nestshared';
+import { EventBus, Subject } from '@karmarat/nestshared';
 
 import { EVENT_BUS } from '../tokens';
 import type { AuthorKind, Ticket } from './domain';

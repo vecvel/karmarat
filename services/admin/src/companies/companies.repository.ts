@@ -12,7 +12,7 @@
  * an admin list slow exactly when the platform is busiest.
  */
 import { Inject, Injectable } from '@nestjs/common';
-import { badRequest, type Cursor } from '@reqruitbook/nestshared';
+import { badRequest, type Cursor } from '@karmarat/nestshared';
 import type { Pool } from 'pg';
 
 import { toNumber } from '../common/numbers';

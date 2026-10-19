@@ -15,9 +15,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/reqruitbook/platform/services/identity/internal/domain"
-	"github.com/reqruitbook/platform/services/identity/internal/rbac"
-	"github.com/reqruitbook/platform/services/identity/internal/store"
+	"github.com/karmarat/platform/services/identity/internal/domain"
+	"github.com/karmarat/platform/services/identity/internal/rbac"
+	"github.com/karmarat/platform/services/identity/internal/store"
 )
 
 // Actor is the person making a change to a company's team.

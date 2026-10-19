@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
-import { isProblem, ProblemError } from "@reqruitbook/ui";
-import { useApi } from "@reqruitbook/ui/react";
+import { isProblem, ProblemError } from "@karmarat/ui";
+import { useApi } from "@karmarat/ui/react";
 
 import { ApplicationFormField } from "@/components/apply/form-field";
 import { ProblemAlert } from "@/components/feedback";

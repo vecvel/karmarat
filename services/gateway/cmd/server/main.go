@@ -1,4 +1,4 @@
-// Command server runs the ReqruitBook API gateway.
+// Command server runs the Karmarat API gateway.
 //
 // The gateway is the platform's single front door. It decides which portal a
 // request arrived at, which tenant that portal belongs to, and who is calling —
@@ -18,16 +18,16 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/config"
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/logging"
-	"github.com/reqruitbook/platform/packages/goshared/observability"
-	"github.com/reqruitbook/platform/packages/goshared/redisx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/packages/goshared/tokens"
-	"github.com/reqruitbook/platform/services/gateway/internal/proxy"
-	"github.com/reqruitbook/platform/services/gateway/internal/routing"
-	"github.com/reqruitbook/platform/services/gateway/internal/tenant"
+	"github.com/karmarat/platform/packages/goshared/config"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/logging"
+	"github.com/karmarat/platform/packages/goshared/observability"
+	"github.com/karmarat/platform/packages/goshared/redisx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/tokens"
+	"github.com/karmarat/platform/services/gateway/internal/proxy"
+	"github.com/karmarat/platform/services/gateway/internal/routing"
+	"github.com/karmarat/platform/services/gateway/internal/tenant"
 )
 
 const serviceName = "gateway"
@@ -78,7 +78,7 @@ func run() error {
 
 	verifier, err := tokens.NewVerifier(tokens.VerifierConfig{
 		PublicKeyPEM: publicPEM,
-		Issuer:       "reqruitbook-identity",
+		Issuer:       "karmarat-identity",
 		Audience:     cfg.Hostname,
 	})
 	if err != nil {

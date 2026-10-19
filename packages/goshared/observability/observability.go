@@ -162,7 +162,7 @@ func Tracer(name string) trace.Tracer { return otel.Tracer(name) }
 //	ctx, span := observability.Span(ctx, "store.ListJobs")
 //	defer span.End()
 func Span(ctx context.Context, name string, attrs ...attribute.KeyValue) (context.Context, trace.Span) {
-	return otel.Tracer("reqruitbook").Start(ctx, name, trace.WithAttributes(attrs...))
+	return otel.Tracer("karmarat").Start(ctx, name, trace.WithAttributes(attrs...))
 }
 
 // RecordError marks the active span as failed.

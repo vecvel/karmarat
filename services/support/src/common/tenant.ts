@@ -10,7 +10,7 @@
  * This is not a substitute for the tenant filter; it only guarantees that the
  * filter's argument is a value the column can hold.
  */
-import { forbidden } from '@reqruitbook/nestshared';
+import { forbidden } from '@karmarat/nestshared';
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 

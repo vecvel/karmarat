@@ -213,8 +213,8 @@ function ApplicationsContent() {
           await sendMessageToCandidate({
             candidateId: targetApp.candidateId,
             recipientEmail: targetApp.candidateEmail,
-            subject: `Update regarding your application for ${targetApp.jobTitle || "our open role"} at ReqruitBook`,
-            body: `Dear ${targetApp.candidateName || "Candidate"},\n\nThank you for taking the time to speak with our team regarding the ${targetApp.jobTitle || "open role"} position at ReqruitBook.\n\nWhile your background and qualifications are commendable, we have decided to proceed with other candidates whose experience more closely aligns with our immediate technical requirements.\n\nWe genuinely appreciate the dedication and thoughtful insights you shared during our discussions, and we would welcome the opportunity to stay connected for future openings.\n\nWarm regards,\nReqruitBook Talent Acquisition Team`,
+            subject: `Update regarding your application for ${targetApp.jobTitle || "our open role"} at Karmarat`,
+            body: `Dear ${targetApp.candidateName || "Candidate"},\n\nThank you for taking the time to speak with our team regarding the ${targetApp.jobTitle || "open role"} position at Karmarat.\n\nWhile your background and qualifications are commendable, we have decided to proceed with other candidates whose experience more closely aligns with our immediate technical requirements.\n\nWe genuinely appreciate the dedication and thoughtful insights you shared during our discussions, and we would welcome the opportunity to stay connected for future openings.\n\nWarm regards,\nKarmarat Talent Acquisition Team`,
           });
           toast.success("Application rejected and candidate notified via email.");
         } catch (emailErr) {

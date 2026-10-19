@@ -8,7 +8,7 @@
  * as "no limit configured", which fails open. Validating at the boundary means
  * a missing limit is impossible rather than merely unlikely.
  */
-import { validationFailed } from '@reqruitbook/nestshared';
+import { validationFailed } from '@karmarat/nestshared';
 
 /** `null` on a numeric limit means unlimited; 0 means none allowed. */
 export interface Entitlements {

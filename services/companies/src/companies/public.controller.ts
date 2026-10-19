@@ -8,7 +8,7 @@
  * not a client-supplied tenant id, which no endpoint on this platform accepts.
  */
 import { Controller, Get, Headers } from '@nestjs/common';
-import { GatewayHeader, Public, notFound } from '@reqruitbook/nestshared';
+import { GatewayHeader, Public, notFound } from '@karmarat/nestshared';
 
 import { CompaniesService } from './companies.service';
 

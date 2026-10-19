@@ -12,7 +12,7 @@
  * timestamp alone would either repeat or skip one of them.
  */
 import { Inject, Injectable } from '@nestjs/common';
-import type { Cursor } from '@reqruitbook/nestshared';
+import type { Cursor } from '@karmarat/nestshared';
 import type { Pool } from 'pg';
 
 import { Params, whereClause } from '../common/sql';

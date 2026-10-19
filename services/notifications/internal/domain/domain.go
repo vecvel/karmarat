@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
 )
 
 // NoCompany is the sentinel tenant used for principals that have none.

@@ -20,7 +20,7 @@ import {
   RequirePrincipalType,
   badRequest,
   type Page,
-} from '@reqruitbook/nestshared';
+} from '@karmarat/nestshared';
 
 import { AssignTicketDto, PatchTicketDto, PlatformListTicketsQueryDto, PlatformReplyDto } from './dto';
 import { PlatformSupportService, type Agent } from './platform-support.service';

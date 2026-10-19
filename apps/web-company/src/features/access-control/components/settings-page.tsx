@@ -477,10 +477,10 @@ function SettingsContent() {
   const [smtpSecure, setSmtpSecure] = useState(false);
   const [smtpUser, setSmtpUser] = useState("resend");
   const [smtpPass, setSmtpPass] = useState("");
-  const [smtpFromName, setSmtpFromName] = useState("ReqruitBook Talent Team");
-  const [smtpFromEmail, setSmtpFromEmail] = useState("talent@reqruitbook.com");
-  const [smtpReplyTo, setSmtpReplyTo] = useState("recruiting@reqruitbook.com");
-  const [smtpSignature, setSmtpSignature] = useState("--\nReqruitBook Talent Acquisition\nhttps://reqruitbook.com");
+  const [smtpFromName, setSmtpFromName] = useState("Karmarat Talent Team");
+  const [smtpFromEmail, setSmtpFromEmail] = useState("talent@karmarat.com");
+  const [smtpReplyTo, setSmtpReplyTo] = useState("recruiting@karmarat.com");
+  const [smtpSignature, setSmtpSignature] = useState("--\nKarmarat Talent Acquisition\nhttps://karmarat.com");
   const [smtpAutoAppConfirm, setSmtpAutoAppConfirm] = useState(true);
   const [smtpAutoInterviewInvite, setSmtpAutoInterviewInvite] = useState(true);
   const [smtpAutoOfferNotice, setSmtpAutoOfferNotice] = useState(true);
@@ -546,9 +546,9 @@ function SettingsContent() {
         setSmtpSecure(Boolean(smtpData.secure));
         setSmtpUser(smtpData.user || "");
         setSmtpPass(smtpData.pass || "");
-        setSmtpFromName(smtpData.fromName || "ReqruitBook Talent Team");
-        setSmtpFromEmail(smtpData.fromEmail || "talent@reqruitbook.com");
-        setSmtpReplyTo(smtpData.replyTo || "recruiting@reqruitbook.com");
+        setSmtpFromName(smtpData.fromName || "Karmarat Talent Team");
+        setSmtpFromEmail(smtpData.fromEmail || "talent@karmarat.com");
+        setSmtpReplyTo(smtpData.replyTo || "recruiting@karmarat.com");
         setSmtpSignature(smtpData.signature || "");
         setSmtpAutoAppConfirm(smtpData.autoSendApplicationConfirmation !== false);
         setSmtpAutoInterviewInvite(smtpData.autoSendInterviewInvite !== false);
@@ -3811,7 +3811,7 @@ function SettingsContent() {
                       <div className="space-y-1">
                         <label className="field-label">Sender Display Name *</label>
                         <Input
-                          placeholder="e.g. ReqruitBook Talent Team"
+                          placeholder="e.g. Karmarat Talent Team"
                           value={smtpFromName}
                           onChange={(e) => setSmtpFromName(e.target.value)}
                           className="h-8 text-xs"
@@ -3821,7 +3821,7 @@ function SettingsContent() {
                         <label className="field-label">Sender &quot;From&quot; Email Address *</label>
                         <Input
                           type="email"
-                          placeholder="talent@reqruitbook.com"
+                          placeholder="talent@karmarat.com"
                           value={smtpFromEmail}
                           onChange={(e) => setSmtpFromEmail(e.target.value)}
                           className="h-8 text-xs"
@@ -3833,7 +3833,7 @@ function SettingsContent() {
                       <label className="field-label">&quot;Reply-To&quot; Email Address (Optional)</label>
                       <Input
                         type="email"
-                        placeholder="recruiting-inbox@reqruitbook.com"
+                        placeholder="recruiting-inbox@karmarat.com"
                         value={smtpReplyTo}
                         onChange={(e) => setSmtpReplyTo(e.target.value)}
                         className="h-8 text-xs"
@@ -3850,7 +3850,7 @@ function SettingsContent() {
                         value={smtpSignature}
                         onChange={(e) => setSmtpSignature(e.target.value)}
                         className="text-xs leading-relaxed font-mono"
-                        placeholder="--\nReqruitBook Talent Team"
+                        placeholder="--\nKarmarat Talent Team"
                       />
                     </div>
                   </CardContent>

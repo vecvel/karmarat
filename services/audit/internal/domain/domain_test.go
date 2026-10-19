@@ -17,12 +17,12 @@ func TestActionOfStripsThePlatformNamespace(t *testing.T) {
 	}{
 		{
 			name:    "an ordinary platform subject",
-			subject: "reqruitbook.application.stage_changed",
+			subject: "karmarat.application.stage_changed",
 			want:    "application.stage_changed",
 		},
 		{
 			name:    "surrounding whitespace",
-			subject: "  reqruitbook.job.published  ",
+			subject: "  karmarat.job.published  ",
 			want:    "job.published",
 		},
 		{
@@ -40,8 +40,8 @@ func TestActionOfStripsThePlatformNamespace(t *testing.T) {
 		},
 		{
 			name:    "the prefix appears only once, at the front",
-			subject: "reqruitbook.reqruitbook.odd",
-			want:    "reqruitbook.odd",
+			subject: "karmarat.karmarat.odd",
+			want:    "karmarat.odd",
 		},
 		{
 			name:    "an empty subject",
@@ -64,9 +64,9 @@ func TestDomainOfReadsTheMiddleSegment(t *testing.T) {
 		subject string
 		want    string
 	}{
-		{"reqruitbook.application.stage_changed", "application"},
-		{"reqruitbook.message.conversation_opened", "message"},
-		{"reqruitbook.company.registered", "company"},
+		{"karmarat.application.stage_changed", "application"},
+		{"karmarat.message.conversation_opened", "message"},
+		{"karmarat.company.registered", "company"},
 		{"no-dots-at-all", ""},
 		{"", ""},
 	}
@@ -90,7 +90,7 @@ func TestEntityOfPrefersTheSubjectsOwnRecord(t *testing.T) {
 		"companyId":     "11111111-1111-1111-1111-111111111111",
 	}
 
-	entityType, entityID := EntityOf("reqruitbook.application.stage_changed", payload)
+	entityType, entityID := EntityOf("karmarat.application.stage_changed", payload)
 
 	if entityType != "application" || entityID != "app_01" {
 		t.Fatalf("EntityOf = (%q, %q), want (application, app_01)", entityType, entityID)
@@ -107,28 +107,28 @@ func TestEntityOfAcrossSubjects(t *testing.T) {
 	}{
 		{
 			name:     "a job event anchors to the job even though a company id is present",
-			subject:  "reqruitbook.job.published",
+			subject:  "karmarat.job.published",
 			payload:  map[string]any{"jobId": "job_9", "companyId": "c-1"},
 			wantType: "job",
 			wantID:   "job_9",
 		},
 		{
 			name:     "an offer event beats the application it belongs to",
-			subject:  "reqruitbook.offer.accepted",
+			subject:  "karmarat.offer.accepted",
 			payload:  map[string]any{"offerId": "ofr_2", "applicationId": "app_2"},
 			wantType: "offer",
 			wantID:   "ofr_2",
 		},
 		{
 			name:     "a user event anchors to the account, not the company",
-			subject:  "reqruitbook.user.deactivated",
+			subject:  "karmarat.user.deactivated",
 			payload:  map[string]any{"accountId": "acc_7", "companyId": "c-1"},
 			wantType: "account",
 			wantID:   "acc_7",
 		},
 		{
 			name:     "a company event anchors to the company",
-			subject:  "reqruitbook.company.suspended",
+			subject:  "karmarat.company.suspended",
 			payload:  map[string]any{"companyId": "c-1"},
 			wantType: "company",
 			wantID:   "c-1",
@@ -137,21 +137,21 @@ func TestEntityOfAcrossSubjects(t *testing.T) {
 			// The fallback: the subject's domain has no mapped key, so the
 			// narrowest id in the payload wins.
 			name:     "a message event falls back to the narrowest id it carries",
-			subject:  "reqruitbook.message.sent",
+			subject:  "karmarat.message.sent",
 			payload:  map[string]any{"applicationId": "app_3", "companyId": "c-1"},
 			wantType: "application",
 			wantID:   "app_3",
 		},
 		{
 			name:     "the fallback prefers an application over the job and the candidate",
-			subject:  "reqruitbook.notification.requested",
+			subject:  "karmarat.notification.requested",
 			payload:  map[string]any{"jobId": "job_1", "applicationId": "app_1", "candidateId": "cnd_1"},
 			wantType: "application",
 			wantID:   "app_1",
 		},
 		{
 			name:     "the subject's key missing from the payload falls back rather than giving up",
-			subject:  "reqruitbook.application.submitted",
+			subject:  "karmarat.application.submitted",
 			payload:  map[string]any{"jobId": "job_4"},
 			wantType: "job",
 			wantID:   "job_4",
@@ -160,14 +160,14 @@ func TestEntityOfAcrossSubjects(t *testing.T) {
 			// Publishers are a mix of Go and NestJS; the snake_case spelling
 			// reaches the bus and has to resolve to the same entity.
 			name:     "a snake_case id from another runtime still resolves",
-			subject:  "reqruitbook.interview.scheduled",
+			subject:  "karmarat.interview.scheduled",
 			payload:  map[string]any{"interview_id": "int_5"},
 			wantType: "interview",
 			wantID:   "int_5",
 		},
 		{
 			name:     "an event with no ids at all records no entity",
-			subject:  "reqruitbook.plan.published",
+			subject:  "karmarat.plan.published",
 			payload:  map[string]any{"planCode": "growth"},
 			wantType: "",
 			wantID:   "",
@@ -176,7 +176,7 @@ func TestEntityOfAcrossSubjects(t *testing.T) {
 			// A blank id is not an id. Storing "" as the entity would make an
 			// unrelated row match `?entityId=` filters that mean "no filter".
 			name:     "a blank id is ignored in favour of a real one",
-			subject:  "reqruitbook.application.rejected",
+			subject:  "karmarat.application.rejected",
 			payload:  map[string]any{"applicationId": "   ", "jobId": "job_6"},
 			wantType: "job",
 			wantID:   "job_6",
@@ -184,14 +184,14 @@ func TestEntityOfAcrossSubjects(t *testing.T) {
 		{
 			// A numeric id is not a string; taking it would store "%!s(float64=7)".
 			name:     "a non-string id is skipped",
-			subject:  "reqruitbook.job.closed",
+			subject:  "karmarat.job.closed",
 			payload:  map[string]any{"jobId": float64(7), "candidateId": "cnd_8"},
 			wantType: "candidate",
 			wantID:   "cnd_8",
 		},
 		{
 			name:     "a nil payload is not a panic",
-			subject:  "reqruitbook.session.revoked",
+			subject:  "karmarat.session.revoked",
 			payload:  nil,
 			wantType: "",
 			wantID:   "",

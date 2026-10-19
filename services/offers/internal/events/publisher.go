@@ -9,8 +9,8 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	platformevents "github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/services/offers/internal/store"
+	platformevents "github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/services/offers/internal/store"
 )
 
 // Publisher drains the transactional outbox onto the bus.

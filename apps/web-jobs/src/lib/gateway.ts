@@ -1,7 +1,7 @@
 import "server-only";
 
-import { ProblemError } from "@reqruitbook/ui";
-import { gatewayRequest } from "@reqruitbook/ui/server";
+import { ProblemError } from "@karmarat/ui";
+import { gatewayRequest } from "@karmarat/ui/server";
 
 /**
  * The server half of this app's only connection to the platform.
@@ -23,7 +23,7 @@ export const GATEWAY_URL = process.env.GATEWAY_URL ?? "http://localhost:8080";
  * otherwise send `Host: localhost:3001`, which resolves to no portal, so every
  * server-side call states the portal hostname explicitly.
  */
-export const PORTAL_HOST = process.env.PORTAL_HOST ?? "jobs.reqruitbook.local";
+export const PORTAL_HOST = process.env.PORTAL_HOST ?? "jobs.karmarat.local";
 
 export interface GatewayRequest {
   method?: string;
@@ -90,7 +90,7 @@ export async function gatewayJson<T>(
       type: "about:blank",
       title: "Service Unavailable",
       status: 0,
-      detail: "We could not reach ReqruitBook just now. Please try again shortly.",
+      detail: "We could not reach Karmarat just now. Please try again shortly.",
       code: "network_error",
     });
   }

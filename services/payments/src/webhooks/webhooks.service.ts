@@ -19,7 +19,7 @@
  *    be redelivered forever. What was ignored, and why, is recorded on the row.
  */
 import { Inject, Injectable, Logger } from '@nestjs/common';
-import { EventBus, Subject, withTransaction } from '@reqruitbook/nestshared';
+import { EventBus, Subject, withTransaction } from '@karmarat/nestshared';
 import type { Pool, PoolClient } from 'pg';
 
 import { EVENT_BUS, PG_POOL } from '../common/infrastructure.module';

@@ -14,11 +14,11 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 GW="${GATEWAY_URL:-http://localhost:8080}"
-HOSTNAME_BASE="${PLATFORM_HOSTNAME:-reqruitbook.local}"
+HOSTNAME_BASE="${PLATFORM_HOSTNAME:-karmarat.local}"
 
 [[ -f .env ]] && { set -a; . ./.env; set +a; }
 INTERNAL_TOKEN="${INTERNAL_SERVICE_TOKEN:-}"
-ADMIN_EMAIL="${BOOTSTRAP_ADMIN_EMAIL:-admin@reqruitbook.local}"
+ADMIN_EMAIL="${BOOTSTRAP_ADMIN_EMAIL:-admin@karmarat.local}"
 ADMIN_PASSWORD="${BOOTSTRAP_ADMIN_PASSWORD:-}"
 
 c_red=$'\033[31m'; c_grn=$'\033[32m'; c_dim=$'\033[2m'; c_off=$'\033[0m'
@@ -96,7 +96,7 @@ for k in '$1'.split('.'):
     else: d = ''
 print(d if not isinstance(d, (list, dict)) else len(d))"; }
 
-printf 'ReqruitBook smoke test — %s\n' "$GW"
+printf 'Karmarat smoke test — %s\n' "$GW"
 
 # ---------------------------------------------------------------- reachable --
 section 'reachability'

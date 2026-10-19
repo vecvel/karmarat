@@ -10,12 +10,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "ReqruitBook Jobs — Find your next role",
-    template: "%s · ReqruitBook Jobs",
+    default: "Karmarat Jobs — Find your next role",
+    template: "%s · Karmarat Jobs",
   },
   description:
-    "Search open roles across every company hiring on ReqruitBook, apply with one profile, and follow every application from submission to offer.",
-  applicationName: "ReqruitBook Jobs",
+    "Search open roles across every company hiring on Karmarat, apply with one profile, and follow every application from submission to offer.",
+  applicationName: "Karmarat Jobs",
   icons: { icon: "/logo.png", shortcut: "/logo.png", apple: "/logo.png" },
 };
 
@@ -60,7 +60,7 @@ export default async function RootLayout({
           </main>
           <footer className="border-t border-border">
             <div className="mx-auto w-full max-w-6xl px-4 py-6 text-xs text-muted-foreground">
-              ReqruitBook — one profile, every company hiring on the network.
+              Karmarat — one profile, every company hiring on the network.
             </div>
           </footer>
         </SessionProvider>

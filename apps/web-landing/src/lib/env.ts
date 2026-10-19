@@ -4,7 +4,7 @@ import "server-only";
  * Where this app is, and where the gateway is.
  *
  * Both are environment, never constants: the same build runs on
- * `reqruitbook.local` in development and on the real hostname in production,
+ * `karmarat.local` in development and on the real hostname in production,
  * and the only difference is what it reports in the Host header.
  */
 
@@ -24,7 +24,7 @@ export const GATEWAY_URL = (process.env.GATEWAY_URL ?? "http://localhost:8080").
  * means a developer running on `localhost:3003` still reaches the public
  * portal rather than whatever `localhost` happens to resolve to.
  */
-export const PORTAL_HOST = process.env.PORTAL_HOST ?? "reqruitbook.local";
+export const PORTAL_HOST = process.env.PORTAL_HOST ?? "karmarat.local";
 
 /** `http` locally, `https` everywhere a certificate exists. */
 export const PORTAL_SCHEME =
@@ -34,7 +34,7 @@ export const PORTAL_SCHEME =
  * The candidate portal.
  *
  * Overridable because in development each portal is a separate Next server on
- * its own port, so `jobs.reqruitbook.local` alone would not reach it.
+ * its own port, so `jobs.karmarat.local` alone would not reach it.
  */
 export const JOBS_PORTAL_URL =
   process.env.JOBS_PORTAL_URL ?? `${PORTAL_SCHEME}://jobs.${PORTAL_HOST}`;

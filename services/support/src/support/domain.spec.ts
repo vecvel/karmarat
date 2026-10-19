@@ -6,7 +6,7 @@
  * controller and the platform controller call into the same two functions, and
  * a divergence here would land a ticket in a state neither queue selects for.
  */
-import { Problem } from '@reqruitbook/nestshared';
+import { Problem } from '@karmarat/nestshared';
 
 import {
   assertClosable,

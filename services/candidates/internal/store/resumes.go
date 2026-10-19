@@ -7,7 +7,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/reqruitbook/platform/services/candidates/internal/domain"
+	"github.com/karmarat/platform/services/candidates/internal/domain"
 )
 
 // MaxResumesPerCandidate bounds how many documents one candidate may keep. It

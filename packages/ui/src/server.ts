@@ -24,7 +24,7 @@ import https from 'node:https';
  * genuinely different things, and keeping them separate is what lets a portal
  * be reached over localhost while still being addressed as itself.
  *
- * This module is Node-only. It is exported from `@reqruitbook/ui/server` rather
+ * This module is Node-only. It is exported from `@karmarat/ui/server` rather
  * than the package root so a browser bundle can never pull `node:http` in.
  */
 
@@ -63,7 +63,7 @@ const STRIPPED_RESPONSE_HEADERS = new Set([
 export interface GatewayRequest {
   /** The gateway's connection address, e.g. http://localhost:8080. */
   gatewayUrl: string;
-  /** The hostname the gateway must see, e.g. acme.reqruitbook.local. */
+  /** The hostname the gateway must see, e.g. acme.karmarat.local. */
   portalHost: string;
   path: string;
   method?: string;

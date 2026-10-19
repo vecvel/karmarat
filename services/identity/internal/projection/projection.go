@@ -11,10 +11,10 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/services/identity/internal/domain"
-	"github.com/reqruitbook/platform/services/identity/internal/provisioning"
-	"github.com/reqruitbook/platform/services/identity/internal/store"
+	"github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/services/identity/internal/domain"
+	"github.com/karmarat/platform/services/identity/internal/provisioning"
+	"github.com/karmarat/platform/services/identity/internal/store"
 )
 
 // Consumer applies platform events to the identity projection.

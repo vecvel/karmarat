@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/reqruitbook/platform/services/offers/internal/store"
+	"github.com/karmarat/platform/services/offers/internal/store"
 )
 
 // Worker sweeps outstanding offers past their expiry date.

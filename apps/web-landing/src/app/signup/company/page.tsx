@@ -8,7 +8,7 @@ import { CompanySignUpForm } from "./company-signup-form";
 export const metadata: Metadata = {
   title: "Create a company account",
   description:
-    "Register your company on ReqruitBook, choose your careers-portal address, and create the owner account.",
+    "Register your company on Karmarat, choose your careers-portal address, and create the owner account.",
 };
 
 /**

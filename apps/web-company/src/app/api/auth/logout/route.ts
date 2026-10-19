@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { gatewayRequest } from "@reqruitbook/ui/server";
+import { gatewayRequest } from "@karmarat/ui/server";
 
 import { GATEWAY_URL, resolvePortalHost } from "@/lib/gateway/config";
 import { clearSession, readRefreshToken } from "@/lib/gateway/tokens";

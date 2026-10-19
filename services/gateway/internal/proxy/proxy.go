@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/httpx"
 )
 
 // Pool holds one reverse proxy per upstream, built lazily and reused.

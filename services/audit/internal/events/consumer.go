@@ -16,9 +16,9 @@ import (
 
 	"github.com/google/uuid"
 
-	platformevents "github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/services/audit/internal/domain"
-	"github.com/reqruitbook/platform/services/audit/internal/store"
+	platformevents "github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/services/audit/internal/domain"
+	"github.com/karmarat/platform/services/audit/internal/store"
 )
 
 // DurableName is the consumer's identity on the stream.

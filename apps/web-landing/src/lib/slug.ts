@@ -22,7 +22,7 @@ const RESERVED_SLUGS: readonly string[] = [
   "root", "admin", "jobs", "www", "api", "app", "cdn", "static", "assets",
   "mail", "smtp", "ftp", "status", "help", "support", "docs", "blog",
   "dashboard", "portal", "auth", "login", "signup", "billing", "payments",
-  "internal", "system", "platform", "reqruitbook",
+  "internal", "system", "platform", "karmarat",
 ];
 
 const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;

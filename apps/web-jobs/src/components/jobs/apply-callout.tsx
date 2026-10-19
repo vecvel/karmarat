@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
-import { useApi } from "@reqruitbook/ui/react";
+import { useApi } from "@karmarat/ui/react";
 
 import { useSession } from "@/components/session-provider";
 import { Button } from "@/components/ui/button";

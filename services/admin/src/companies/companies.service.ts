@@ -9,7 +9,7 @@
  * the projection is, so an operator can tell a stale figure from a wrong one.
  */
 import { Injectable } from '@nestjs/common';
-import { encodeCursor, notFound, type Cursor } from '@reqruitbook/nestshared';
+import { encodeCursor, notFound, type Cursor } from '@karmarat/nestshared';
 
 import { ActivityService } from '../activity/activity.service';
 import type { ActivityRow } from '../activity/activity.repository';

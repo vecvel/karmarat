@@ -9,7 +9,7 @@
  */
 import { Injectable, Logger } from '@nestjs/common';
 
-import { Problem, type ProblemBody } from '@reqruitbook/nestshared';
+import { Problem, type ProblemBody } from '@karmarat/nestshared';
 
 import type { CompaniesConfig } from '../config';
 

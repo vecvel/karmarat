@@ -22,7 +22,7 @@ export default function HomePage() {
               A careers portal for your company. One job board for everyone else.
             </h1>
             <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              ReqruitBook is two things that belong together: recruitment software a
+              Karmarat is two things that belong together: recruitment software a
               company runs its hiring in, and a job board candidates search and apply
               through. A job posted once can appear on both.
             </p>
@@ -53,7 +53,7 @@ export default function HomePage() {
           <Feature
             icon={<Briefcase aria-hidden="true" />}
             title="Requisitions and your own portal"
-            body="Write a job once and choose where it appears: your careers portal, the ReqruitBook job network, or both. Each role can carry its own application form."
+            body="Write a job once and choose where it appears: your careers portal, the Karmarat job network, or both. Each role can carry its own application form."
           />
           <Feature
             icon={<KanbanSquare aria-hidden="true" />}
@@ -98,7 +98,7 @@ export default function HomePage() {
       <Section
         className="border-y border-border bg-muted/40"
         title="For candidates"
-        lead="One account, one profile, one résumé — across every company hiring on ReqruitBook."
+        lead="One account, one profile, one résumé — across every company hiring on Karmarat."
       >
         <div className="grid gap-6 sm:grid-cols-3">
           <Step

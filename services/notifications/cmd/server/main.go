@@ -15,20 +15,20 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/config"
-	"github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/logging"
-	"github.com/reqruitbook/platform/packages/goshared/observability"
-	"github.com/reqruitbook/platform/packages/goshared/postgres"
-	"github.com/reqruitbook/platform/packages/goshared/redisx"
-	"github.com/reqruitbook/platform/services/notifications/internal/api"
-	notificationevents "github.com/reqruitbook/platform/services/notifications/internal/events"
-	"github.com/reqruitbook/platform/services/notifications/internal/mail"
-	"github.com/reqruitbook/platform/services/notifications/internal/realtime"
-	"github.com/reqruitbook/platform/services/notifications/internal/store"
-	"github.com/reqruitbook/platform/services/notifications/internal/worker"
-	"github.com/reqruitbook/platform/services/notifications/migrations"
+	"github.com/karmarat/platform/packages/goshared/config"
+	"github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/logging"
+	"github.com/karmarat/platform/packages/goshared/observability"
+	"github.com/karmarat/platform/packages/goshared/postgres"
+	"github.com/karmarat/platform/packages/goshared/redisx"
+	"github.com/karmarat/platform/services/notifications/internal/api"
+	notificationevents "github.com/karmarat/platform/services/notifications/internal/events"
+	"github.com/karmarat/platform/services/notifications/internal/mail"
+	"github.com/karmarat/platform/services/notifications/internal/realtime"
+	"github.com/karmarat/platform/services/notifications/internal/store"
+	"github.com/karmarat/platform/services/notifications/internal/worker"
+	"github.com/karmarat/platform/services/notifications/migrations"
 )
 
 const serviceName = "notifications"
@@ -102,7 +102,7 @@ func run() error {
 		Password:    config.String("SMTP_PASSWORD", ""),
 		UseTLS:      config.Bool("SMTP_TLS", false),
 		FromAddress: config.String("SMTP_FROM_ADDRESS", ""),
-		FromName:    config.String("SMTP_FROM_NAME", "ReqruitBook"),
+		FromName:    config.String("SMTP_FROM_NAME", "Karmarat"),
 		Timeout:     config.Duration("SMTP_TIMEOUT", 15*time.Second),
 	})
 	if err != nil {

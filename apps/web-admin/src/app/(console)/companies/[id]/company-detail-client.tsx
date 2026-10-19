@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ArrowLeft, Ban, CheckCircle2, Lock, Trash2 } from "lucide-react";
-import { Can, useApi } from "@reqruitbook/ui/react";
+import { Can, useApi } from "@karmarat/ui/react";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";

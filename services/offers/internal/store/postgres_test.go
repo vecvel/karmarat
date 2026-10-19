@@ -14,10 +14,10 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
-	"github.com/reqruitbook/platform/packages/goshared/postgres"
-	"github.com/reqruitbook/platform/services/offers/internal/domain"
-	"github.com/reqruitbook/platform/services/offers/migrations"
+	"github.com/karmarat/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/packages/goshared/postgres"
+	"github.com/karmarat/platform/services/offers/internal/domain"
+	"github.com/karmarat/platform/services/offers/migrations"
 )
 
 // The tests below need a real Postgres: the rules they cover — the tenant
@@ -27,7 +27,7 @@ import (
 //
 // Point TEST_DATABASE_URL at a scratch database to run them:
 //
-//	TEST_DATABASE_URL=postgres://reqruitbook:reqruitbook@localhost:5432/offers_test?sslmode=disable \
+//	TEST_DATABASE_URL=postgres://karmarat:karmarat@localhost:5432/offers_test?sslmode=disable \
 //	  go test ./services/offers/...
 //
 // Without it they skip, so `go test ./...` passes on a machine with no database.

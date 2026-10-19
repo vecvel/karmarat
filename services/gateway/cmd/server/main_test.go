@@ -16,13 +16,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/redisx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/packages/goshared/tokens"
-	"github.com/reqruitbook/platform/services/gateway/internal/proxy"
-	"github.com/reqruitbook/platform/services/gateway/internal/routing"
-	"github.com/reqruitbook/platform/services/gateway/internal/tenant"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/redisx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/tokens"
+	"github.com/karmarat/platform/services/gateway/internal/proxy"
+	"github.com/karmarat/platform/services/gateway/internal/routing"
+	"github.com/karmarat/platform/services/gateway/internal/tenant"
 )
 
 // These tests exercise the gateway's security chain end to end — a real signed
@@ -32,7 +32,7 @@ import (
 // after the request has already been forwarded protects nothing.
 
 const (
-	testHostname = "reqruitbook.test"
+	testHostname = "karmarat.test"
 
 	acmeID   = "11111111-1111-4111-8111-111111111111"
 	globexID = "22222222-2222-4222-8222-222222222222"
@@ -219,7 +219,7 @@ func newHarness(t *testing.T) *harness {
 
 	issuer, err := tokens.NewIssuer(tokens.IssuerConfig{
 		PrivateKeyPEM: privatePEM,
-		Issuer:        "reqruitbook-identity",
+		Issuer:        "karmarat-identity",
 		Audience:      testHostname,
 		TTL:           15 * time.Minute,
 	})
@@ -229,7 +229,7 @@ func newHarness(t *testing.T) *harness {
 
 	verifier, err := tokens.NewVerifier(tokens.VerifierConfig{
 		PublicKeyPEM: publicPEM,
-		Issuer:       "reqruitbook-identity",
+		Issuer:       "karmarat-identity",
 		Audience:     testHostname,
 	})
 	if err != nil {
@@ -752,7 +752,7 @@ func TestGatewayRejectsBadTokens(t *testing.T) {
 	}
 	foreignIssuer, err := tokens.NewIssuer(tokens.IssuerConfig{
 		PrivateKeyPEM: pem.EncodeToMemory(&pem.Block{Type: "RSA PRIVATE KEY", Bytes: x509.MarshalPKCS1PrivateKey(otherKey)}),
-		Issuer:        "reqruitbook-identity",
+		Issuer:        "karmarat-identity",
 		Audience:      testHostname,
 	})
 	if err != nil {
@@ -768,7 +768,7 @@ func TestGatewayRejectsBadTokens(t *testing.T) {
 	privatePEM, _ := testKeys()
 	expiredIssuer, err := tokens.NewIssuer(tokens.IssuerConfig{
 		PrivateKeyPEM: privatePEM,
-		Issuer:        "reqruitbook-identity",
+		Issuer:        "karmarat-identity",
 		Audience:      testHostname,
 		// Beyond the verifier's 30s leeway.
 		TTL: -5 * time.Minute,
@@ -786,7 +786,7 @@ func TestGatewayRejectsBadTokens(t *testing.T) {
 	// Issued for a different platform installation.
 	wrongAudienceIssuer, err := tokens.NewIssuer(tokens.IssuerConfig{
 		PrivateKeyPEM: privatePEM,
-		Issuer:        "reqruitbook-identity",
+		Issuer:        "karmarat-identity",
 		Audience:      "someone-else.test",
 	})
 	if err != nil {

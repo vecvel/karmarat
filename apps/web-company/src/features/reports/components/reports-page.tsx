@@ -258,7 +258,7 @@ function ReportsContent() {
  */
 const SOURCE_LABELS: Record<string, string> = {
   portal: "Company careers portal",
-  network: "ReqruitBook job network",
+  network: "Karmarat job network",
   referral: "Employee referral",
   agency: "Agency",
   sourced: "Sourced directly",

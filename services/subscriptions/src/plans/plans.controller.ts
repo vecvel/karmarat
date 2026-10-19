@@ -7,7 +7,7 @@
  * principal can reach these routes at all.
  */
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Query } from '@nestjs/common';
-import { Public, RequirePermission, RequirePrincipalType } from '@reqruitbook/nestshared';
+import { Public, RequirePermission, RequirePrincipalType } from '@karmarat/nestshared';
 
 import { CreatePlanDto, ListPlansQueryDto, UpdatePlanDto } from './dto/plan.dto';
 import { toPlanView, toPublicPlanView } from './plan.entity';

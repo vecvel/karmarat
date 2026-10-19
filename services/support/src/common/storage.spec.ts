@@ -6,7 +6,7 @@
  * that was not is refused, and a file type that would execute in the support
  * agent's browser never gets a signature at all.
  */
-import { Problem } from '@reqruitbook/nestshared';
+import { Problem } from '@karmarat/nestshared';
 
 import type { StorageConfig } from '../config';
 import {
@@ -21,8 +21,8 @@ import {
 const CONFIG: StorageConfig = {
   endpoint: 'http://localhost:9000',
   region: 'us-east-1',
-  accessKey: 'reqruitbook',
-  secretKey: 'reqruitbook-secret',
+  accessKey: 'karmarat',
+  secretKey: 'karmarat-secret',
   bucket: 'documents',
   forcePathStyle: true,
   presignTtlSeconds: 900,

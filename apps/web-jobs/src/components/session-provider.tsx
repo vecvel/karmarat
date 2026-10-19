@@ -11,8 +11,8 @@ import {
   type ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
-import { createApiClient, snapshotFromSession, type Session } from "@reqruitbook/ui";
-import { AccessProvider, ApiProvider } from "@reqruitbook/ui/react";
+import { createApiClient, snapshotFromSession, type Session } from "@karmarat/ui";
+import { AccessProvider, ApiProvider } from "@karmarat/ui/react";
 
 interface SessionState {
   session: Session | null;

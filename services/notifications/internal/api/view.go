@@ -3,7 +3,7 @@ package api
 import (
 	"time"
 
-	"github.com/reqruitbook/platform/services/notifications/internal/domain"
+	"github.com/karmarat/platform/services/notifications/internal/domain"
 )
 
 // NotificationView is one notification as a client sees it.

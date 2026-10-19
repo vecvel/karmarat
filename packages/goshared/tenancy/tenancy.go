@@ -1,6 +1,6 @@
 // Package tenancy carries who is calling and which tenant they are acting in.
 //
-// ReqruitBook serves three kinds of principal from one platform:
+// Karmarat serves three kinds of principal from one platform:
 //
 //	platform   staff operating root.{hostname}; no tenant of their own
 //	company    a recruiter or company admin, always scoped to one company

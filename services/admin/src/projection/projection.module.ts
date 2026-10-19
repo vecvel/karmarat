@@ -18,7 +18,7 @@ import {
   type OnApplicationShutdown,
   type OnModuleInit,
 } from '@nestjs/common';
-import { EventBus } from '@reqruitbook/nestshared';
+import { EventBus } from '@karmarat/nestshared';
 
 import { ADMIN_CONFIG, EVENT_BUS } from '../common/tokens';
 import type { AdminConfig } from '../config';

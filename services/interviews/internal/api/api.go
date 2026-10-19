@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/interviews/internal/domain"
-	"github.com/reqruitbook/platform/services/interviews/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/interviews/internal/domain"
+	"github.com/karmarat/platform/services/interviews/internal/store"
 )
 
 // Permission keys this service guards with. They already exist in the identity

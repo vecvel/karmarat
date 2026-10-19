@@ -19,13 +19,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/redisx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/candidates/internal/domain"
-	"github.com/reqruitbook/platform/services/candidates/internal/events"
-	"github.com/reqruitbook/platform/services/candidates/internal/storage"
-	"github.com/reqruitbook/platform/services/candidates/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/redisx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/candidates/internal/domain"
+	"github.com/karmarat/platform/services/candidates/internal/events"
+	"github.com/karmarat/platform/services/candidates/internal/storage"
+	"github.com/karmarat/platform/services/candidates/internal/store"
 )
 
 // API wires the candidates handlers.

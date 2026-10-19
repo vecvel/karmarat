@@ -1,4 +1,4 @@
-# ReqruitBook application services (local containerised run).
+# Karmarat application services (local containerised run).
 #
 # This file is an OVERLAY on deploy/docker-compose.yml, not a replacement: it
 # adds the application services and depends on the infrastructure defined there.
@@ -28,22 +28,22 @@
 # notices until its consumer stops. Here a change to the platform's environment
 # is one edit.
 
-name: reqruitbook
+name: karmarat
 
 x-service-env: &service-env
   PLATFORM_ENV: ${PLATFORM_ENV:-development}
-  PLATFORM_HOSTNAME: ${PLATFORM_HOSTNAME:-reqruitbook.local}
+  PLATFORM_HOSTNAME: ${PLATFORM_HOSTNAME:-karmarat.local}
   LOG_LEVEL: ${LOG_LEVEL:-info}
 
   POSTGRES_HOST: postgres
   POSTGRES_PORT: 5432
-  POSTGRES_USER: ${POSTGRES_USER:-reqruitbook}
-  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-reqruitbook}
+  POSTGRES_USER: ${POSTGRES_USER:-karmarat}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-karmarat}
   POSTGRES_SSLMODE: disable
 
   REDIS_HOST: redis
   REDIS_PORT: 6379
-  REDIS_PASSWORD: ${REDIS_PASSWORD:-reqruitbook}
+  REDIS_PASSWORD: ${REDIS_PASSWORD:-karmarat}
 
   NATS_URL: nats://nats:4222
 
@@ -85,12 +85,12 @@ services:
   identity:
     build:
       context: ..
-      dockerfile: deploy/Dockerfile.go-service
+      dockerfile: deploy/docker/Dockerfile.go-service
       args:
         SERVICE: identity
         PORT: "8081"
-    image: reqruitbook/identity:dev
-    container_name: reqruitbook-identity
+    image: karmarat/identity:dev
+    container_name: karmarat-identity
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -118,9 +118,12 @@ services:
   companies:
     build:
       context: ..
-      dockerfile: services/companies/Dockerfile
-    image: reqruitbook/companies:dev
-    container_name: reqruitbook-companies
+      dockerfile: deploy/docker/Dockerfile.nest-service
+      args:
+        SERVICE: companies
+        PORT: "8082"
+    image: karmarat/companies:dev
+    container_name: karmarat-companies
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -136,9 +139,12 @@ services:
   subscriptions:
     build:
       context: ..
-      dockerfile: services/subscriptions/Dockerfile
-    image: reqruitbook/subscriptions:dev
-    container_name: reqruitbook-subscriptions
+      dockerfile: deploy/docker/Dockerfile.nest-service
+      args:
+        SERVICE: subscriptions
+        PORT: "8083"
+    image: karmarat/subscriptions:dev
+    container_name: karmarat-subscriptions
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -154,9 +160,12 @@ services:
   payments:
     build:
       context: ..
-      dockerfile: services/payments/Dockerfile
-    image: reqruitbook/payments:dev
-    container_name: reqruitbook-payments
+      dockerfile: deploy/docker/Dockerfile.nest-service
+      args:
+        SERVICE: payments
+        PORT: "8084"
+    image: karmarat/payments:dev
+    container_name: karmarat-payments
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -172,12 +181,12 @@ services:
   jobs:
     build:
       context: ..
-      dockerfile: deploy/Dockerfile.go-service
+      dockerfile: deploy/docker/Dockerfile.go-service
       args:
         SERVICE: jobs
         PORT: "8085"
-    image: reqruitbook/jobs:dev
-    container_name: reqruitbook-jobs
+    image: karmarat/jobs:dev
+    container_name: karmarat-jobs
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -193,12 +202,12 @@ services:
   applications:
     build:
       context: ..
-      dockerfile: deploy/Dockerfile.go-service
+      dockerfile: deploy/docker/Dockerfile.go-service
       args:
         SERVICE: applications
         PORT: "8086"
-    image: reqruitbook/applications:dev
-    container_name: reqruitbook-applications
+    image: karmarat/applications:dev
+    container_name: karmarat-applications
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -214,12 +223,12 @@ services:
   candidates:
     build:
       context: ..
-      dockerfile: deploy/Dockerfile.go-service
+      dockerfile: deploy/docker/Dockerfile.go-service
       args:
         SERVICE: candidates
         PORT: "8087"
-    image: reqruitbook/candidates:dev
-    container_name: reqruitbook-candidates
+    image: karmarat/candidates:dev
+    container_name: karmarat-candidates
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -235,12 +244,12 @@ services:
   messaging:
     build:
       context: ..
-      dockerfile: deploy/Dockerfile.go-service
+      dockerfile: deploy/docker/Dockerfile.go-service
       args:
         SERVICE: messaging
         PORT: "8088"
-    image: reqruitbook/messaging:dev
-    container_name: reqruitbook-messaging
+    image: karmarat/messaging:dev
+    container_name: karmarat-messaging
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -256,12 +265,12 @@ services:
   notifications:
     build:
       context: ..
-      dockerfile: deploy/Dockerfile.go-service
+      dockerfile: deploy/docker/Dockerfile.go-service
       args:
         SERVICE: notifications
         PORT: "8089"
-    image: reqruitbook/notifications:dev
-    container_name: reqruitbook-notifications
+    image: karmarat/notifications:dev
+    container_name: karmarat-notifications
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -275,8 +284,8 @@ services:
       SMTP_HOST: ${SMTP_HOST:-mailpit}
       SMTP_PORT: ${SMTP_PORT:-1025}
       SMTP_TLS: ${SMTP_TLS:-false}
-      SMTP_FROM_ADDRESS: ${SMTP_FROM_ADDRESS:-no-reply@reqruitbook.local}
-      SMTP_FROM_NAME: ${SMTP_FROM_NAME:-ReqruitBook}
+      SMTP_FROM_ADDRESS: ${SMTP_FROM_ADDRESS:-no-reply@karmarat.local}
+      SMTP_FROM_NAME: ${SMTP_FROM_NAME:-Karmarat}
       COMPANY_PORTAL_URL: ${COMPANY_PORTAL_URL:-http://localhost:3000}
       JOBS_PORTAL_URL: ${JOBS_PORTAL_URL:-http://localhost:3001}
       ROOT_PORTAL_URL: ${ROOT_PORTAL_URL:-http://localhost:3002}
@@ -286,9 +295,12 @@ services:
   support:
     build:
       context: ..
-      dockerfile: services/support/Dockerfile
-    image: reqruitbook/support:dev
-    container_name: reqruitbook-support
+      dockerfile: deploy/docker/Dockerfile.nest-service
+      args:
+        SERVICE: support
+        PORT: "8090"
+    image: karmarat/support:dev
+    container_name: karmarat-support
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -304,9 +316,12 @@ services:
   admin:
     build:
       context: ..
-      dockerfile: services/admin/Dockerfile
-    image: reqruitbook/admin:dev
-    container_name: reqruitbook-admin
+      dockerfile: deploy/docker/Dockerfile.nest-service
+      args:
+        SERVICE: admin
+        PORT: "8091"
+    image: karmarat/admin:dev
+    container_name: karmarat-admin
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -322,12 +337,12 @@ services:
   interviews:
     build:
       context: ..
-      dockerfile: deploy/Dockerfile.go-service
+      dockerfile: deploy/docker/Dockerfile.go-service
       args:
         SERVICE: interviews
         PORT: "8092"
-    image: reqruitbook/interviews:dev
-    container_name: reqruitbook-interviews
+    image: karmarat/interviews:dev
+    container_name: karmarat-interviews
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -343,12 +358,12 @@ services:
   offers:
     build:
       context: ..
-      dockerfile: deploy/Dockerfile.go-service
+      dockerfile: deploy/docker/Dockerfile.go-service
       args:
         SERVICE: offers
         PORT: "8093"
-    image: reqruitbook/offers:dev
-    container_name: reqruitbook-offers
+    image: karmarat/offers:dev
+    container_name: karmarat-offers
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -364,12 +379,12 @@ services:
   audit:
     build:
       context: ..
-      dockerfile: deploy/Dockerfile.go-service
+      dockerfile: deploy/docker/Dockerfile.go-service
       args:
         SERVICE: audit
         PORT: "8094"
-    image: reqruitbook/audit:dev
-    container_name: reqruitbook-audit
+    image: karmarat/audit:dev
+    container_name: karmarat-audit
     restart: unless-stopped
     depends_on:
       <<: *infra-ready
@@ -385,9 +400,12 @@ services:
   gateway:
     build:
       context: ..
-      dockerfile: services/gateway/Dockerfile
-    image: reqruitbook/gateway:dev
-    container_name: reqruitbook-gateway
+      dockerfile: deploy/docker/Dockerfile.go-service
+      args:
+        SERVICE: gateway
+        PORT: "8080"
+    image: karmarat/gateway:dev
+    container_name: karmarat-gateway
     restart: unless-stopped
     # The gateway proxies to the others. Starting it first would answer real
     # requests with 502s while the rest come up.

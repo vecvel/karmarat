@@ -20,7 +20,7 @@ import {
   type OnModuleInit,
   type Type,
 } from '@nestjs/common';
-import { EventBus, HealthRegistry, healthCheck, healthController } from '@reqruitbook/nestshared';
+import { EventBus, HealthRegistry, healthCheck, healthController } from '@karmarat/nestshared';
 import type { Pool } from 'pg';
 
 import type { AdminConfig } from '../config';

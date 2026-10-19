@@ -21,7 +21,7 @@ import {
   validationFailed,
   withTransaction,
   type Page,
-} from '@reqruitbook/nestshared';
+} from '@karmarat/nestshared';
 import { Pool } from 'pg';
 
 import { EVENT_BUS, PG_POOL } from '../common/infrastructure.module';

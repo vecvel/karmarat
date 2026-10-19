@@ -23,7 +23,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/observability"
+	"github.com/karmarat/platform/packages/goshared/observability"
 )
 
 // Profile is the part of a candidate messaging needs.

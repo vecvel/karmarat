@@ -7,7 +7,7 @@
  * a company principal can address is its own.
  */
 import { Body, Controller, Get, HttpCode, Patch, Post } from '@nestjs/common';
-import { CompanyId, RequirePermission, RequirePrincipalType } from '@reqruitbook/nestshared';
+import { CompanyId, RequirePermission, RequirePrincipalType } from '@karmarat/nestshared';
 
 import { CompaniesService } from './companies.service';
 import { UpdateProfileDto, UploadUrlDto } from './dto/profile.dto';

@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 import { LoginForm } from "@/features/auth/components/login-form";
 
-export const metadata: Metadata = { title: "Sign in - ReqruitBook" };
+export const metadata: Metadata = { title: "Sign in - Karmarat" };
 
 export default function LoginPage() {
   return (

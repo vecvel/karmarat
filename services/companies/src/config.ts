@@ -5,7 +5,7 @@
  * single .env drives the Go services and this one identically. Only what is
  * genuinely local to registration and company assets is read here.
  */
-import { bool, int, loadBase, str, type BaseConfig } from '@reqruitbook/nestshared';
+import { bool, int, loadBase, str, type BaseConfig } from '@karmarat/nestshared';
 
 export const SERVICE_NAME = 'companies';
 export const DEFAULT_PORT = 8082;

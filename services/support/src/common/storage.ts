@@ -13,7 +13,7 @@
  */
 import { createHash, createHmac } from 'node:crypto';
 
-import { badRequest, forbidden } from '@reqruitbook/nestshared';
+import { badRequest, forbidden } from '@karmarat/nestshared';
 
 import type { StorageConfig } from '../config';
 

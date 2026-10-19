@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/reqruitbook/platform/services/audit/internal/domain"
+	"github.com/karmarat/platform/services/audit/internal/domain"
 )
 
 // The predicate builder is the whole tenant boundary of this service written

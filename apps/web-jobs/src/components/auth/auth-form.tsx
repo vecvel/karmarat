@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { ProblemError, type Session } from "@reqruitbook/ui";
+import { ProblemError, type Session } from "@karmarat/ui";
 
 import { FieldError, ProblemAlert } from "@/components/feedback";
 import { useSession } from "@/components/session-provider";
@@ -70,7 +70,7 @@ export function AuthForm({ mode }: { mode: "sign-in" | "register" }) {
           title: "Network Error",
           status: 0,
           detail:
-            "We could not reach ReqruitBook. Check your connection and try again.",
+            "We could not reach Karmarat. Check your connection and try again.",
           code: "network_error",
         }),
       );

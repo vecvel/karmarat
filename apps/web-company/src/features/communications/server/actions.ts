@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { ProblemError } from "@reqruitbook/ui";
+import { ProblemError } from "@karmarat/ui";
 
 import { gatewayFetch } from "@/lib/gateway/client";
 import { unwrap } from "@/lib/gateway/list";

@@ -1,5 +1,5 @@
 {
-  "name": "@reqruitbook/support",
+  "name": "@karmarat/support",
   "version": "0.1.0",
   "private": true,
   "description": "Help and support ticketing — company requests and the platform support desk",
@@ -14,7 +14,7 @@
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
-    "@reqruitbook/nestshared": "workspace:*",
+    "@karmarat/nestshared": "workspace:*",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "express": "^5.0.1",

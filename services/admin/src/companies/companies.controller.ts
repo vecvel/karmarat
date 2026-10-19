@@ -13,7 +13,7 @@
  * checked twice — see src/common/platform.ts.
  */
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { CurrentPrincipal, Principal, parsePageRequest } from '@reqruitbook/nestshared';
+import { CurrentPrincipal, Principal, parsePageRequest } from '@karmarat/nestshared';
 
 import { toActivityView } from '../activity/activity.controller';
 import { PlatformOnly, assertPlatform } from '../common/platform';

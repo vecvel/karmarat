@@ -9,7 +9,7 @@
  */
 import { MiddlewareConsumer, Module, type NestModule } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthorizationGuard, GatewayPrincipalMiddleware } from '@reqruitbook/nestshared';
+import { AuthorizationGuard, GatewayPrincipalMiddleware } from '@karmarat/nestshared';
 
 import { CompaniesModule } from './companies/companies.module';
 import { InfrastructureModule } from './common/infrastructure.module';

@@ -19,7 +19,7 @@ import (
 
 	"github.com/redis/go-redis/v9"
 
-	"github.com/reqruitbook/platform/services/notifications/internal/domain"
+	"github.com/karmarat/platform/services/notifications/internal/domain"
 )
 
 // channelPrefix namespaces this service's keys inside a shared Redis.

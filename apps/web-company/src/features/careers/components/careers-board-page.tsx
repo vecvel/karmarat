@@ -452,7 +452,7 @@ export function CareersBoardPage() {
 
       {/* Footer */}
       <footer className="border-t border-border bg-card py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} {org?.name || "My Organisation"}. Powered by ReqruitBook ATS &amp; HRM Platform.
+        © {new Date().getFullYear()} {org?.name || "My Organisation"}. Powered by Karmarat ATS &amp; HRM Platform.
       </footer>
     </div>
   );

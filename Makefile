@@ -45,7 +45,7 @@ db: ## Create any service database missing from a running Postgres
 	@# error that says nothing about the cause.
 	@for db in $$(grep -oE 'SERVICE_DATABASES: .*' deploy/docker-compose.yml | cut -d' ' -f2 | tr ',' ' '); do \
 		docker compose -f deploy/docker-compose.yml exec -T postgres \
-			createdb -U $${POSTGRES_USER:-reqruitbook} "$$db" 2>/dev/null \
+			createdb -U $${POSTGRES_USER:-karmarat} "$$db" 2>/dev/null \
 			&& echo "created $$db" || true; \
 	done
 	@echo "service databases ready"
@@ -60,6 +60,31 @@ migrate: db ## Apply database migrations for every Go service
 		go run ./$$dir || exit 1; \
 	done
 
+.PHONY: db-clean
+db-clean: ## Drop all service databases, recreate, and apply fresh migrations
+	./scripts/db-clean.sh
+
+.PHONY: db-clean-seed
+db-clean-seed: ## Drop databases, recreate, migrate, and seed UAT demo data
+	./scripts/db-clean.sh --seed
+
+.PHONY: db-pull
+db-pull: ## Pull remote database into local (e.g. make db-pull FROM=user@host SANITIZE=1)
+	@if [ -z "$(FROM)" ] && [ -z "$(FILE)" ]; then \
+		echo "Usage: make db-pull FROM=user@staging.karmarat.com [SANITIZE=1]"; \
+		echo "   or: make db-pull FILE=/path/to/backup.sql.gz [SANITIZE=1]"; \
+		exit 1; \
+	fi
+	./scripts/db-pull.sh $(if $(FROM),--from $(FROM)) $(if $(FILE),--file $(FILE)) $(if $(filter 1 true,$(SANITIZE)),--sanitize)
+
+.PHONY: db-push
+db-push: ## Push local database snapshot to remote server (e.g. make db-push TO=user@host)
+	@if [ -z "$(TO)" ]; then \
+		echo "Usage: make db-push TO=user@staging.karmarat.com [FILE=/path/to/backup.sql.gz]"; \
+		exit 1; \
+	fi
+	./scripts/db-push.sh --to $(TO) $(if $(FILE),--file $(FILE))
+
 .PHONY: build
 build: ## Build all Go services
 	go build ./services/... ./packages/...
@@ -67,6 +92,10 @@ build: ## Build all Go services
 .PHONY: test
 test: ## Run all Go tests
 	go test ./services/... ./packages/... -race -count=1
+
+.PHONY: clean
+clean: ## Remove compiled binaries, local runtime logs, and test artifacts
+	rm -rf bin .run/logs/* *.test *.out
 
 .PHONY: tidy
 tidy: ## Tidy the Go module
@@ -104,6 +133,7 @@ smoke-product: ## Walk the whole product flow against a running stack
 smoke-all: smoke smoke-product ## Both suites
 
 COMPOSE := docker compose -f deploy/docker-compose.yml -f deploy/docker-compose.services.yml
+COMPOSE_PROD := docker compose -f deploy/docker-compose.prod.yml
 
 .PHONY: images
 images: ## Build every service image, to prove the deployment path still works
@@ -113,6 +143,33 @@ images: ## Build every service image, to prove the deployment path still works
 	@# pnpm flag for as long as nobody ran a containerised build.
 	$(COMPOSE) build
 
+.PHONY: prod-build
+prod-build: ## Build all production images (frontends and backend services)
+	$(COMPOSE_PROD) build
+
+.PHONY: prod-up
+prod-up: keys ## Start the full production stack with Caddy ingress
+	$(COMPOSE_PROD) up -d
+
+.PHONY: prod-down
+prod-down: ## Stop the production stack
+	$(COMPOSE_PROD) down
+
+.PHONY: prod-logs
+prod-logs: ## Follow logs from the production stack
+	$(COMPOSE_PROD) logs -f
+
+.PHONY: backup
+backup: ## Create a snapshot backup of PostgreSQL and MinIO
+	./scripts/backup.sh
+
+.PHONY: env-check
+env-check: ## Validate environment configuration invariants
+	./scripts/check-env.sh .env
+
+.PHONY: seed-uat
+seed-uat: ## Seed UAT/Staging with realistic demo tenants and candidates
+	./scripts/seed-uat.sh
 
 .PHONY: stack-up
 stack-up: keys ## Run everything in containers, services included
@@ -129,6 +186,15 @@ stack-logs: ## Follow logs from the containerised stack
 .PHONY: gen
 gen: ## Regenerate code derived from another language's source
 	./scripts/gen-reserved-slugs.sh
+
+.PHONY: rebrand
+rebrand: ## Rebrand platform (e.g. make rebrand OLD=karmarat NEW=Karmarat [DRY=1] [FORCE=1])
+	@if [ -z "$(OLD)" ] || [ -z "$(NEW)" ]; then \
+		echo "Usage: make rebrand OLD=<OldName> NEW=<NewName> [DRY=1] [FORCE=1]"; \
+		echo "Example: make rebrand OLD=karmarat NEW=Karmarat DRY=1"; \
+		exit 1; \
+	fi
+	./scripts/rebrand.sh --old "$(OLD)" --new "$(NEW)" $(if $(filter 1 true,$(DRY)),--dry-run) $(if $(filter 1 true,$(FORCE)),--force)
 
 .PHONY: verify
 verify: ## Everything CI runs, locally

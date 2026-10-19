@@ -14,7 +14,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { Pool, PoolClient } from 'pg';
 
-import { buildPage, conflict, type Page, type PageRequest } from '@reqruitbook/nestshared';
+import { buildPage, conflict, type Page, type PageRequest } from '@karmarat/nestshared';
 
 import {
   type Company,

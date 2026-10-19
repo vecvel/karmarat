@@ -4,7 +4,7 @@ import { LegalPlaceholder } from "@/components/legal-placeholder";
 
 export const metadata: Metadata = {
   title: "Terms of service",
-  description: "ReqruitBook's terms of service — not yet published.",
+  description: "Karmarat's terms of service — not yet published.",
   robots: { index: false },
 };
 

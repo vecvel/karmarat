@@ -27,8 +27,8 @@
  * permission never stands in for it.
  */
 import { applyDecorators } from '@nestjs/common';
-import { RequirePermission, RequirePrincipalType, forbidden } from '@reqruitbook/nestshared';
-import type { Principal } from '@reqruitbook/nestshared';
+import { RequirePermission, RequirePrincipalType, forbidden } from '@karmarat/nestshared';
+import type { Principal } from '@karmarat/nestshared';
 
 /**
  * Restricts a route to platform staff holding every listed permission.

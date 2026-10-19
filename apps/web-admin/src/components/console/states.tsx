@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { AlertTriangle, CreditCard, Inbox, Lock, RefreshCw } from "lucide-react";
-import type { ProblemError } from "@reqruitbook/ui";
+import type { ProblemError } from "@karmarat/ui";
 
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";

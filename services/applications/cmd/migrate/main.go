@@ -7,10 +7,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/config"
-	"github.com/reqruitbook/platform/packages/goshared/logging"
-	"github.com/reqruitbook/platform/packages/goshared/postgres"
-	"github.com/reqruitbook/platform/services/applications/migrations"
+	"github.com/karmarat/platform/packages/goshared/config"
+	"github.com/karmarat/platform/packages/goshared/logging"
+	"github.com/karmarat/platform/packages/goshared/postgres"
+	"github.com/karmarat/platform/services/applications/migrations"
 )
 
 func main() {

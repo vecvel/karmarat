@@ -6,7 +6,7 @@
  * the enum without deciding what a redelivered success does to it should fail
  * here, not in production.
  */
-import { Problem } from '@reqruitbook/nestshared';
+import { Problem } from '@karmarat/nestshared';
 
 import {
   isOpen,

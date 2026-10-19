@@ -29,7 +29,7 @@ export default async function LoginPage({
       <div className="w-full max-w-sm space-y-6">
         <div className="space-y-1.5 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-copper-deep">
-            ReqruitBook
+            Karmarat
           </p>
           <h1 className="text-2xl font-semibold tracking-tight">Platform console</h1>
           <p className="text-sm text-muted-foreground">

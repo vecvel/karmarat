@@ -5,8 +5,8 @@ import (
 	"log/slog"
 	"strings"
 
-	platformevents "github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/services/offers/internal/store"
+	platformevents "github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/services/offers/internal/store"
 )
 
 // Consumer applies the applications service's facts to this service's data.

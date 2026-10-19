@@ -5,7 +5,7 @@
  * variables, so one .env drives every service and an operator never has to
  * remember which runtime a service happens to be written in.
  */
-import { bool, int, loadBase, str, type BaseConfig } from '@reqruitbook/nestshared';
+import { bool, int, loadBase, str, type BaseConfig } from '@karmarat/nestshared';
 
 export const SERVICE_NAME = 'payments';
 export const DEFAULT_PORT = 8084;

@@ -34,7 +34,7 @@ func LoadBase(serviceName string) (Base, error) {
 	cfg := Base{
 		ServiceName:  serviceName,
 		Environment:  String("PLATFORM_ENV", "development"),
-		Hostname:     String("PLATFORM_HOSTNAME", "reqruitbook.local"),
+		Hostname:     String("PLATFORM_HOSTNAME", "karmarat.local"),
 		LogLevel:     String("LOG_LEVEL", "info"),
 		NATSURL:      String("NATS_URL", "nats://localhost:4222"),
 		OTLPEndpoint: String("OTEL_EXPORTER_OTLP_ENDPOINT", ""),
@@ -71,8 +71,8 @@ func requireProduction(cfg Base) error {
 func postgresURL(database string) string {
 	return fmt.Sprintf(
 		"postgres://%s:%s@%s:%s/%s?sslmode=%s",
-		String("POSTGRES_USER", "reqruitbook"),
-		String("POSTGRES_PASSWORD", "reqruitbook"),
+		String("POSTGRES_USER", "karmarat"),
+		String("POSTGRES_PASSWORD", "karmarat"),
 		String("POSTGRES_HOST", "localhost"),
 		String("POSTGRES_PORT", "5432"),
 		database,

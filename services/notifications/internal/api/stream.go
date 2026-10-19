@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/services/notifications/internal/realtime"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/services/notifications/internal/realtime"
 )
 
 // handleStream pushes a recipient's notifications as they happen.

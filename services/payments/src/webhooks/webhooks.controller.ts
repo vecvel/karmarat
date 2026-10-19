@@ -12,7 +12,7 @@
  * no hint as to why.
  */
 import { Controller, HttpCode, Post, Req } from '@nestjs/common';
-import { Public, badRequest } from '@reqruitbook/nestshared';
+import { Public, badRequest } from '@karmarat/nestshared';
 import type { RawBodyRequest } from '@nestjs/common';
 import type { Request } from 'express';
 

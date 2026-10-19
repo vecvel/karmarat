@@ -17,7 +17,7 @@
  * thing the registry describes.
  */
 import { Controller, Get } from '@nestjs/common';
-import { CurrentPrincipal, Principal } from '@reqruitbook/nestshared';
+import { CurrentPrincipal, Principal } from '@karmarat/nestshared';
 
 import { PlatformOnly, assertPlatform } from '../common/platform';
 import { DownstreamProber, type ProbeReport } from './downstream.prober';

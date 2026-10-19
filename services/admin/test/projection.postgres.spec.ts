@@ -13,10 +13,10 @@
  * Skips cleanly without TEST_DATABASE_URL so `pnpm test` is green with no
  * database. Point it at a scratch database:
  *
- *   TEST_DATABASE_URL=postgres://reqruitbook:reqruitbook@localhost:5432/admin \
- *     pnpm --filter @reqruitbook/admin test
+ *   TEST_DATABASE_URL=postgres://karmarat:karmarat@localhost:5432/admin \
+ *     pnpm --filter @karmarat/admin test
  */
-import { Subject, createPool, migrate, type Envelope } from '@reqruitbook/nestshared';
+import { Subject, createPool, migrate, type Envelope } from '@karmarat/nestshared';
 import { randomUUID } from 'node:crypto';
 import { join } from 'node:path';
 import type { Pool } from 'pg';

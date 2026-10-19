@@ -79,7 +79,7 @@ export function firstOf(source: Record<string, unknown>, ...keys: string[]): unk
 }
 
 /**
- * Splits `reqruitbook.<domain>.<action>` into its parts.
+ * Splits `karmarat.<domain>.<action>` into its parts.
  *
  * Falls back to the whole subject as the domain so an event published on a
  * subject this service has never seen still lands in the audit feed under
@@ -87,7 +87,7 @@ export function firstOf(source: Record<string, unknown>, ...keys: string[]): unk
  */
 export function splitSubject(subject: string): { domain: string; action: string } {
   const parts = subject.split('.');
-  if (parts.length >= 3 && parts[0] === 'reqruitbook') {
+  if (parts.length >= 3 && parts[0] === 'karmarat') {
     return { domain: parts[1] ?? subject, action: parts.slice(2).join('.') };
   }
   return { domain: subject, action: '' };

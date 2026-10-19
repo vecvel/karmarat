@@ -6,7 +6,7 @@
  * — the projection that decides which fields a careers portal may expose to an
  * anonymous visitor.
  */
-import { isReservedSlug, validationFailed } from '@reqruitbook/nestshared';
+import { isReservedSlug, validationFailed } from '@karmarat/nestshared';
 
 /**
  * Lifecycle states.

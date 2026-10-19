@@ -38,7 +38,7 @@ interface NotificationPopoverProps {
   initialUnreadCount?: number;
 }
 
-const LOCAL_STORAGE_KEY = "reqruitbook_read_notifs";
+const LOCAL_STORAGE_KEY = "karmarat_read_notifs";
 
 export function NotificationPopover({ initialUnreadCount = 0 }: NotificationPopoverProps) {
   const [open, setOpen] = useState(false);
@@ -365,7 +365,7 @@ export function NotificationPopover({ initialUnreadCount = 0 }: NotificationPopo
 
         {/* Footer */}
         <div className="p-2.5 border-t border-border bg-muted/30 flex items-center justify-between text-[11px]">
-          <span className="text-muted-foreground">ReqruitBook Activity Feed</span>
+          <span className="text-muted-foreground">Karmarat Activity Feed</span>
           <Link
             href="/communications?tab=history"
             onClick={() => setOpen(false)}

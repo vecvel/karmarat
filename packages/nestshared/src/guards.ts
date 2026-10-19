@@ -69,9 +69,9 @@ export const CompanyId = createParamDecorator((_data: unknown, ctx: ExecutionCon
   return (request.principal ?? Principal.anonymous()).requireCompany();
 });
 
-const PERMISSIONS_KEY = 'reqruitbook:permissions';
-const PRINCIPAL_TYPES_KEY = 'reqruitbook:principal_types';
-const PUBLIC_KEY = 'reqruitbook:public';
+const PERMISSIONS_KEY = 'karmarat:permissions';
+const PRINCIPAL_TYPES_KEY = 'karmarat:principal_types';
+const PUBLIC_KEY = 'karmarat:public';
 
 /**
  * Requires every listed permission.

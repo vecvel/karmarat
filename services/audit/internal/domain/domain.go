@@ -16,7 +16,7 @@ import (
 //
 // It is the same on every event, so repeating it in the "action" a reader
 // filters on adds thirteen characters to every row and distinguishes nothing.
-const SubjectPrefix = "reqruitbook."
+const SubjectPrefix = "karmarat."
 
 // Entry is one recorded platform event.
 //
@@ -62,7 +62,7 @@ func Invalid(field, message string) error {
 
 // ActionOf renders a subject in the form a person reads and filters on.
 //
-// "reqruitbook.application.stage_changed" becomes "application.stage_changed".
+// "karmarat.application.stage_changed" becomes "application.stage_changed".
 // A subject that does not carry the platform namespace is kept whole rather than
 // mangled: an unexpected subject is exactly the thing an audit trail should
 // still show, and shortening it by guesswork would hide where it came from.
@@ -144,7 +144,7 @@ var entityTypeForKey = map[string]string{
 // by candidate would catch events that merely mentioned them.
 //
 // The subject already answers the question, so it is consulted first:
-// `reqruitbook.application.stage_changed` is about an application, therefore the
+// `karmarat.application.stage_changed` is about an application, therefore the
 // applicationId is the entity even though two other ids are present. Only when
 // the subject's own key is missing from the payload does a fixed priority order
 // pick the narrowest id that is there, so a notification or support event still

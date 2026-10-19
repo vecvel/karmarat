@@ -42,7 +42,7 @@ var ReservedSlugs = []string{
 	"root", "admin", "jobs", "www", "api", "app", "cdn", "static", "assets",
 	"mail", "smtp", "ftp", "status", "help", "support", "docs", "blog",
 	"dashboard", "portal", "auth", "login", "signup", "billing", "payments",
-	"internal", "system", "platform", "reqruitbook",
+	"internal", "system", "platform", "karmarat",
 }
 
 // IsReservedSlug reports whether a slug is claimed by the platform.

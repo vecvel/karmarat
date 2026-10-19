@@ -6,7 +6,7 @@
  * successor state and the platform controller decided its own, the two would
  * drift and a ticket would end up in a state neither side expects to answer.
  */
-import { conflict } from '@reqruitbook/nestshared';
+import { conflict } from '@karmarat/nestshared';
 
 export const TICKET_STATES = ['open', 'awaiting_customer', 'awaiting_support', 'resolved', 'closed'] as const;
 export type TicketState = (typeof TICKET_STATES)[number];

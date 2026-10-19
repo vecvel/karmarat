@@ -4,8 +4,8 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/services/candidates/internal/store"
+	"github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/services/candidates/internal/store"
 )
 
 // Consumer reacts to facts published by other services.

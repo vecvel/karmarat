@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Briefcase } from "lucide-react";
-import { isProblem } from "@reqruitbook/ui";
+import { isProblem } from "@karmarat/ui";
 
 import { JobCard } from "@/components/jobs/job-card";
 import { JobFilters, type JobFilterValues } from "@/components/jobs/job-filters";
@@ -85,7 +85,7 @@ export default async function JobBoardPageRoute({
           Every role on the network
         </h1>
         <p className="mt-1 max-w-prose text-sm text-muted-foreground">
-          One profile, one résumé, every company hiring through ReqruitBook.
+          One profile, one résumé, every company hiring through Karmarat.
           Apply in a few minutes and follow each application from here.
         </p>
       </div>

@@ -15,21 +15,21 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/config"
-	"github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/logging"
-	"github.com/reqruitbook/platform/packages/goshared/observability"
-	"github.com/reqruitbook/platform/packages/goshared/postgres"
-	"github.com/reqruitbook/platform/packages/goshared/redisx"
-	"github.com/reqruitbook/platform/packages/goshared/tokens"
-	"github.com/reqruitbook/platform/services/identity/internal/api"
-	"github.com/reqruitbook/platform/services/identity/internal/auth"
-	"github.com/reqruitbook/platform/services/identity/internal/projection"
-	"github.com/reqruitbook/platform/services/identity/internal/provisioning"
-	"github.com/reqruitbook/platform/services/identity/internal/store"
-	"github.com/reqruitbook/platform/services/identity/internal/team"
-	"github.com/reqruitbook/platform/services/identity/migrations"
+	"github.com/karmarat/platform/packages/goshared/config"
+	"github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/logging"
+	"github.com/karmarat/platform/packages/goshared/observability"
+	"github.com/karmarat/platform/packages/goshared/postgres"
+	"github.com/karmarat/platform/packages/goshared/redisx"
+	"github.com/karmarat/platform/packages/goshared/tokens"
+	"github.com/karmarat/platform/services/identity/internal/api"
+	"github.com/karmarat/platform/services/identity/internal/auth"
+	"github.com/karmarat/platform/services/identity/internal/projection"
+	"github.com/karmarat/platform/services/identity/internal/provisioning"
+	"github.com/karmarat/platform/services/identity/internal/store"
+	"github.com/karmarat/platform/services/identity/internal/team"
+	"github.com/karmarat/platform/services/identity/migrations"
 )
 
 const serviceName = "identity"
@@ -105,7 +105,7 @@ func run() error {
 
 	issuer, err := tokens.NewIssuer(tokens.IssuerConfig{
 		PrivateKeyPEM: privatePEM,
-		Issuer:        "reqruitbook-identity",
+		Issuer:        "karmarat-identity",
 		Audience:      cfg.Hostname,
 		TTL:           config.Duration("ACCESS_TOKEN_TTL", 15*time.Minute),
 	})
@@ -115,7 +115,7 @@ func run() error {
 
 	verifier, err := tokens.NewVerifier(tokens.VerifierConfig{
 		PublicKeyPEM: publicPEM,
-		Issuer:       "reqruitbook-identity",
+		Issuer:       "karmarat-identity",
 		Audience:     cfg.Hostname,
 	})
 	if err != nil {

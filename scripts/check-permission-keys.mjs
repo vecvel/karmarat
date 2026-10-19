@@ -10,9 +10,11 @@
 // except an owner, who the super-admin bypass waves through. Four screens
 // shipped that way before this check existed.
 import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = '/Users/besaoct/Desktop/reqruitbook/apps/web-company/src';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(__dirname, '../apps/web-company/src');
 
 const featureKeys = new Set();
 for (const dir of readdirSync(join(ROOT, 'features'))) {

@@ -29,7 +29,7 @@ export function LegalPlaceholder({
         <AlertTriangle aria-hidden="true" className="size-4 text-warning" />
         <AlertTitle>This is a placeholder, not a legal document</AlertTitle>
         <AlertDescription>
-          No {title.toLowerCase()} has been published for ReqruitBook yet. Nothing on
+          No {title.toLowerCase()} has been published for Karmarat yet. Nothing on
           this page is binding on anyone, and it has not been reviewed by a lawyer.
         </AlertDescription>
       </Alert>

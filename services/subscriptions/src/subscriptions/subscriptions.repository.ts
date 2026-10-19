@@ -13,7 +13,7 @@
  * nullable parameter.
  */
 import { Inject, Injectable } from '@nestjs/common';
-import { buildPage, conflict, type Page, type PageRequest } from '@reqruitbook/nestshared';
+import { buildPage, conflict, type Page, type PageRequest } from '@karmarat/nestshared';
 import type { Pool, PoolClient } from 'pg';
 
 import { PG_POOL } from '../common/infrastructure.module';

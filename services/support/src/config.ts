@@ -5,7 +5,7 @@
  * `loadBase` so this service reads the same .env the Go services do. Only the
  * settings that are genuinely this service's own are declared here.
  */
-import { bool, int, loadBase, str, type BaseConfig } from '@reqruitbook/nestshared';
+import { bool, int, loadBase, str, type BaseConfig } from '@karmarat/nestshared';
 
 export const SERVICE_NAME = 'support';
 export const DEFAULT_PORT = 8090;
@@ -40,8 +40,8 @@ export function loadConfig(): SupportConfig {
     storage: {
       endpoint: str('S3_ENDPOINT', 'http://localhost:9000'),
       region: str('S3_REGION', 'us-east-1'),
-      accessKey: str('S3_ACCESS_KEY', 'reqruitbook'),
-      secretKey: str('S3_SECRET_KEY', 'reqruitbook-secret'),
+      accessKey: str('S3_ACCESS_KEY', 'karmarat'),
+      secretKey: str('S3_SECRET_KEY', 'karmarat-secret'),
       // Support attachments are arbitrary customer documents, so they belong in
       // the private documents bucket rather than alongside public company assets.
       bucket: str('S3_BUCKET_DOCUMENTS', 'documents'),

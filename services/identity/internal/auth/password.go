@@ -160,7 +160,7 @@ func (p PasswordPolicy) Validate(password string) []string {
 // Sign-in must take the same time whether or not the account is real, otherwise
 // response timing reveals which emails are registered.
 var DummyHash = func() string {
-	hash, err := HashPassword("reqruitbook-timing-equalizer")
+	hash, err := HashPassword("karmarat-timing-equalizer")
 	if err != nil {
 		return ""
 	}

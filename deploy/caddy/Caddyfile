@@ -1,0 +1,84 @@
+# Karmarat Edge Reverse Proxy (Caddy)
+#
+# Handles wildcard subdomains, TLS termination, security headers, and
+# routes traffic between the Next.js portals and the Go API Gateway.
+
+{
+    admin off
+    # Global email for ACME registration (Let's Encrypt / ZeroSSL)
+    email {$ACME_EMAIL:admin@karmarat.local}
+}
+
+# Matches root platform hostname and any wildcard tenant subdomain:
+#   karmarat.com
+#   jobs.karmarat.com
+#   root.karmarat.com
+#   {slug}.karmarat.com
+{$PLATFORM_HOSTNAME:karmarat.local}, *.{$PLATFORM_HOSTNAME:karmarat.local} {
+    # TLS Strategy:
+    # Set TLS_CONFIG to "internal" for self-signed certificates (default for local staging).
+    # In public production with DNS-01, set TLS_CONFIG to your DNS provider directive or leave blank.
+    tls {$TLS_CONFIG:internal}
+
+    # Standard security headers
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+
+    # Enable compression for text, json, html, css, js
+    encode zstd gzip
+
+    # 1. API routes on ANY subdomain or root domain route to the Go API Gateway.
+    # The gateway inspects the Host header to determine tenant and portal context.
+    handle /api/* {
+        request_body {
+            max_size 25MB
+        }
+        reverse_proxy gateway:8080 {
+            header_up Host {host}
+            header_up X-Real-IP {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+            header_up X-Forwarded-Host {host}
+        }
+    }
+
+    # 2. Candidate Job Portal: jobs.{PLATFORM_HOSTNAME}
+    @jobs host jobs.{$PLATFORM_HOSTNAME:karmarat.local}
+    handle @jobs {
+        reverse_proxy web-jobs:3000 {
+            header_up Host {host}
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    # 3. Platform Administration Console: root.{PLATFORM_HOSTNAME}
+    @admin host root.{$PLATFORM_HOSTNAME:karmarat.local}
+    handle @admin {
+        reverse_proxy web-admin:3000 {
+            header_up Host {host}
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    # 4. Public Landing & Marketing Page: {PLATFORM_HOSTNAME}
+    @landing host {$PLATFORM_HOSTNAME:karmarat.local}
+    handle @landing {
+        reverse_proxy web-landing:3000 {
+            header_up Host {host}
+            header_up X-Real-IP {remote_host}
+        }
+    }
+
+    # 5. Default Fallback: Any tenant subdomain ({slug}.{PLATFORM_HOSTNAME})
+    # routes to the company recruitment portal.
+    handle {
+        reverse_proxy web-company:3000 {
+            header_up Host {host}
+            header_up X-Real-IP {remote_host}
+        }
+    }
+}

@@ -11,8 +11,8 @@ func testMailer(t *testing.T) *Mailer {
 	mailer, err := New(Config{
 		Host:        "localhost",
 		Port:        "1025",
-		FromAddress: "no-reply@reqruitbook.local",
-		FromName:    "ReqruitBook",
+		FromAddress: "no-reply@karmarat.local",
+		FromName:    "Karmarat",
 	})
 	if err != nil {
 		t.Fatalf("could not build the mailer: %v", err)
@@ -31,7 +31,7 @@ func TestRenderProducesBothParts(t *testing.T) {
 	html, text, err := renderer.Render("notification", Content{
 		Title:     "Your application moved forward",
 		Body:      "Staff Engineer is now at the Interview stage.",
-		ActionURL: "https://jobs.reqruitbook.local/applications/app_1",
+		ActionURL: "https://jobs.karmarat.local/applications/app_1",
 	})
 	if err != nil {
 		t.Fatalf("render failed: %v", err)
@@ -45,7 +45,7 @@ func TestRenderProducesBothParts(t *testing.T) {
 	if strings.Contains(text, "<a href") {
 		t.Error("the plain-text part contains markup")
 	}
-	if !strings.Contains(text, "https://jobs.reqruitbook.local/applications/app_1") {
+	if !strings.Contains(text, "https://jobs.karmarat.local/applications/app_1") {
 		t.Error("the plain-text part lost the link")
 	}
 }
@@ -149,7 +149,7 @@ func TestAuthRequiresTLS(t *testing.T) {
 		Username:    "someone",
 		Password:    "secret",
 		UseTLS:      false,
-		FromAddress: "no-reply@reqruitbook.local",
+		FromAddress: "no-reply@karmarat.local",
 	})
 	if err != nil {
 		t.Fatalf("could not build the mailer: %v", err)

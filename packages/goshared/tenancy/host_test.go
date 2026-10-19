@@ -3,7 +3,7 @@ package tenancy
 import "testing"
 
 func TestResolveHost(t *testing.T) {
-	const platform = "reqruitbook.com"
+	const platform = "karmarat.com"
 
 	tests := []struct {
 		name        string
@@ -11,15 +11,15 @@ func TestResolveHost(t *testing.T) {
 		wantPortal  Portal
 		wantCompany string
 	}{
-		{"apex is the public site", "reqruitbook.com", PortalPublic, ""},
-		{"www is the public site", "www.reqruitbook.com", PortalPublic, ""},
-		{"root is the admin console", "root.reqruitbook.com", PortalRoot, ""},
-		{"admin is an alias for root", "admin.reqruitbook.com", PortalRoot, ""},
-		{"jobs is the candidate portal", "jobs.reqruitbook.com", PortalJobs, ""},
-		{"a slug is a company portal", "acme.reqruitbook.com", PortalCompany, "acme"},
-		{"a port is ignored", "acme.reqruitbook.com:8080", PortalCompany, "acme"},
-		{"case is normalized", "ACME.ReqruitBook.com", PortalCompany, "acme"},
-		{"a trailing dot is ignored", "acme.reqruitbook.com.", PortalCompany, "acme"},
+		{"apex is the public site", "karmarat.com", PortalPublic, ""},
+		{"www is the public site", "www.karmarat.com", PortalPublic, ""},
+		{"root is the admin console", "root.karmarat.com", PortalRoot, ""},
+		{"admin is an alias for root", "admin.karmarat.com", PortalRoot, ""},
+		{"jobs is the candidate portal", "jobs.karmarat.com", PortalJobs, ""},
+		{"a slug is a company portal", "acme.karmarat.com", PortalCompany, "acme"},
+		{"a port is ignored", "acme.karmarat.com:8080", PortalCompany, "acme"},
+		{"case is normalized", "ACME.Karmarat.com", PortalCompany, "acme"},
+		{"a trailing dot is ignored", "acme.karmarat.com.", PortalCompany, "acme"},
 		{"a foreign host falls back to public", "evil.example.com", PortalPublic, ""},
 		{"an empty host falls back to public", "", PortalPublic, ""},
 	}
@@ -40,7 +40,7 @@ func TestResolveHost(t *testing.T) {
 // A nested subdomain must not be able to impersonate a reserved portal by
 // hiding it deeper in the host.
 func TestResolveHostIgnoresNestedLabels(t *testing.T) {
-	got := ResolveHost("evil.root.reqruitbook.com", "reqruitbook.com")
+	got := ResolveHost("evil.root.karmarat.com", "karmarat.com")
 	if got.Portal != PortalRoot {
 		t.Fatalf("portal = %q, want %q", got.Portal, PortalRoot)
 	}

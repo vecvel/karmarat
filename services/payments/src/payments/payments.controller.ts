@@ -15,7 +15,7 @@ import {
   RequirePrincipalType,
   parsePageRequest,
   validationFailed,
-} from '@reqruitbook/nestshared';
+} from '@karmarat/nestshared';
 
 import { toJsonMinor } from '../common/money';
 import type { Invoice, Payment, Refund } from './payment.entity';

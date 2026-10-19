@@ -1,7 +1,7 @@
 import "server-only";
 
-import { ProblemError } from "@reqruitbook/ui";
-import { gatewayRequest } from "@reqruitbook/ui/server";
+import { ProblemError } from "@karmarat/ui";
+import { gatewayRequest } from "@karmarat/ui/server";
 
 import { GATEWAY_URL, resolvePortalHost } from "./config";
 import { currentAccessToken } from "./session";

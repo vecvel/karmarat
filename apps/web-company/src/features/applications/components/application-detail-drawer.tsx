@@ -175,7 +175,7 @@ export function ApplicationDetailDrawer({
       job_title: app?.jobTitle || "Job Opening",
       req_code: app?.reqCode || "REQ",
       department: app?.departmentName || "General",
-      company_name: "ReqruitBook",
+      company_name: "Karmarat",
       work_location: app?.locationText || "Remote Hub",
       interview_date: "Upcoming Week",
       interview_time: "2:00 PM EST",
@@ -183,8 +183,8 @@ export function ApplicationDetailDrawer({
       interviewer_name: "Hiring Manager",
       offer_salary: app?.expectedSalary ? `$${Number(app.expectedSalary).toLocaleString()} / year` : "$175,000 / year",
       joining_date: "Within 30 Days",
-      sender_name: "ReqruitBook Talent Team",
-      careers_url: "https://reqruitbook.com/careers",
+      sender_name: "Karmarat Talent Team",
+      careers_url: "https://karmarat.com/careers",
     };
   };
 
@@ -209,8 +209,8 @@ export function ApplicationDetailDrawer({
       setEmailBody(renderEmailTemplate(matchedTpl.bodyTemplate, vars));
     } else {
       setSelectedTemplateId("");
-      setEmailSubject(`Update regarding your application for ${app.jobTitle} at ReqruitBook`);
-      setEmailBody(`Hi ${vars.candidate_first_name},\n\nWe wanted to share an update regarding your application for ${app.jobTitle}...\n\nBest regards,\nReqruitBook Talent Team`);
+      setEmailSubject(`Update regarding your application for ${app.jobTitle} at Karmarat`);
+      setEmailBody(`Hi ${vars.candidate_first_name},\n\nWe wanted to share an update regarding your application for ${app.jobTitle}...\n\nBest regards,\nKarmarat Talent Team`);
     }
 
     setEmailModalOpen(true);

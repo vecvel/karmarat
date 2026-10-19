@@ -1,4 +1,4 @@
-module github.com/reqruitbook/platform
+module github.com/karmarat/platform
 
 go 1.26.0
 

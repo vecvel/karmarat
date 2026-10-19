@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ProblemError, isProblem } from "@reqruitbook/ui";
-import { useApi } from "@reqruitbook/ui/react";
+import { ProblemError, isProblem } from "@karmarat/ui";
+import { useApi } from "@karmarat/ui/react";
 
 import { useSession } from "./session-provider";
 

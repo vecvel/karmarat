@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   // The console has no database client and no Node-only dependency to exclude;
   // the only thing it talks to is the gateway.
   typedRoutes: false,

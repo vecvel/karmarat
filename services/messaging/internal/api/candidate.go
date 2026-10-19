@@ -3,9 +3,9 @@ package api
 import (
 	"net/http"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/services/messaging/internal/domain"
-	"github.com/reqruitbook/platform/services/messaging/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/services/messaging/internal/domain"
+	"github.com/karmarat/platform/services/messaging/internal/store"
 )
 
 // The candidate side of the service.

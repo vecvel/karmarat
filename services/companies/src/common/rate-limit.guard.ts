@@ -7,7 +7,7 @@
  * one.
  */
 import { CanActivate, ExecutionContext, Inject, Injectable } from '@nestjs/common';
-import { tooManyRequests } from '@reqruitbook/nestshared';
+import { tooManyRequests } from '@karmarat/nestshared';
 import type { Request } from 'express';
 
 import type { CompaniesConfig } from '../config';

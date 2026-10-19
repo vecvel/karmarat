@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/packages/goshared/idgen"
 )
 
 // Config describes the relay and the sender identity.
@@ -67,7 +67,7 @@ func New(cfg Config) (*Mailer, error) {
 		cfg.Timeout = 15 * time.Second
 	}
 	if cfg.ProductName == "" {
-		cfg.ProductName = "ReqruitBook"
+		cfg.ProductName = "Karmarat"
 	}
 	if cfg.FromName == "" {
 		cfg.FromName = cfg.ProductName
@@ -312,5 +312,5 @@ func messageIDDomain(from string) string {
 	if _, domain, found := strings.Cut(from, "@"); found && domain != "" {
 		return sanitizeHeader(domain)
 	}
-	return "reqruitbook.local"
+	return "karmarat.local"
 }

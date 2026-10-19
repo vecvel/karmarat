@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useId, useState, type FormEvent } from "react";
 import { Loader2 } from "lucide-react";
-import { ProblemError } from "@reqruitbook/ui";
+import { ProblemError } from "@karmarat/ui";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

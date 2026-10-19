@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
 )
 
 // newSortedTable builds a table from arbitrary routes with the same ordering

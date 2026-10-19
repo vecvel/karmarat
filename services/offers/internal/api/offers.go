@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/services/offers/internal/domain"
-	"github.com/reqruitbook/platform/services/offers/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/services/offers/internal/domain"
+	"github.com/karmarat/platform/services/offers/internal/store"
 )
 
 // Limits on the free-text an offer carries. The body cap already bounds the

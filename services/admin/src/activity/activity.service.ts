@@ -8,7 +8,7 @@
  * handed a silently short file.
  */
 import { Inject, Injectable } from '@nestjs/common';
-import { encodeCursor, type Cursor } from '@reqruitbook/nestshared';
+import { encodeCursor, type Cursor } from '@karmarat/nestshared';
 
 import { ADMIN_CONFIG } from '../common/tokens';
 import type { AdminConfig } from '../config';

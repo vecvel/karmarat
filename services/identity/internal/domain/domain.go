@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
 )
 
 // Realm separates the three sign-in surfaces.

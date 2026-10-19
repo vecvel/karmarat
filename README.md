@@ -1,4 +1,4 @@
-# ReqruitBook
+# Karmarat
 
 A multi-tenant recruitment platform. Companies get isolated careers portals,
 candidates get one central job portal, and the platform is operated from a
@@ -34,7 +34,7 @@ packages/
   ui/               Shared front-end layer: API client, access evaluator, transport
 scripts/            dev.sh (run the stack), smoke.sh + smoke-product.sh (live suites)
 deploy/             Infrastructure, service images, local orchestration
-docs/               Architecture, service contract, front ends, RBAC
+docs/               Architecture, service contract, front ends, RBAC, production plan
 ```
 
 Both shared libraries expose the same concepts — problem+json, the gateway
@@ -59,9 +59,9 @@ make dev        # infrastructure, every service, and the company portal
 are separate Next servers you start yourself when you need them:
 
 ```bash
-pnpm --filter @reqruitbook/web-jobs dev      # :3001
-pnpm --filter @reqruitbook/web-admin dev     # :3002
-pnpm --filter @reqruitbook/web-landing dev   # :3003
+pnpm --filter @karmarat/web-jobs dev      # :3001
+pnpm --filter @karmarat/web-admin dev     # :3002
+pnpm --filter @karmarat/web-landing dev   # :3003
 ```
 
 `make dev` discovers every service in the tree, builds it, and waits for its
@@ -113,8 +113,8 @@ password, then remove the `BOOTSTRAP_ADMIN_*` lines.
 ```bash
 curl -X POST http://localhost:8080/api/v1/auth/login \
   -H 'Content-Type: application/json' \
-  -H 'Host: root.reqruitbook.local' \
-  -d '{"realm":"platform","email":"admin@reqruitbook.local","password":"..."}'
+  -H 'Host: root.karmarat.local' \
+  -d '{"realm":"platform","email":"admin@karmarat.local","password":"..."}'
 ```
 
 ### Local hostnames
@@ -122,7 +122,7 @@ curl -X POST http://localhost:8080/api/v1/auth/login \
 Portals are routed by hostname. For browser testing, add them to `/etc/hosts`:
 
 ```
-127.0.0.1  reqruitbook.local root.reqruitbook.local jobs.reqruitbook.local acme.reqruitbook.local
+127.0.0.1  karmarat.local root.karmarat.local jobs.karmarat.local acme.karmarat.local
 ```
 
 With `curl`, a `Host:` header is enough. `web-company` does not need the hosts
@@ -150,6 +150,14 @@ newline — makes the whole line a comment, and nothing resolves.
 | `make verify` | Everything CI runs: build, vet, gofmt, tests, and the two generated-file checks |
 | `make images` | Build every service image, to prove the deployment path still works |
 | `make stack-up` / `make stack-down` / `make stack-logs` | Run the whole platform in containers |
+| `make prod-build` / `make prod-up` / `make prod-down` | Hardened production stack with Caddy edge proxy |
+| `make env-check` | Validate `.env` configuration invariants |
+| `make seed-uat` | Seed demo tenants and candidate pipelines for UAT |
+| `make backup` | Create snapshot backup of Postgres and MinIO |
+| `make db-clean` / `make db-clean-seed` | Reset service databases and optionally seed UAT demo data |
+| `make db-pull` / `make db-push` | Pull or push database snapshots between local and remote environments |
+| `make clean` | Remove compiled binaries, local runtime logs, and test artifacts |
+| `make rebrand` | Rebrand platform (e.g. `make rebrand OLD=reqruitbook NEW=Karmarat [DRY=1]`) |
 | `make run-gateway` / `make run-identity` | Run a single service |
 
 ## Local services
@@ -172,6 +180,8 @@ newline — makes the whole line a comment, and nothing resolves.
 ## Documentation
 
 - [Platform architecture](docs/architecture.md) — services, tenancy, request path, security
+- [Environment lifecycle & multi-tier promotion](docs/environment-lifecycle.md) — Local, Staging, UAT, Production progression, wildcard SSL, and run commands
+- [Production readiness blueprint](docs/production-plan.md) — self-hosting architecture, hardening, and disaster recovery
 - [Service contract](docs/contracts.md) — what every service must do to compose with the platform, and the traps that cost an hour each
 - [Front ends](docs/frontends.md) — the four portals, the Host-header rule they all depend on, and what they still cannot do
 - [Feature-based RBAC](docs/rbac.md) — the permission model used by the company portal

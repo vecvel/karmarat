@@ -7,7 +7,7 @@ import { JOBS_PORTAL_URL } from "@/lib/env";
 export const metadata: Metadata = {
   title: "For candidates",
   description:
-    "One free ReqruitBook account: your profile and résumé, every job on the network, and every application you have sent in one place.",
+    "One free Karmarat account: your profile and résumé, every job on the network, and every application you have sent in one place.",
 };
 
 /**
@@ -25,7 +25,7 @@ export default function ForCandidatesPage() {
         <Container className="py-12 sm:py-16">
           <h1 className="text-3xl sm:text-4xl">For candidates</h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Free, and free for good. Companies pay for ReqruitBook; you do not, and your
+            Free, and free for good. Companies pay for Karmarat; you do not, and your
             profile is not sold to them.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -65,7 +65,7 @@ export default function ForCandidatesPage() {
           </Block>
 
           <Block title="A separate identity from your work account">
-            If you also recruit for a company on ReqruitBook, the two accounts can share
+            If you also recruit for a company on Karmarat, the two accounts can share
             an email address and stay completely separate. Leaving that employer does not
             touch your candidate account.
           </Block>

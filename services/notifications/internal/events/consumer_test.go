@@ -9,14 +9,14 @@ import (
 	"testing"
 	"time"
 
-	platformevents "github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/packages/goshared/postgres"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/notifications/internal/domain"
-	notificationevents "github.com/reqruitbook/platform/services/notifications/internal/events"
-	"github.com/reqruitbook/platform/services/notifications/internal/realtime"
-	"github.com/reqruitbook/platform/services/notifications/internal/store"
-	"github.com/reqruitbook/platform/services/notifications/migrations"
+	platformevents "github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/packages/goshared/postgres"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/notifications/internal/domain"
+	notificationevents "github.com/karmarat/platform/services/notifications/internal/events"
+	"github.com/karmarat/platform/services/notifications/internal/realtime"
+	"github.com/karmarat/platform/services/notifications/internal/store"
+	"github.com/karmarat/platform/services/notifications/migrations"
 )
 
 const companyA = "11111111-1111-1111-1111-111111111111"

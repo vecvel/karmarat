@@ -19,7 +19,7 @@ export function SiteHeader() {
           className="flex shrink-0 items-center gap-2 font-semibold tracking-tight"
         >
           <Image src="/logo.png" alt="" width={28} height={28} className="h-7 w-7 object-contain" />
-          <span>ReqruitBook</span>
+          <span>Karmarat</span>
         </Link>
 
         <nav aria-label="Main" className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">

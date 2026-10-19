@@ -8,7 +8,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/reqruitbook/platform/services/audit/internal/domain"
+	"github.com/karmarat/platform/services/audit/internal/domain"
 )
 
 // ExportRowLimit caps how much one CSV download may draw out of the trail.

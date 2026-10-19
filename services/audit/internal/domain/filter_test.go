@@ -78,7 +78,7 @@ func TestNewPageRejectsAMalformedCursor(t *testing.T) {
 func TestNewFilterNormalisesTheAction(t *testing.T) {
 	// A caller chasing a subject they found in a log should not have to know
 	// that the stored column drops the namespace.
-	filter, err := NewFilter("reqruitbook.application.rejected", "", "", "", "", "", Page{})
+	filter, err := NewFilter("karmarat.application.rejected", "", "", "", "", "", Page{})
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}

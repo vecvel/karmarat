@@ -45,7 +45,7 @@ test('the portal host arrives as the Host header, not the connection address', a
     async (origin) => {
       const response = await gatewayRequest({
         gatewayUrl: origin,
-        portalHost: 'acme.reqruitbook.local',
+        portalHost: 'acme.karmarat.local',
         path: '/api/v1/recruiters',
       });
       assert.equal(response.status, 200);
@@ -55,7 +55,7 @@ test('the portal host arrives as the Host header, not the connection address', a
   // The whole point. `fetch` would have sent `127.0.0.1:<port>` here, the
   // gateway would have resolved the public portal, and every company route
   // would have answered 404.
-  assert.equal(seen, 'acme.reqruitbook.local');
+  assert.equal(seen, 'acme.karmarat.local');
 });
 
 test('the path and query reach the upstream intact', async () => {
@@ -71,7 +71,7 @@ test('the path and query reach the upstream intact', async () => {
       // A trailing slash on the configured origin must not produce a double one.
       const response = await gatewayRequest({
         gatewayUrl: `${origin}/`,
-        portalHost: 'jobs.reqruitbook.local',
+        portalHost: 'jobs.karmarat.local',
         path: '/api/v1/public/jobs?limit=20&q=engineer',
       });
       assert.equal(response.status, 204);
@@ -93,7 +93,7 @@ test('trust headers a caller supplies are not forwarded', async () => {
     async (origin) => {
       await gatewayRequest({
         gatewayUrl: origin,
-        portalHost: 'root.reqruitbook.local',
+        portalHost: 'root.karmarat.local',
         path: '/api/v1/admin/companies',
         accessToken: 'token-123',
         headers: {
@@ -129,7 +129,7 @@ test('a Headers instance is accepted as well as a plain object', async () => {
       const headers = new Headers({ 'X-Request-Source': 'company-portal', Cookie: 'rb_refresh=abc' });
       await gatewayRequest({
         gatewayUrl: origin,
-        portalHost: 'acme.reqruitbook.local',
+        portalHost: 'acme.karmarat.local',
         path: '/api/v1/company/profile',
         headers,
       });
@@ -158,7 +158,7 @@ test('a body is sent with its content type and length', async () => {
     async (origin) => {
       const response = await gatewayRequest({
         gatewayUrl: origin,
-        portalHost: 'acme.reqruitbook.local',
+        portalHost: 'acme.karmarat.local',
         path: '/api/v1/company-roles',
         method: 'POST',
         body: JSON.stringify({ name: 'Night Sourcer' }),
@@ -186,7 +186,7 @@ test('a non-2xx is returned rather than thrown', async () => {
       // would force every one of them to catch to read a status.
       const response = await gatewayRequest({
         gatewayUrl: origin,
-        portalHost: 'acme.reqruitbook.local',
+        portalHost: 'acme.karmarat.local',
         path: '/api/v1/recruiters',
       });
       assert.equal(response.status, 403);
@@ -208,7 +208,7 @@ test('hop-by-hop response headers are not passed on', async () => {
     async (origin) => {
       const response = await gatewayRequest({
         gatewayUrl: origin,
-        portalHost: 'acme.reqruitbook.local',
+        portalHost: 'acme.karmarat.local',
         path: '/api/v1/company/profile',
       });
       assert.equal(response.headers.get('connection'), null);
@@ -225,7 +225,7 @@ test('an unreachable gateway rejects rather than resolving', async () => {
     gatewayRequest({
       // Port 1 is never listening; the connection is refused immediately.
       gatewayUrl: 'http://127.0.0.1:1',
-      portalHost: 'acme.reqruitbook.local',
+      portalHost: 'acme.karmarat.local',
       path: '/api/v1/company/profile',
       timeoutMs: 2_000,
     }),
@@ -259,7 +259,7 @@ test('a connection dropped mid-body rejects instead of hanging', async () => {
       await assert.rejects(() =>
         gatewayRequest({
           gatewayUrl: origin,
-          portalHost: 'acme.reqruitbook.local',
+          portalHost: 'acme.karmarat.local',
           path: '/api/v1/recruiters',
           timeoutMs: 3_000,
         }),
@@ -284,7 +284,7 @@ test('a slow trickle is bounded by the deadline, not reset by it', async () => {
       await assert.rejects(() =>
         gatewayRequest({
           gatewayUrl: origin,
-          portalHost: 'acme.reqruitbook.local',
+          portalHost: 'acme.karmarat.local',
           path: '/api/v1/recruiters',
           timeoutMs: 600,
         }),

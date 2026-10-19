@@ -14,7 +14,7 @@ cd "$ROOT"
 
 GW="${GATEWAY_URL:-http://localhost:8080}"
 [[ -f .env ]] && { set -a; . ./.env; set +a; }
-HOST_BASE="${PLATFORM_HOSTNAME:-reqruitbook.local}"
+HOST_BASE="${PLATFORM_HOSTNAME:-karmarat.local}"
 INTERNAL_TOKEN="${INTERNAL_SERVICE_TOKEN:-}"
 ID_URL="${IDENTITY_URL:-http://localhost:8081}"
 
@@ -73,7 +73,7 @@ login() {
   jq_ tokens.accessToken
 }
 
-printf 'ReqruitBook product flow — %s\n' "$GW"
+printf 'Karmarat product flow — %s\n' "$GW"
 
 [[ -z "$INTERNAL_TOKEN" ]] && { echo "INTERNAL_SERVICE_TOKEN unset"; exit 1; }
 

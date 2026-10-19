@@ -6,8 +6,8 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/services/candidates/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/services/candidates/internal/domain"
 )
 
 // Publisher emits this service's domain events.

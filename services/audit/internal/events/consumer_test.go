@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	platformevents "github.com/reqruitbook/platform/packages/goshared/events"
+	platformevents "github.com/karmarat/platform/packages/goshared/events"
 )
 
 // These cover the decisions the recorder makes before it touches the database:
@@ -28,7 +28,7 @@ func TestEntryIDIsTheEventsOwnID(t *testing.T) {
 
 	envelope := platformevents.Envelope{
 		ID:      "evt_01HQ8",
-		Subject: "reqruitbook.job.published",
+		Subject: "karmarat.job.published",
 	}
 
 	if got := recorder.entryID(envelope); got != "evt_01HQ8" {
@@ -44,7 +44,7 @@ func TestEntryIDIsStableForAnIDLessEvent(t *testing.T) {
 
 	at := time.Date(2026, 3, 4, 5, 6, 7, 0, time.UTC)
 	envelope := platformevents.Envelope{
-		Subject:    "reqruitbook.job.published",
+		Subject:    "karmarat.job.published",
 		OccurredAt: at,
 		Payload:    json.RawMessage(`{"jobId":"job_1"}`),
 	}
@@ -109,7 +109,7 @@ func TestTenantOfAcceptsOnlyAUUID(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got := recorder.tenantOf(platformevents.Envelope{
-				Subject:   "reqruitbook.company.updated",
+				Subject:   "karmarat.company.updated",
 				CompanyID: tt.companyID,
 			})
 			if got != tt.want {

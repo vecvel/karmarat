@@ -1,6 +1,6 @@
 "use server";
 
-import { ProblemError } from "@reqruitbook/ui";
+import { ProblemError } from "@karmarat/ui";
 
 import { PLATFORM_HOSTNAME } from "@/lib/gateway/config";
 
@@ -59,7 +59,7 @@ export async function submitApplicationFromPortal(_data: PortalApplicationInput)
     title: "Sign-in required",
     status: 401,
     detail:
-      "Applications are made from a ReqruitBook candidate account, so that you can track and withdraw them. Sign in or create an account on the jobs portal to apply.",
+      "Applications are made from a Karmarat candidate account, so that you can track and withdraw them. Sign in or create an account on the jobs portal to apply.",
     code: "candidate_account_required",
   });
 }

@@ -15,9 +15,9 @@
  * unset — `pnpm test` stays green on a laptop with nothing running, and CI,
  * which sets it, still gets the proofs:
  *
- *   TEST_DATABASE_URL=postgres://reqruitbook:reqruitbook@localhost:5432/support_test pnpm test
+ *   TEST_DATABASE_URL=postgres://karmarat:karmarat@localhost:5432/support_test pnpm test
  */
-import { createPool, migrate } from '@reqruitbook/nestshared';
+import { createPool, migrate } from '@karmarat/nestshared';
 import { randomUUID } from 'node:crypto';
 import { join } from 'node:path';
 import type { Pool } from 'pg';
@@ -88,7 +88,7 @@ describeWithDatabase('support persistence (postgres)', () => {
           companyId: tenantA,
           authorKind: 'platform',
           authorAccountId: 'agent_1',
-          authorEmail: 'agent@reqruitbook.invalid',
+          authorEmail: 'agent@karmarat.invalid',
           body: 'This tenant is three invoices overdue — stall them.',
           internal: true,
           attachments: [],
@@ -103,7 +103,7 @@ describeWithDatabase('support persistence (postgres)', () => {
           companyId: tenantA,
           authorKind: 'platform',
           authorAccountId: 'agent_1',
-          authorEmail: 'agent@reqruitbook.invalid',
+          authorEmail: 'agent@karmarat.invalid',
           body: 'We are looking into the export failure.',
           internal: false,
           attachments: [],
@@ -141,7 +141,7 @@ describeWithDatabase('support persistence (postgres)', () => {
           companyId: tenantA,
           authorKind: 'platform',
           authorAccountId: 'agent_1',
-          authorEmail: 'agent@reqruitbook.invalid',
+          authorEmail: 'agent@karmarat.invalid',
           body: 'Internal: refund workings attached.',
           internal: true,
           attachments: [

@@ -16,7 +16,7 @@ import {
   parsePageRequest,
   type Page,
   type PageRequest,
-} from '@reqruitbook/nestshared';
+} from '@karmarat/nestshared';
 
 import type { CompaniesConfig } from '../config';
 import { IdentityClient } from '../identity/identity.client';

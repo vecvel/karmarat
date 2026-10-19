@@ -10,7 +10,7 @@
  * Skips cleanly when TEST_DATABASE_URL is unset, so `pnpm test` stays green on
  * a laptop with nothing running.
  */
-import { migrate } from '@reqruitbook/nestshared';
+import { migrate } from '@karmarat/nestshared';
 import { Pool } from 'pg';
 import { join } from 'node:path';
 

@@ -20,7 +20,7 @@ import {
   createPool,
   healthCheck,
   healthController,
-} from '@reqruitbook/nestshared';
+} from '@karmarat/nestshared';
 import { Pool } from 'pg';
 
 import { loadConfig, type SupportConfig } from '../config';

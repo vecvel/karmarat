@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/packages/goshared/tokens"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/tokens"
 )
 
 // Trusted headers the gateway sets after it has verified a token.

@@ -7,7 +7,7 @@
  * whose ticket it must be.
  */
 import { Inject, Injectable } from '@nestjs/common';
-import { notFound, parsePageRequest, type Page } from '@reqruitbook/nestshared';
+import { notFound, parsePageRequest, type Page } from '@karmarat/nestshared';
 
 import { STORAGE_PRESIGNER } from '../tokens';
 import { newId } from '../common/idgen';

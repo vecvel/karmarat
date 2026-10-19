@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/offers/internal/domain"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/offers/internal/domain"
 )
 
 const testCompany = "11111111-1111-1111-1111-111111111111"

@@ -18,7 +18,7 @@ import {
   parsePageRequest,
   validationFailed,
   type Page,
-} from '@reqruitbook/nestshared';
+} from '@karmarat/nestshared';
 
 import { EVENT_BUS } from '../common/infrastructure.module';
 import { normaliseCurrency } from '../common/money';

@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/services/interviews/internal/domain"
-	"github.com/reqruitbook/platform/services/interviews/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/services/interviews/internal/domain"
+	"github.com/karmarat/platform/services/interviews/internal/store"
 )
 
 // scorecardRequest mirrors the company portal's ScorecardInput.

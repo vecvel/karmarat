@@ -1,0 +1,61 @@
+# syntax=docker/dockerfile:1
+ARG NODE_VERSION=20-alpine
+
+FROM node:${NODE_VERSION} AS base
+RUN apk add --no-cache libc6-compat
+RUN corepack enable && corepack prepare pnpm@11.13.1 --activate
+WORKDIR /src
+
+# 1. Install dependencies for the target Next.js app and the shared UI package
+FROM base AS deps
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY packages/ui/package.json ./packages/ui/
+ARG APP_NAME
+COPY apps/${APP_NAME}/package.json ./apps/${APP_NAME}/
+
+RUN --mount=type=cache,target=/pnpm-store \
+    pnpm config set store-dir /pnpm-store && \
+    pnpm install --frozen-lockfile --filter @karmarat/ui... --filter @karmarat/${APP_NAME}...
+
+# 2. Build the shared package and target Next.js portal
+FROM base AS builder
+COPY --from=deps /src/node_modules ./node_modules
+COPY --from=deps /src/packages/ui/node_modules ./packages/ui/node_modules
+ARG APP_NAME
+COPY --from=deps /src/apps/${APP_NAME}/node_modules ./apps/${APP_NAME}/node_modules
+
+COPY package.json pnpm-workspace.yaml ./
+COPY packages/ui ./packages/ui
+COPY apps/${APP_NAME} ./apps/${APP_NAME}
+
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+
+RUN pnpm --filter @karmarat/ui build && \
+    pnpm --filter @karmarat/${APP_NAME} build
+
+# 3. Production runner (minimal footprint, non-root user)
+FROM node:${NODE_VERSION} AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+ARG APP_NAME
+# Copy standalone server and static assets from Next.js standalone build
+COPY --from=builder /src/apps/${APP_NAME}/.next/standalone ./
+COPY --from=builder /src/apps/${APP_NAME}/.next/static ./apps/${APP_NAME}/.next/static
+COPY --from=builder /src/apps/${APP_NAME}/public ./apps/${APP_NAME}/public
+
+USER nextjs:nodejs
+EXPOSE 3000
+
+HEALTHCHECK --interval=15s --timeout=3s --start-period=10s --retries=3 \
+  CMD wget --quiet --spider "http://127.0.0.1:3000" || exit 1
+
+ENV APP_PATH="apps/${APP_NAME}/server.js"
+CMD ["sh", "-c", "exec node ${APP_PATH}"]

@@ -1,8 +1,8 @@
 import "server-only";
 
-import { ProblemError, networkProblem } from "@reqruitbook/ui";
+import { ProblemError, networkProblem } from "@karmarat/ui";
 
-import { gatewayRequest } from "@reqruitbook/ui/server";
+import { gatewayRequest } from "@karmarat/ui/server";
 
 import { GATEWAY_URL, PORTAL_HOST } from "./env";
 

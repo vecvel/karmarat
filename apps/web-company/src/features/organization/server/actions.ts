@@ -57,7 +57,7 @@ function toSettings(profile: PlatformCompanyProfile): OrganizationSettings {
     slug: profile.slug,
     // The careers portal is reached at {slug}.{hostname}; it is derived rather
     // than stored, so it can never drift from where the portal actually is.
-    careersDomain: `${profile.slug}.${process.env.NEXT_PUBLIC_PLATFORM_HOSTNAME ?? "reqruitbook.local"}`,
+    careersDomain: `${profile.slug}.${process.env.NEXT_PUBLIC_PLATFORM_HOSTNAME ?? "karmarat.local"}`,
     defaultCurrency: profile.defaultCurrency ?? "USD",
     timezone: profile.timezone ?? "UTC",
     logoUrl: profile.logoKey ?? "",

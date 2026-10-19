@@ -14,7 +14,7 @@ import {
   notFound,
   validationFailed,
   withTransaction,
-} from '@reqruitbook/nestshared';
+} from '@karmarat/nestshared';
 import type { Pool } from 'pg';
 
 import { PG_POOL } from '../common/infrastructure.module';

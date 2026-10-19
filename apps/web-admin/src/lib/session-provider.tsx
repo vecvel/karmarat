@@ -11,8 +11,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { createApiClient, snapshotFromSession, type ApiClient, type Session } from "@reqruitbook/ui";
-import { AccessProvider, ApiProvider } from "@reqruitbook/ui/react";
+import { createApiClient, snapshotFromSession, type ApiClient, type Session } from "@karmarat/ui";
+import { AccessProvider, ApiProvider } from "@karmarat/ui/react";
 
 export type ConsoleSession = Session & { roleNames: string[]; isSuperAdmin: boolean };
 

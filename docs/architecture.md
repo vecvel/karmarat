@@ -1,4 +1,4 @@
-# ReqruitBook Platform Architecture
+# Karmarat Platform Architecture
 
 A multi-tenant recruitment SaaS. Companies get isolated careers portals,
 candidates get one central job portal, and the platform team operates both from a
@@ -47,7 +47,7 @@ fed by events.
 
 ```
 Browser
-  │  Host: acme.reqruitbook.com
+  │  Host: acme.karmarat.com
   │  Authorization: Bearer <access token>
   ▼
 Gateway
@@ -96,7 +96,7 @@ real and token theft detectable.
 
 ## Events
 
-NATS JetStream, subject `reqruitbook.<domain>.<event>`, 30-day retention, durable
+NATS JetStream, subject `karmarat.<domain>.<event>`, 30-day retention, durable
 consumers with backoff. Publishing is de-duplicated by event id so a retry after
 a network blip does not deliver the same fact twice.
 

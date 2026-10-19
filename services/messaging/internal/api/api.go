@@ -25,12 +25,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/redisx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/messaging/internal/candidates"
-	"github.com/reqruitbook/platform/services/messaging/internal/domain"
-	"github.com/reqruitbook/platform/services/messaging/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/redisx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/messaging/internal/candidates"
+	"github.com/karmarat/platform/services/messaging/internal/domain"
+	"github.com/karmarat/platform/services/messaging/internal/store"
 )
 
 // Permission keys, all of which already exist in the identity RBAC registry.

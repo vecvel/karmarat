@@ -6,7 +6,7 @@
  * a company id from anywhere — there is no tenant yet, which is the point.
  */
 import { Body, Controller, Get, HttpCode, Post, Query, UseGuards } from '@nestjs/common';
-import { Public } from '@reqruitbook/nestshared';
+import { Public } from '@karmarat/nestshared';
 
 import { RegistrationRateLimitGuard, SlugCheckRateLimitGuard } from '../common/rate-limit.guard';
 import { CompaniesService } from './companies.service';

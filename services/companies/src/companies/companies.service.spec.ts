@@ -8,7 +8,7 @@
  * needed it would be skipped on the machines where this matters most.
  */
 import { Logger } from '@nestjs/common';
-import { Problem, Subject } from '@reqruitbook/nestshared';
+import { Problem, Subject } from '@karmarat/nestshared';
 
 import type { CompaniesConfig } from '../config';
 import type { IdentityClient } from '../identity/identity.client';

@@ -382,7 +382,7 @@ describe('webhook outcomes that are not settlements', () => {
     expect((await h.service.handle(raw, signature)).status).toBe('applied');
     expect(h.payments.current()?.state).toBe('failed');
     expect(h.publish).toHaveBeenCalledTimes(1);
-    expect(h.publish.mock.calls[0]?.[0]).toBe('reqruitbook.payment.failed');
+    expect(h.publish.mock.calls[0]?.[0]).toBe('karmarat.payment.failed');
   });
 
   it('does not let a late failure reverse money that already settled', async () => {

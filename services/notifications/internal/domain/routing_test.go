@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
 )
 
 const (

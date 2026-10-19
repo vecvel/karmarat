@@ -1,8 +1,8 @@
 {
-  "name": "@reqruitbook/web-company",
+  "name": "@karmarat/web-company",
   "version": "1.0.0",
   "private": true,
-  "description": "ReqruitBook \u2014 The Modern Recruitment & Talent Operating System",
+  "description": "Karmarat \u2014 The Modern Recruitment & Talent Operating System",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -49,7 +49,7 @@
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
     "zod": "^4.3.5",
-    "@reqruitbook/ui": "workspace:*"
+    "@karmarat/ui": "workspace:*"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

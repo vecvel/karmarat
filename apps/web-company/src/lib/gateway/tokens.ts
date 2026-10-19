@@ -2,7 +2,7 @@ import "server-only";
 
 import { cookies } from "next/headers";
 
-import { gatewayRequest } from "@reqruitbook/ui/server";
+import { gatewayRequest } from "@karmarat/ui/server";
 
 import { GATEWAY_URL, resolvePortalHost } from "./config";
 import { ACCESS_COOKIE, PROFILE_COOKIE, REFRESH_COOKIE } from "./cookie-names";

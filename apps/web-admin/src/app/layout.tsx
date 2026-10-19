@@ -6,12 +6,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Platform Console · ReqruitBook",
+    default: "Platform Console · Karmarat",
     template: "%s · Platform Console",
   },
   description:
-    "ReqruitBook platform administration: tenants, plans, subscriptions, payments, support and platform health.",
-  applicationName: "ReqruitBook Platform Console",
+    "Karmarat platform administration: tenants, plans, subscriptions, payments, support and platform health.",
+  applicationName: "Karmarat Platform Console",
   // Nothing in this console should ever reach a search index.
   robots: { index: false, follow: false },
 };

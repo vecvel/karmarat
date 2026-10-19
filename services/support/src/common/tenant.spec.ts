@@ -5,7 +5,7 @@
  * Postgres cast error, which would put a type name and the offending literal
  * into a response body.
  */
-import { Problem } from '@reqruitbook/nestshared';
+import { Problem } from '@karmarat/nestshared';
 
 import { assertTenantId, isTenantId } from './tenant';
 

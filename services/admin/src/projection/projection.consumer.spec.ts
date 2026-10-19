@@ -10,7 +10,7 @@
  * half that lives in TypeScript: that the timestamp the guard compares is the
  * event's own, and that a redelivered event never reaches the projection at all.
  */
-import { Subject, type Envelope } from '@reqruitbook/nestshared';
+import { Subject, type Envelope } from '@karmarat/nestshared';
 import type { Pool } from 'pg';
 
 import { CANDIDATES_TOTAL, ProjectionConsumer } from './projection.consumer';
@@ -203,7 +203,7 @@ describe('facts that belong to no tenant', () => {
     // A new subject arriving here is not an error; it is a service that shipped
     // before this console learned about it.
     const repository = fakeRepository();
-    await consumerOver(repository).handle(envelope({ subject: 'reqruitbook.offer.accepted' }));
+    await consumerOver(repository).handle(envelope({ subject: 'karmarat.offer.accepted' }));
 
     expect(repository.recordActivity).toHaveBeenCalledTimes(1);
     expect(repository.upsertCompany).not.toHaveBeenCalled();

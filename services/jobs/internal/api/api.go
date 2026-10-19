@@ -18,11 +18,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/jobs/internal/domain"
-	"github.com/reqruitbook/platform/services/jobs/internal/events"
-	"github.com/reqruitbook/platform/services/jobs/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/jobs/internal/domain"
+	"github.com/karmarat/platform/services/jobs/internal/events"
+	"github.com/karmarat/platform/services/jobs/internal/store"
 )
 
 // API wires the jobs handlers.

@@ -12,16 +12,16 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/redisx"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/packages/goshared/tokens"
-	"github.com/reqruitbook/platform/services/identity/internal/auth"
-	"github.com/reqruitbook/platform/services/identity/internal/domain"
-	"github.com/reqruitbook/platform/services/identity/internal/provisioning"
-	"github.com/reqruitbook/platform/services/identity/internal/rbac"
-	"github.com/reqruitbook/platform/services/identity/internal/store"
-	"github.com/reqruitbook/platform/services/identity/internal/team"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/redisx"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/packages/goshared/tokens"
+	"github.com/karmarat/platform/services/identity/internal/auth"
+	"github.com/karmarat/platform/services/identity/internal/domain"
+	"github.com/karmarat/platform/services/identity/internal/provisioning"
+	"github.com/karmarat/platform/services/identity/internal/rbac"
+	"github.com/karmarat/platform/services/identity/internal/store"
+	"github.com/karmarat/platform/services/identity/internal/team"
 )
 
 // API wires the identity handlers.

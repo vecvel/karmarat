@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertCircle, CreditCard, Inbox, Lock, WifiOff } from "lucide-react";
-import { isProblem, ProblemError } from "@reqruitbook/ui";
+import { isProblem, ProblemError } from "@karmarat/ui";
 import type { ReactNode } from "react";
 
 import { Skeleton } from "@/components/ui/skeleton";

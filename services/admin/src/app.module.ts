@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module, type NestModule } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthorizationGuard, GatewayPrincipalMiddleware } from '@reqruitbook/nestshared';
+import { AuthorizationGuard, GatewayPrincipalMiddleware } from '@karmarat/nestshared';
 
 import { ActivityModule } from './activity/activity.module';
 import { InfrastructureModule } from './common/infrastructure.module';

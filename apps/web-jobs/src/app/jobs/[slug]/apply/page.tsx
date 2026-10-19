@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { isProblem } from "@reqruitbook/ui";
+import { isProblem } from "@karmarat/ui";
 
 import { ApplyForm } from "@/components/apply/apply-form";
 import type { JobFormResponse } from "@/lib/api-types";

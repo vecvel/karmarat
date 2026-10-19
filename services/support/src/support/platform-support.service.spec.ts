@@ -7,7 +7,7 @@
  * must leave the ticket's state alone, so the ticket stays in the desk's own
  * reply queue and the customer is told nothing by the state change.
  */
-import { Problem } from '@reqruitbook/nestshared';
+import { Problem } from '@karmarat/nestshared';
 
 import type { PlatformThreadRepository } from './platform-thread.repository';
 import type { SupportEventPublisher } from './events.publisher';
@@ -15,7 +15,7 @@ import type { CreatedMessage, NewMessage, TicketRepository } from './tickets.rep
 import { PlatformSupportService, type Agent } from './platform-support.service';
 import type { Ticket, TicketState } from './domain';
 
-const AGENT: Agent = { accountId: 'agent_1', email: 'agent@reqruitbook.invalid' };
+const AGENT: Agent = { accountId: 'agent_1', email: 'agent@karmarat.invalid' };
 
 function ticketAt(state: TicketState): Ticket {
   const now = new Date('2026-01-01T00:00:00.000Z');

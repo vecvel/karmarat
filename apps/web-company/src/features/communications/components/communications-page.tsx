@@ -77,7 +77,7 @@ const MERGE_TOKENS = [
   { token: "{{job_title}}", label: "Job Title", desc: "e.g. Staff Backend Engineer" },
   { token: "{{req_code}}", label: "Req Code", desc: "e.g. REQ-2026-08" },
   { token: "{{department}}", label: "Department", desc: "e.g. Engineering" },
-  { token: "{{company_name}}", label: "Company", desc: "e.g. ReqruitBook" },
+  { token: "{{company_name}}", label: "Company", desc: "e.g. Karmarat" },
   { token: "{{work_location}}", label: "Location", desc: "e.g. San Francisco, CA" },
   { token: "{{interview_date}}", label: "Interview Date", desc: "e.g. Oct 24, 2026" },
   { token: "{{interview_time}}", label: "Interview Time", desc: "e.g. 2:00 PM EST" },
@@ -86,7 +86,7 @@ const MERGE_TOKENS = [
   { token: "{{offer_salary}}", label: "Offer Salary", desc: "e.g. $185,000 / year" },
   { token: "{{joining_date}}", label: "Start Date", desc: "e.g. Nov 15, 2026" },
   { token: "{{sender_name}}", label: "Sender Name", desc: "e.g. Jordan Lee" },
-  { token: "{{careers_url}}", label: "Careers URL", desc: "e.g. https://careers.reqruitbook.com" },
+  { token: "{{careers_url}}", label: "Careers URL", desc: "e.g. https://careers.karmarat.com" },
 ];
 
 const SAMPLE_DATA: Record<string, string> = {
@@ -95,7 +95,7 @@ const SAMPLE_DATA: Record<string, string> = {
   job_title: "Staff Distributed Systems Engineer",
   req_code: "REQ-2026-ENG",
   department: "Infrastructure Engineering",
-  company_name: "ReqruitBook Corp",
+  company_name: "Karmarat Corp",
   work_location: "San Francisco, CA (Hybrid)",
   interview_date: "Thursday, October 24, 2026",
   interview_time: "2:00 PM - 3:00 PM PST",
@@ -104,7 +104,7 @@ const SAMPLE_DATA: Record<string, string> = {
   offer_salary: "$195,000 USD / year",
   joining_date: "November 15, 2026",
   sender_name: "Elena Rostova",
-  careers_url: "https://reqruitbook.com/careers",
+  careers_url: "https://karmarat.com/careers",
 };
 
 const STAGE_FILTERS = [
@@ -737,7 +737,7 @@ function CommunicationsContent() {
                   <div className="flex gap-2">
                     <span className="w-16 text-muted-foreground font-medium">From:</span>
                     <span className="font-semibold text-foreground">
-                      {smtpStatus?.fromName || "ReqruitBook Talent Team"} &lt;{smtpStatus?.fromEmail || "talent@reqruitbook.com"}&gt;
+                      {smtpStatus?.fromName || "Karmarat Talent Team"} &lt;{smtpStatus?.fromEmail || "talent@karmarat.com"}&gt;
                     </span>
                   </div>
                   <div className="flex gap-2">

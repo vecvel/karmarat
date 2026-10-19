@@ -6,7 +6,7 @@
  * otherwise only adds ceremony.
  */
 import { Global, Inject, Logger, Module, type OnApplicationShutdown } from '@nestjs/common';
-import { createPool } from '@reqruitbook/nestshared';
+import { createPool } from '@karmarat/nestshared';
 import { Pool } from 'pg';
 
 import { loadConfig, type AdminConfig } from '../config';

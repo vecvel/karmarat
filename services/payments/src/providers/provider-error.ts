@@ -7,7 +7,7 @@
  * `safeDetail` — the only part a client ever sees. The original stays on the
  * error for the log.
  */
-import { Problem, badRequest, unauthorized } from '@reqruitbook/nestshared';
+import { Problem, badRequest, unauthorized } from '@karmarat/nestshared';
 
 export class ProviderError extends Error {
   constructor(

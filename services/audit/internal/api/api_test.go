@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/httpx"
 )
 
 // The guards are the whole security of a read-only service, so they are tested

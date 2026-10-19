@@ -9,11 +9,11 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/reqruitbook/platform/packages/goshared/events"
-	"github.com/reqruitbook/platform/services/identity/internal/auth"
-	"github.com/reqruitbook/platform/services/identity/internal/domain"
-	"github.com/reqruitbook/platform/services/identity/internal/rbac"
-	"github.com/reqruitbook/platform/services/identity/internal/store"
+	"github.com/karmarat/platform/packages/goshared/events"
+	"github.com/karmarat/platform/services/identity/internal/auth"
+	"github.com/karmarat/platform/services/identity/internal/domain"
+	"github.com/karmarat/platform/services/identity/internal/rbac"
+	"github.com/karmarat/platform/services/identity/internal/store"
 )
 
 // Service implements a company's management of its own team and roles.

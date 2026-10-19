@@ -3,7 +3,7 @@ package api
 import (
 	"time"
 
-	"github.com/reqruitbook/platform/services/jobs/internal/domain"
+	"github.com/karmarat/platform/services/jobs/internal/domain"
 )
 
 // salaryView is the internal shape of a band: the `isPublic` flag travels with

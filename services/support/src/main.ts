@@ -8,7 +8,7 @@ import { config, tracing } from './tracing';
 
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { ProblemFilter, migrate } from '@reqruitbook/nestshared';
+import { ProblemFilter, migrate } from '@karmarat/nestshared';
 import { join } from 'node:path';
 import type { Pool } from 'pg';
 

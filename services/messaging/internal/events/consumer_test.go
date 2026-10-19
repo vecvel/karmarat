@@ -7,7 +7,7 @@ import (
 	"log/slog"
 	"testing"
 
-	platformevents "github.com/reqruitbook/platform/packages/goshared/events"
+	platformevents "github.com/karmarat/platform/packages/goshared/events"
 )
 
 // An event this service cannot act on must be retired, not nak'd: a redelivery

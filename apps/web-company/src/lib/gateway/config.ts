@@ -15,7 +15,7 @@ import { headers } from "next/headers";
 export const GATEWAY_URL = process.env.GATEWAY_URL?.replace(/\/+$/, "") || "http://localhost:8080";
 
 /** The platform's base hostname; a company portal lives at `{slug}.{this}`. */
-export const PLATFORM_HOSTNAME = process.env.PLATFORM_HOSTNAME || "reqruitbook.local";
+export const PLATFORM_HOSTNAME = process.env.PLATFORM_HOSTNAME || "karmarat.local";
 
 /** Hostnames that are never a company slug, mirroring the gateway's reserved list. */
 const NOT_A_SLUG = new Set(["www", "api", "root", "jobs", "localhost", "app", "admin"]);

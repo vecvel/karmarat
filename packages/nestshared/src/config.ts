@@ -50,7 +50,7 @@ export function loadBase(serviceName: string, defaultPort: number): BaseConfig {
   const config: BaseConfig = {
     serviceName,
     environment,
-    hostname: str('PLATFORM_HOSTNAME', 'reqruitbook.local'),
+    hostname: str('PLATFORM_HOSTNAME', 'karmarat.local'),
     logLevel: str('LOG_LEVEL', 'info'),
     postgresUrl: str('DATABASE_URL', postgresUrl(str('POSTGRES_DB', serviceName))),
     redisUrl: str('REDIS_URL', redisUrl()),
@@ -76,8 +76,8 @@ export function loadBase(serviceName: string, defaultPort: number): BaseConfig {
 }
 
 function postgresUrl(database: string): string {
-  const user = str('POSTGRES_USER', 'reqruitbook');
-  const password = str('POSTGRES_PASSWORD', 'reqruitbook');
+  const user = str('POSTGRES_USER', 'karmarat');
+  const password = str('POSTGRES_PASSWORD', 'karmarat');
   const host = str('POSTGRES_HOST', 'localhost');
   const port = str('POSTGRES_PORT', '5432');
   return `postgres://${user}:${encodeURIComponent(password)}@${host}:${port}/${database}?sslmode=disable`;

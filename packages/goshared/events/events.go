@@ -17,69 +17,69 @@ import (
 	"github.com/nats-io/nats.go"
 	"github.com/nats-io/nats.go/jetstream"
 
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/packages/goshared/idgen"
 )
 
 // Subject names every event the platform publishes.
 //
-// The `reqruitbook.<domain>.<event>` shape lets a consumer subscribe to one
+// The `karmarat.<domain>.<event>` shape lets a consumer subscribe to one
 // event or to a whole domain with a wildcard.
 const (
-	StreamName = "REQRUITBOOK"
+	StreamName = "KARMARAT"
 
-	SubjectCompanyRegistered = "reqruitbook.company.registered"
-	SubjectCompanyApproved   = "reqruitbook.company.approved"
-	SubjectCompanySuspended  = "reqruitbook.company.suspended"
-	SubjectCompanyUpdated    = "reqruitbook.company.updated"
+	SubjectCompanyRegistered = "karmarat.company.registered"
+	SubjectCompanyApproved   = "karmarat.company.approved"
+	SubjectCompanySuspended  = "karmarat.company.suspended"
+	SubjectCompanyUpdated    = "karmarat.company.updated"
 
-	SubjectSubscriptionActivated = "reqruitbook.subscription.activated"
-	SubjectSubscriptionRenewed   = "reqruitbook.subscription.renewed"
-	SubjectSubscriptionExpired   = "reqruitbook.subscription.expired"
-	SubjectSubscriptionCancelled = "reqruitbook.subscription.cancelled"
+	SubjectSubscriptionActivated = "karmarat.subscription.activated"
+	SubjectSubscriptionRenewed   = "karmarat.subscription.renewed"
+	SubjectSubscriptionExpired   = "karmarat.subscription.expired"
+	SubjectSubscriptionCancelled = "karmarat.subscription.cancelled"
 
-	SubjectPaymentSucceeded = "reqruitbook.payment.succeeded"
-	SubjectPaymentFailed    = "reqruitbook.payment.failed"
+	SubjectPaymentSucceeded = "karmarat.payment.succeeded"
+	SubjectPaymentFailed    = "karmarat.payment.failed"
 
-	SubjectJobPublished   = "reqruitbook.job.published"
-	SubjectJobUnpublished = "reqruitbook.job.unpublished"
-	SubjectJobClosed      = "reqruitbook.job.closed"
+	SubjectJobPublished   = "karmarat.job.published"
+	SubjectJobUnpublished = "karmarat.job.unpublished"
+	SubjectJobClosed      = "karmarat.job.closed"
 
-	SubjectApplicationSubmitted    = "reqruitbook.application.submitted"
-	SubjectApplicationStageChanged = "reqruitbook.application.stage_changed"
-	SubjectApplicationRejected     = "reqruitbook.application.rejected"
-	SubjectApplicationWithdrawn    = "reqruitbook.application.withdrawn"
-	SubjectApplicationHired        = "reqruitbook.application.hired"
+	SubjectApplicationSubmitted    = "karmarat.application.submitted"
+	SubjectApplicationStageChanged = "karmarat.application.stage_changed"
+	SubjectApplicationRejected     = "karmarat.application.rejected"
+	SubjectApplicationWithdrawn    = "karmarat.application.withdrawn"
+	SubjectApplicationHired        = "karmarat.application.hired"
 
-	SubjectInterviewScheduled = "reqruitbook.interview.scheduled"
-	SubjectInterviewCancelled = "reqruitbook.interview.cancelled"
-	SubjectInterviewCompleted = "reqruitbook.interview.completed"
+	SubjectInterviewScheduled = "karmarat.interview.scheduled"
+	SubjectInterviewCancelled = "karmarat.interview.cancelled"
+	SubjectInterviewCompleted = "karmarat.interview.completed"
 
-	SubjectOfferSent     = "reqruitbook.offer.sent"
-	SubjectOfferAccepted = "reqruitbook.offer.accepted"
-	SubjectOfferDeclined = "reqruitbook.offer.declined"
+	SubjectOfferSent     = "karmarat.offer.sent"
+	SubjectOfferAccepted = "karmarat.offer.accepted"
+	SubjectOfferDeclined = "karmarat.offer.declined"
 
-	SubjectCandidateRegistered        = "reqruitbook.candidate.registered"
-	SubjectCandidateVisibilityChanged = "reqruitbook.candidate.visibility_changed"
-	SubjectCandidateProfileUpdated    = "reqruitbook.candidate.profile_updated"
-	SubjectCandidateApproached        = "reqruitbook.candidate.approached"
+	SubjectCandidateRegistered        = "karmarat.candidate.registered"
+	SubjectCandidateVisibilityChanged = "karmarat.candidate.visibility_changed"
+	SubjectCandidateProfileUpdated    = "karmarat.candidate.profile_updated"
+	SubjectCandidateApproached        = "karmarat.candidate.approached"
 
-	SubjectMessageSent      = "reqruitbook.message.sent"
-	SubjectConversationOpen = "reqruitbook.message.conversation_opened"
+	SubjectMessageSent      = "karmarat.message.sent"
+	SubjectConversationOpen = "karmarat.message.conversation_opened"
 
-	SubjectPlanPublished = "reqruitbook.plan.published"
-	SubjectPlanRetired   = "reqruitbook.plan.retired"
+	SubjectPlanPublished = "karmarat.plan.published"
+	SubjectPlanRetired   = "karmarat.plan.retired"
 
-	SubjectUserDeactivated = "reqruitbook.user.deactivated"
-	SubjectSessionRevoked  = "reqruitbook.session.revoked"
+	SubjectUserDeactivated = "karmarat.user.deactivated"
+	SubjectSessionRevoked  = "karmarat.session.revoked"
 
-	SubjectSupportTicketCreated = "reqruitbook.support.ticket_created"
-	SubjectSupportTicketReplied = "reqruitbook.support.ticket_replied"
+	SubjectSupportTicketCreated = "karmarat.support.ticket_created"
+	SubjectSupportTicketReplied = "karmarat.support.ticket_replied"
 
-	SubjectNotificationRequested = "reqruitbook.notification.requested"
+	SubjectNotificationRequested = "karmarat.notification.requested"
 )
 
 // AllSubjects is the wildcard the stream captures.
-const AllSubjects = "reqruitbook.>"
+const AllSubjects = "karmarat.>"
 
 // Envelope wraps every published event.
 //
@@ -141,7 +141,7 @@ func Connect(ctx context.Context, url, serviceName string, logger *slog.Logger) 
 func (b *Bus) ensureStream(ctx context.Context) error {
 	_, err := b.stream.CreateOrUpdateStream(ctx, jetstream.StreamConfig{
 		Name:        StreamName,
-		Description: "ReqruitBook platform domain events",
+		Description: "Karmarat platform domain events",
 		Subjects:    []string{AllSubjects},
 		Retention:   jetstream.LimitsPolicy,
 		Storage:     jetstream.FileStorage,

@@ -7,11 +7,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/reqruitbook/platform/packages/goshared/httpx"
-	"github.com/reqruitbook/platform/packages/goshared/idgen"
-	"github.com/reqruitbook/platform/packages/goshared/tenancy"
-	"github.com/reqruitbook/platform/services/candidates/internal/domain"
-	"github.com/reqruitbook/platform/services/candidates/internal/store"
+	"github.com/karmarat/platform/packages/goshared/httpx"
+	"github.com/karmarat/platform/packages/goshared/idgen"
+	"github.com/karmarat/platform/packages/goshared/tenancy"
+	"github.com/karmarat/platform/services/candidates/internal/domain"
+	"github.com/karmarat/platform/services/candidates/internal/store"
 )
 
 // poolExportLimit caps a CSV export of a company's own pool.

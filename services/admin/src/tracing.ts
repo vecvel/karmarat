@@ -8,7 +8,7 @@
  * traces.
  *
  * That is also why this file does not `import { startTracing } from
- * '@reqruitbook/nestshared'`: the package's entry point re-exports `database`
+ * '@karmarat/nestshared'`: the package's entry point re-exports `database`
  * and `events`, so importing it would pull `pg` and `nats` into the require
  * cache before the SDK had a chance to hook them. The package's `exports` map
  * publishes only `.`, so there is no subpath to import instead; resolving the
@@ -20,10 +20,10 @@
  */
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
-import type { startTracing as StartTracing } from '@reqruitbook/nestshared';
+import type { startTracing as StartTracing } from '@karmarat/nestshared';
 
 const localRequire = createRequire(__filename);
-const entryPoint = localRequire.resolve('@reqruitbook/nestshared');
+const entryPoint = localRequire.resolve('@karmarat/nestshared');
 const { startTracing } = localRequire(join(dirname(entryPoint), 'observability.js')) as {
   startTracing: typeof StartTracing;
 };

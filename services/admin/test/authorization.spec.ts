@@ -17,7 +17,7 @@
 import { INestApplication } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { Test } from '@nestjs/testing';
-import { AuthorizationGuard, GatewayPrincipalMiddleware, ProblemFilter } from '@reqruitbook/nestshared';
+import { AuthorizationGuard, GatewayPrincipalMiddleware, ProblemFilter } from '@karmarat/nestshared';
 import request from 'supertest';
 
 import { ActivityController } from '../src/activity/activity.controller';

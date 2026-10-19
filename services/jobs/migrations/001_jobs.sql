@@ -47,7 +47,7 @@ CREATE TABLE jobs (
     status              job_status NOT NULL DEFAULT 'draft',
 
     -- The two publication surfaces are independent. A job may be on the
-    -- company's own careers portal, on the shared ReqruitBook board, on both, or
+    -- company's own careers portal, on the shared Karmarat board, on both, or
     -- on neither; each is a separate permission to switch on.
     visible_on_portal   boolean NOT NULL DEFAULT false,
     visible_on_network  boolean NOT NULL DEFAULT false,
