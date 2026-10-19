@@ -1,17 +1,38 @@
-# Karmarat
+<p align="center">
+  <a href="https://github.com/vecvel/karmarat">
+    <img src="assets/logo.png" alt="Karmarat Logo" width="120" height="120" />
+  </a>
+</p>
 
-[![CI](https://github.com/vecvel/karmarat/actions/workflows/ci.yml/badge.svg)](https://github.com/vecvel/karmarat/actions/workflows/ci.yml)
-[![Promotion Pipeline](https://github.com/vecvel/karmarat/actions/workflows/deploy.yml/badge.svg)](https://github.com/vecvel/karmarat/actions/workflows/deploy.yml)
-![Go Version](https://img.shields.io/badge/Go-1.26+-00ADD8?style=flat&logo=go&logoColor=white)
-![Node](https://img.shields.io/badge/Node-20+-339933?style=flat&logo=node.js&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-15-000000?style=flat&logo=next.js&logoColor=white)
-![pnpm](https://img.shields.io/badge/pnpm-11.x-F69220?style=flat&logo=pnpm&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2F17-4169E1?style=flat&logo=postgresql&logoColor=white)
-![NATS](https://img.shields.io/badge/NATS-JetStream-27AAE1?style=flat&logo=nats.io&logoColor=white)
-![Ingress](https://img.shields.io/badge/Ingress-Caddy%20TLS-1F88C0?style=flat&logo=caddy&logoColor=white)
-![Architecture](https://img.shields.io/badge/Architecture-Event--Driven%20Microservices-7B2CBF?style=flat)
-![Multi-Tenancy](https://img.shields.io/badge/Tenancy-Subdomain%20Isolated-blueviolet?style=flat)
-![License](https://img.shields.io/badge/License-Proprietary-red.svg?style=flat)
+<h1 align="center">Karmarat</h1>
+
+<p align="center">
+  <strong>Multi-Tenant Recruitment Platform & Enterprise Microservices Architecture</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/vecvel/karmarat/actions/workflows/ci.yml"><img src="https://github.com/vecvel/karmarat/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI Status" /></a>
+  <a href="https://github.com/vecvel/karmarat/actions/workflows/deploy.yml"><img src="https://github.com/vecvel/karmarat/actions/workflows/deploy.yml/badge.svg?branch=main" alt="Promotion Pipeline" /></a>
+  <a href="package.json"><img src="https://img.shields.io/github/package-json/v/vecvel/karmarat?style=flat-square&logo=semanticrelease&logoColor=white&color=2563EB" alt="Version" /></a>
+  <a href="go.mod"><img src="https://img.shields.io/github/go-mod/go-version/vecvel/karmarat?style=flat-square&logo=go&logoColor=white&color=00ADD8" alt="Go Version" /></a>
+  <a href="package.json"><img src="https://img.shields.io/badge/Node-%3E%3D22-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node Engine" /></a>
+  <a href="package.json"><img src="https://img.shields.io/badge/pnpm-11.x-F69220?style=flat-square&logo=pnpm&logoColor=white" alt="Package Manager" /></a>
+  <a href="https://github.com/vecvel/karmarat/commits/main"><img src="https://img.shields.io/github/last-commit/vecvel/karmarat?style=flat-square&logo=github&logoColor=white" alt="Last Commit" /></a>
+  <a href="https://github.com/vecvel/karmarat"><img src="https://img.shields.io/github/repo-size/vecvel/karmarat?style=flat-square&logo=github&logoColor=white" alt="Repo Size" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Proprietary-red.svg?style=flat-square" alt="License" /></a>
+</p>
+
+<p align="center">
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-15-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 15" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" /></a>
+  <a href="https://nestjs.com/"><img src="https://img.shields.io/badge/NestJS-11-E0234E?style=flat-square&logo=nestjs&logoColor=white" alt="NestJS" /></a>
+  <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/PostgreSQL-17-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL" /></a>
+  <a href="https://redis.io/"><img src="https://img.shields.io/badge/Redis-7-DC382D?style=flat-square&logo=redis&logoColor=white" alt="Redis" /></a>
+  <a href="https://nats.io/"><img src="https://img.shields.io/badge/NATS-JetStream-27AAE1?style=flat-square&logo=natsdotio&logoColor=white" alt="NATS JetStream" /></a>
+  <a href="https://caddyserver.com/"><img src="https://img.shields.io/badge/Caddy-TLS-1F88C0?style=flat-square&logo=caddy&logoColor=white" alt="Caddy TLS" /></a>
+  <a href="deploy/docker-compose.prod.yml"><img src="https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker Compose" /></a>
+  <a href="https://opentelemetry.io/"><img src="https://img.shields.io/badge/OpenTelemetry-Tracing-4053D6?style=flat-square&logo=opentelemetry&logoColor=white" alt="OpenTelemetry" /></a>
+</p>
 
 A multi-tenant recruitment platform. Companies get isolated careers portals,
 candidates get one central job portal, and the platform is operated from a
@@ -194,7 +215,6 @@ newline — makes the whole line a comment, and nothing resolves.
 
 - [Platform architecture](docs/architecture.md) — services, tenancy, request path, security
 - [Environment lifecycle & multi-tier promotion](docs/environment-lifecycle.md) — Local, Staging, UAT, Production progression, wildcard SSL, and run commands
-- [Production readiness blueprint](docs/production-plan.md) — self-hosting architecture, hardening, and disaster recovery
 - [Service contract](docs/contracts.md) — what every service must do to compose with the platform, and the traps that cost an hour each
 - [Front ends](docs/frontends.md) — the four portals, the Host-header rule they all depend on, and what they still cannot do
 - [Feature-based RBAC](docs/rbac.md) — the permission model used by the company portal

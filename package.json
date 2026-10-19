@@ -17,6 +17,6 @@
     "go:lint": "golangci-lint run ./services/... ./packages/..."
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   }
 }

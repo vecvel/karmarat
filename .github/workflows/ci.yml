@@ -88,7 +88,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install
@@ -145,4 +145,4 @@ jobs:
       - uses: golangci/golangci-lint-action@v6
         with:
           version: latest
-          args: --timeout=5m ./services/... ./packages/...
+          args: --timeout=5m --go 1.24 ./services/... ./packages/...
